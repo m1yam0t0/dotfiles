@@ -1,0 +1,29 @@
+homebrew_taps:
+  - caskroom/cask
+  - caskroom/versions
+  - sanemat/font
+
+homebrew_packages:
+  - coreutils
+  - git
+  - neovim
+  - python3
+  - ricty
+  - tmux
+  - tree
+  - wget
+  - zsh
+
+homebrew_cask_packages:
+  - alfred
+  - bettertouchtool
+  - docker
+  - google-chrome-canary
+  - google-japanese-ime
+  - iterm2
+  - karabiner-elements
+  - sourcetree
+  - vagrant
+  - virtualbox
+  - virtualbox-extension-pack
+  - visual-studio-code

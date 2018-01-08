@@ -1,0 +1,42 @@
+- include_vars: apt.yml
+
+- name: upgrade
+  become: yes
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: install require packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items:
+  - "{{ apt_require_packages }}"
+
+- name: import Docker CE repository gpg key
+  become: yes
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+
+- name: add apt repository
+  become: yes
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+  - "{{ apt_repositories }}"
+
+- name: install packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items:
+  - "{{ apt_packages }}"

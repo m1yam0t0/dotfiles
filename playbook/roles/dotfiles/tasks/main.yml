@@ -1,0 +1,45 @@
+- name: git clone zplug
+  git:
+    repo: https://github.com/zplug/zplug.git
+    dest: ~/.zplug
+
+- name: git clone fzf
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: ~/.fzf
+    depth: 1
+
+- name: install fzf
+  shell: ~/.fzf/install --key-bindings --completion --no-update-rc
+
+- name: find dotfiles path
+  find:
+    paths: ~/.dotfiles
+    file_type: any
+    hidden: yes
+    patterns: "^(?!(\\.git$|\\.git\\/|playbook$|playbook\\/|apt-get\\.sh|install\\.sh)).+$"
+    use_regex: true
+  register: find
+
+- name: symlink dotfiles
+  file:
+    src: "~/.dotfiles/{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
+    dest: "~/{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
+    state: link
+    force: true
+  with_items:
+    - "{{ find.files }}"
+
+- name: symlink .vim
+  file:
+    src: ~/.dotfiles/.config/nvim
+    dest: ~/.vim
+    state: link
+    force: true
+
+- name: symlink .vimrc
+  file:
+    src: ~/.dotfiles/.config/nvim/init.vim
+    dest: ~/.vimrc
+    state: link
+    force: true

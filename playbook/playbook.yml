@@ -1,0 +1,6 @@
+- hosts: localhost
+  connection: local
+  roles:
+    - { role: install_package }
+    - { role: pip }
+    - { role: dotfiles }
