@@ -26,4 +26,4 @@ git clone https://github.com/m1yam0t0/dotfiles.git ~/.dotfiles
 ansible-playbook ~/.dotfiles/playbook/playbook.yml
 
 # change shell
-chsh -s `which zsh`
+sudo chsh -s `which zsh` $USER
