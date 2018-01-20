@@ -17,7 +17,7 @@
     paths: ~/.dotfiles
     file_type: any
     hidden: yes
-    patterns: "^(?!(\\.git$|\\.git\\/|playbook$|playbook\\/|apt-get\\.sh|install\\.sh)).+$"
+    patterns: "^(?!(\\.git$|\\.git\\/|playbook$|playbook\\/|install\\.sh|README\\.md)).+$"
     use_regex: true
   register: find
 
