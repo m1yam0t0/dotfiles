@@ -3,6 +3,8 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+if = 'has("nvim")'
+hook_add = 'source ~/.config/nvim/plugins/denite.vim'
 
 [[plugins]]
 repo =  'altercation/vim-colors-solarized'
