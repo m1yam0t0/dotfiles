@@ -147,7 +147,7 @@ setopt pushd_ignore_dups
 # ls
 case ${OSTYPE} in
     darwin*)
-		    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+	    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
         export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
         alias ls='ls -F --color=auto'
         ;;
