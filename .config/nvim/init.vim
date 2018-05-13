@@ -47,6 +47,7 @@ set number
 set title
 set showmatch
 set tabstop=4
+set shiftwidth=4
 set smartindent
 
 " key mappings
