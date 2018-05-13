@@ -18,7 +18,7 @@ homebrew_packages:
 homebrew_cask_packages:
   - alfred
   - bettertouchtool
-  - docker
+  - docker-edge
   - google-chrome-canary
   - google-japanese-ime
   - iterm2
