@@ -2,10 +2,5 @@
 	name = m1yam0t0
 	email = 21972700+m1yam0t0@users.noreply.github.com
 [core]
-	editor = vim -c \"set fenc=utf-8\"
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	editor = vi -c \"set fenc=utf-8\"
 	trustExitCode = true
