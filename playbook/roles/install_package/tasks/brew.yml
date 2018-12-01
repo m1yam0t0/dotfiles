@@ -13,9 +13,8 @@
 
 - name: brew install
   homebrew:
-    name: "{{ item }}"
+    name: "{{ homebrew_packages }}"
     state: latest
-  with_items: "{{ homebrew_packages }}"
 
 - name: brew cask install
   homebrew_cask:

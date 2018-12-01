@@ -6,10 +6,12 @@ homebrew_taps:
 
 homebrew_packages:
   - coreutils
+  - ghq
   - git
+  - mas
   - neovim
-  - python3
   - ricty
+  - ssh-copy-id
   - tmux
   - tree
   - wget
@@ -18,12 +20,11 @@ homebrew_packages:
 homebrew_cask_packages:
   - alfred
   - bettertouchtool
-  - docker-edge
+  - docker
   - google-chrome-canary
   - google-japanese-ime
   - iterm2
   - karabiner-elements
-  - sourcetree
   - vagrant
   - virtualbox
   - virtualbox-extension-pack
