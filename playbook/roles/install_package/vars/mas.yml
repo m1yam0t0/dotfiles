@@ -1,0 +1,9 @@
+mas_applications:
+  - name: '1Password'
+    store_hash: 443987910
+  - name: 'Microsoft Remote Desktop'
+    store_hash: 1295203466
+  - name: 'LINE'
+    store_hash: 539883307
+  - name: 'Spark'
+    store_hash: 1176895641

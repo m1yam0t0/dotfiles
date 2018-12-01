@@ -1,4 +1,9 @@
 - import_tasks: apt.yml
+  tags: apt
   when: "ansible_os_family == 'Debian'"
 - import_tasks: brew.yml
+  tags: brew
+  when: "ansible_os_family == 'Darwin'"
+- import_tasks: mas.yml
+  tags: mas
   when: "ansible_os_family == 'Darwin'"
