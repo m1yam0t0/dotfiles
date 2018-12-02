@@ -3,16 +3,16 @@
 #-----------------------------------------------------------
 ## LANG
 # set UTF-8
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LANGUAGE=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
+export LC_CTYPE=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
 
 # set LANG=C to root user
 case ${UID} in
-0)
-	LANG=C
-	;;
+  0)
+  	LANG=C
+  	;;
 esac
 
 # XDG Base Dirctory
@@ -118,7 +118,7 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 if [ -n "$LS_COLORS" ]; then
-    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+  zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 fi
 
 # word settings
@@ -152,14 +152,16 @@ setopt pushd_ignore_dups
 #-----------------------------------------------------------
 # ls
 case ${OSTYPE} in
-    darwin*)
-	    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-        export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
-        alias ls='ls -F --color=auto'
-        ;;
-    linux*)
-        alias ls='ls -F --color=auto'
-        ;;
+	darwin*)
+		if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
+			export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+      export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+      alias ls='ls -F --color=auto'
+		fi
+    ;;
+  linux*)
+    alias ls='ls -F --color=auto'
+    ;;
 esac
 alias l='ls -lart'
 alias la='ls -a'
@@ -190,9 +192,6 @@ alias vv='vi ~/.vimrc'
 # git
 alias g='git'
 
-# enable alias command after sudo
-alias sudo='sudo '
-
 # global alias
 alias -g L='| less'
 alias -g G='| grep'
@@ -215,7 +214,7 @@ ls_abbrev() {
 
   case "${OSTYPE}" in
     freebsd*|darwin*)
-	  if type gls > /dev/null 2>&1; then
+	    if type gls > /dev/null 2>&1; then
         cmd_ls='gls'
       else
         opt_ls=('-aCFG')
@@ -229,49 +228,11 @@ ls_abbrev() {
   local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
   if [ $ls_lines -gt 10 ]; then
     echo "$ls_result" | head -n 5
-	echo '...'
+	  echo '...'
     echo "$ls_result" | tail -n 5
     echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
 	else
-	echo "$ls_result"
-  fi
-}
-
-
-chpwd() {
-  ls_abbrev
-}
-
-ls_abbrev() {
-  if [[ ! -r $PWD ]]; then
-    return
-  fi
-  
-  local cmd_ls='ls'
-  local -a opt_ls
-  opt_ls=('-aCF' '--color=always')
-
-  case "${OSTYPE}" in
-    freebsd*|darwin*)
-	  if type gls > /dev/null 2>&1; then
-        cmd_ls='gls'
-      else
-        opt_ls=('-aCFG')
-      fi
-      ;;
-  esac
-
-  local ls_result
-  ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
-
-  local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
-  if [ $ls_lines -gt 10 ]; then
-    echo "$ls_result" | head -n 5
-	echo '...'
-    echo "$ls_result" | tail -n 5
-    echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
-	else
-	echo "$ls_result"
+	  echo "$ls_result"
   fi
 }
 
