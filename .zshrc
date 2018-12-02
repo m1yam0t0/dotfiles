@@ -279,6 +279,8 @@ source $HOME/.zplug/init.zsh
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions', depth:1
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 
 zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 
@@ -291,10 +293,9 @@ if ! zplug check --verbose; then
 fi
 
 # zplug load
-zplug load --verbose
+zplug load
 
 # dircolor
-eval `dircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
-
-# fzf
-source ~/.fzf.zsh
+if zplug check seebi/dircolors-solarized; then
+  eval `dircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
+fi
