@@ -53,6 +53,12 @@ setopt prompt_subst
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
+# title
+add-zsh-hook precmd _update_term_title
+function _update_term_title() {
+  print -P "\e]0;$PWD\a"
+}
+
 # vcs_info
 zstyle ":vcs_info:*" enable git
 zstyle ':vcs_info:git:*' check-for-changes true
