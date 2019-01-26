@@ -23,7 +23,7 @@ esac
 git clone https://github.com/m1yam0t0/dotfiles.git ~/.dotfiles
 
 # ansible
-ansible-playbook -i ~/.dotfiles/playbook/hosts ~/.dotfiles/playbook/playbook.yml
+ansible-playbook -i ~/.dotfiles/ansible/hosts ~/.dotfiles/ansible/install.yml
 
 # change shell
 sudo chsh -s `which zsh` $USER
