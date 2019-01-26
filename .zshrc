@@ -164,8 +164,6 @@ case ${OSTYPE} in
     ;;
 esac
 alias l='ls -lart'
-alias la='ls -a'
-alias ll='ls -l'
 
 # history
 alias h='history -E 1'
@@ -180,9 +178,6 @@ alias mkdir='mkdir -p'
 
 # grep color auto
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias rgrep='rgrep --color=auto'
 
 # vim
 alias vi='nvim'
@@ -191,10 +186,6 @@ alias vv='vi ~/.vimrc'
 
 # git
 alias g='git'
-
-# global alias
-alias -g L='| less'
-alias -g G='| grep'
 
 #-----------------------------------------------------------
 # Function
