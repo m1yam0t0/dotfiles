@@ -1,4 +1,4 @@
 pip_modules:
 
 pip3_modules:
-  - neovim
+  - pynvim
