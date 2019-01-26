@@ -1,12 +1,10 @@
 - name: pip install
   pip:
-    name: "{{ item }}"
+    name: "{{ pip_modules }}"
   with_items:
-  - "{{ pip_modules }}"
+  - 
 
 - name: pip3 install
   pip:
-    name: "{{ item }}"
+    name: "{{ pip3_modules }}"
     executable: pip3
-  with_items:
-  - "{{ pip3_modules }}"
