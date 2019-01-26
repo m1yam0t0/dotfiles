@@ -6,6 +6,7 @@ homebrew_taps:
 
 homebrew_packages:
   - coreutils
+  - fzf
   - ghq
   - git
   - mas

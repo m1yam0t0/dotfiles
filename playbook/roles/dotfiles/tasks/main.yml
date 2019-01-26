@@ -3,15 +3,6 @@
     repo: https://github.com/zplug/zplug.git
     dest: ~/.zplug
 
-- name: git clone fzf
-  git:
-    repo: https://github.com/junegunn/fzf.git
-    dest: ~/.fzf
-    depth: 1
-
-- name: install fzf
-  shell: ~/.fzf/install --key-bindings --completion --no-update-rc
-
 - name: find dotfiles path
   find:
     paths: ~/.dotfiles
