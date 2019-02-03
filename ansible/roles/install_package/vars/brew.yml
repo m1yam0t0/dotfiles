@@ -1,33 +1,48 @@
 homebrew_taps:
-  - caskroom/cask
-  - caskroom/versions
-  - buo/cask-upgrade
-  - sanemat/font
+  - name: caskroom/cask
+  - name: caskroom/versions
+  - name: buo/cask-upgrade
+  - name: sanemat/font
 
 homebrew_packages:
-  - coreutils
-  - fzf
-  - ghq
-  - git
-  - mas
-  - neovim
-  - ricty
-  - ssh-copy-id
-  - tmux
-  - tree
-  - wget
-  - zsh
+  - name: coreutils
+    install_options:
+  - name: fzf
+    install_options:
+  - name: ghq
+    install_options:
+  - name: git
+    install_options:
+  - name: mas
+    install_options:
+  - name: neovim
+    install_options:
+  - name: ricty
+    install_options:
+      - '--with-powerline'
+  - name: ssh-copy-id
+    install_options:
+  - name: tmux
+    install_options:
+  - name: tree
+    install_options:
+  - name: vim
+    install_options:
+  - name: wget
+    install_options:
+  - name: zsh
+    install_options:
 
 homebrew_cask_packages:
-  - 1password
-  - alfred
-  - bettertouchtool
-  - docker
-  - google-chrome-canary
-  - google-japanese-ime
-  - iterm2
-  - karabiner-elements
-  - vagrant
-  - virtualbox
-  - virtualbox-extension-pack
-  - visual-studio-code
+  - name: 1password
+  - name: alfred
+  - name: bettertouchtool
+  - name: docker
+  - name: google-chrome-canary
+  - name: google-japanese-ime
+  - name: iterm2
+  - name: karabiner-elements
+  - name: vagrant
+  - name: virtualbox
+  - name: virtualbox-extension-pack
+  - name: visual-studio-code
