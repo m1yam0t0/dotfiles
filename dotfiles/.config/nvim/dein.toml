@@ -7,6 +7,14 @@ if = 'has("nvim")'
 hook_add = 'source ~/.config/nvim/plugins/denite.vim'
 
 [[plugins]]
+repo = 'itchyny/lightline.vim'
+depends = ['mengelbrecht/lightline-bufferline']
+hook_add = 'source ~/.config/nvim/plugins/lightline.vim'
+
+[[plugins]]
+repo = 'mengelbrecht/lightline-bufferline'
+
+[[plugins]]
 repo =  'altercation/vim-colors-solarized'
 hook_add="""
 let g:solarized_contrast="hight"
