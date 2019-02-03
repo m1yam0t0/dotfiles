@@ -154,9 +154,7 @@ setopt pushd_ignore_dups
 case ${OSTYPE} in
 	darwin*)
 		if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
-			export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-      export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
-      alias ls='ls -F --color=auto'
+      alias ls='gls -F --color=auto'
 		fi
     ;;
   linux*)
@@ -252,6 +250,6 @@ fi
 zplug load
 
 # dircolor
-if zplug check seebi/dircolors-solarized; then
-  eval `dircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
+if zplug check seebi/dircolors-solarized && [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
+  eval `gdircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
 fi
