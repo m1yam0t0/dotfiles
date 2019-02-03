@@ -1,6 +1,4 @@
 homebrew_taps:
-  - name: caskroom/cask
-  - name: caskroom/versions
   - name: buo/cask-upgrade
   - name: sanemat/font
 
