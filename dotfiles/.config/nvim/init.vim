@@ -55,8 +55,5 @@ nnoremap ; :
 nnoremap : ;
 inoremap <silent> jj <ESC>
 
-nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
-nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-resize line<CR>
-
 set background=dark
 colorscheme solarized
