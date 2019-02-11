@@ -1,5 +1,4 @@
 homebrew_taps:
-  - name: buo/cask-upgrade
   - name: sanemat/font
 
 homebrew_packages:
@@ -20,11 +19,11 @@ homebrew_packages:
       - '--with-powerline'
   - name: ssh-copy-id
     install_options:
+  - name: the_silver_searcher
+    install_options:
   - name: tmux
     install_options:
   - name: tree
-    install_options:
-  - name: vim
     install_options:
   - name: wget
     install_options:
