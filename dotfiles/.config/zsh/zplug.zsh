@@ -5,7 +5,8 @@ source $HOME/.zplug/init.zsh
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions', depth:1
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 
 # Actually install plugins, prompt user input

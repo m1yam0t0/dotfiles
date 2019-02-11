@@ -1,9 +1,56 @@
+# environment for fzf
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 # history
-function select-history() {
-  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER")
-  CURSOR=$#BUFFER
+fhistory() {
+  BUFFER=$( fc -rln 1 | fzf +m --query "$LBUFFER" )
+  zle reset-prompt
+  CURSOL=$#BUFFER
 }
-zle -N select-history
-bindkey '^R' select-history
+zle -N fhistory
+bindkey '^r' fhistory
+
+# cd ghq list
+fghq() {
+  local selected
+  selected=$(ghq list | fzf +m)
+  cd $(ghq root)/$selected
+  zle accept-line
+  zle reset-prompt
+}
+zle -N fghq
+bindkey '^g' fghq
+
+# kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
+# git commit browser (enter for show, ctrl-d for diff)
+fshow() {
+  local out shas sha q k
+  while out=$(
+      git log --graph --color=always \
+          --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+      fzf --ansi --multi --no-sort --reverse --query="$q" \
+          --print-query --expect=ctrl-d); do
+    q=$(head -1 <<< "$out")
+    k=$(head -2 <<< "$out" | tail -1)
+    shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
+    [ -z "$shas" ] && continue
+    if [ "$k" = ctrl-d ]; then
+      git diff --color=always $shas | less -R
+    else
+      for sha in $shas; do
+        git show --color=always $sha | less -R
+      done
+    fi
+  done
+}
