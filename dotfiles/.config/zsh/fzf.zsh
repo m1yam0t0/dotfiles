@@ -4,9 +4,10 @@ export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 # history
 fhistory() {
-  BUFFER=$( fc -rln 1 | fzf +m --query "$LBUFFER" )
-  zle reset-prompt
+  BUFFER=$( fc -rln 1 | fzf +m --query="$LBUFFER" )
   CURSOL=$#BUFFER
+
+  zle reset-prompt
 }
 zle -N fhistory
 bindkey '^r' fhistory
@@ -14,9 +15,13 @@ bindkey '^r' fhistory
 # cd ghq list
 fghq() {
   local selected
-  selected=$(ghq list | fzf +m)
-  cd $(ghq root)/$selected
-  zle accept-line
+  selected=$( ghq list | fzf +m --query="$LBUFFER" )
+
+  if [ -n "$selected" ]; then
+    BUFFER="cd $(ghq root)/${selected}"
+    zle accept-line
+  fi
+
   zle reset-prompt
 }
 zle -N fghq
