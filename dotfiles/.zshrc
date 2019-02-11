@@ -152,14 +152,14 @@ setopt pushd_ignore_dups
 #-----------------------------------------------------------
 # ls
 case ${OSTYPE} in
-	darwin*)
-		if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
-      alias ls='gls -F --color=auto'
-		fi
-    ;;
+  darwin*)
+  if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
+    alias ls='gls -F --color=auto'
+  fi
+  ;;
   linux*)
     alias ls='ls -F --color=auto'
-    ;;
+  ;;
 esac
 alias l='ls -lart'
 
@@ -203,12 +203,12 @@ ls_abbrev() {
 
   case "${OSTYPE}" in
     freebsd*|darwin*)
-	    if type gls > /dev/null 2>&1; then
-        cmd_ls='gls'
-      else
-        opt_ls=('-aCFG')
-      fi
-      ;;
+    if type gls > /dev/null 2>&1; then
+      cmd_ls='gls'
+    else
+      opt_ls=('-aCFG')
+    fi
+    ;;
   esac
 
   local ls_result
@@ -217,39 +217,24 @@ ls_abbrev() {
   local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
   if [ $ls_lines -gt 10 ]; then
     echo "$ls_result" | head -n 5
-	  echo '...'
+    echo '...'
     echo "$ls_result" | tail -n 5
     echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
-	else
-	  echo "$ls_result"
+  else
+    echo "$ls_result"
   fi
 }
 
 #-----------------------------------------------------------
 # Plugin
 #-----------------------------------------------------------
-# zplug init
-source $HOME/.zplug/init.zsh
-
-# zplug install
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-completions', depth:1
-zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-
-zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
-
-# Actually install plugins, prompt user input
-if ! zplug check --verbose; then
-  printf "Install? [y/N]"
-  if read -q; then
-    echo; zplug install
-  fi
+# zplug
+if [ -d $HOME/.zplug ]; then
+  source $XDG_CONFIG_HOME/zsh/zplug.zsh
 fi
 
-# zplug load
-zplug load
-
-# dircolor
-if zplug check seebi/dircolors-solarized && [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
-  eval `gdircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
+# fzf
+if type fzf > /dev/null 2>&1; then
+  source $XDG_CONFIG_HOME/zsh/fzf.zsh
 fi
+
