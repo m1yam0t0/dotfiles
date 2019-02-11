@@ -2,9 +2,7 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-if = 'has("nvim")'
-hook_add = 'source ~/.config/nvim/plugins/denite.vim'
+repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -16,9 +14,4 @@ repo = 'mengelbrecht/lightline-bufferline'
 
 [[plugins]]
 repo =  'altercation/vim-colors-solarized'
-hook_add="""
-let g:solarized_contrast="hight"
-let g:solarized_italic=0
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-"""
+hook_add = 'source ~/.config/nvim/plugins/solarized.vim'

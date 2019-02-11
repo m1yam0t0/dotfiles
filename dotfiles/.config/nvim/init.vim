@@ -20,9 +20,11 @@ let &runtimepath = s:dein_repo_dir .",". &runtimepath
 " Install Plugin
 let s:rc_dir = empty($XDG_CONFIG_HOME) ? expand('~/.config/nvim/') : ($XDG_CONFIG_HOME . '/nvim/')
 let s:toml_file = fnamemodify(s:rc_dir, ':h') . '/dein.toml'
+let s:lazy_toml_file = fnamemodify(s:rc_dir, ':h') . '/dein_lazy.toml'
 if dein#load_state(s:dein_dir)
 	call dein#begin(s:dein_dir)
-	call dein#load_toml(s:toml_file)
+	call dein#load_toml(s:toml_file, {'lazy': 0})
+	call dein#load_toml(s:lazy_toml_file, {'lazy': 1})
 	call dein#end()
 	call dein#save_state()
 endif
@@ -50,10 +52,16 @@ set tabstop=4
 set shiftwidth=4
 set smartindent
 
-" key mappings
+" key mappings {{{
+" common
 nnoremap ; :
 nnoremap : ;
 inoremap <silent> jj <ESC>
+
+" Denite
+nnoremap <silent> <C-b> :<C-u>Denite buffer<CR>
+nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
+" }}}
 
 set background=dark
 colorscheme solarized
