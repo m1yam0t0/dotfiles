@@ -14,7 +14,7 @@ homebrew_packages:
     install_options:
   - name: ricty
     install_options:
-      - '--with-powerline'
+      - 'with-powerline'
   - name: ssh-copy-id
     install_options:
   - name: the_silver_searcher
