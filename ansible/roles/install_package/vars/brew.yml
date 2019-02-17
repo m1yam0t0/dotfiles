@@ -4,8 +4,6 @@ homebrew_taps:
 homebrew_packages:
   - name: coreutils
     install_options:
-  - name: fzf
-    install_options:
   - name: ghq
     install_options:
   - name: git
