@@ -34,6 +34,7 @@ homebrew_cask_packages:
   - name: 1password
   - name: alfred
   - name: bettertouchtool
+  - name: clipy
   - name: docker
   - name: google-chrome-canary
   - name: google-japanese-ime
