@@ -1,19 +1,20 @@
 # environment for fzf
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+export FZF_COMPLETION_TRIGGER=","
 
 # history
-fhistory() {
-  BUFFER=$( fc -rln 1 | fzf +m --query="$LBUFFER" )
+fzf-history() {
+  BUFFER=$( fc -rl 1 | fzf +m --query="$LBUFFER" | sed 's/ *[0-9]* *//' )
   CURSOL=$#BUFFER
 
   zle reset-prompt
 }
-zle -N fhistory
-bindkey '^r' fhistory
+zle -N fzf-history
+bindkey '^r' fzf-history
 
 # cd ghq list
-fghq() {
+fzf-ghq() {
   local selected
   selected=$( ghq list | fzf +m --query="$LBUFFER" )
 
@@ -24,8 +25,8 @@ fghq() {
 
   zle reset-prompt
 }
-zle -N fghq
-bindkey '^g' fghq
+zle -N fzf-ghq
+bindkey '^g' fzf-ghq
 
 # kill process
 fkill() {
