@@ -1,0 +1,37 @@
+{
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.fontFamily": "Ricty for powerline",
+    "editor.fontSize": 14,
+    "editor.renderControlCharacters": true,
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": false,
+    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+    "workbench.colorTheme": "Solarized Dark",
+
+    /*
+     * Plugins
+     */
+    "gitlens.defaultDateStyle": "absolute",
+    "gitlens.gitExplorer.files.layout": "tree",
+
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j","j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [";"],
+            "after": [":"]
+        },
+        {
+            "before": [":"],
+            "after": [";"]
+        }
+    ],
+    "gitlens.views.repositories.files.layout": "tree",
+    "window.zoomLevel": -1,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "Ricty for powerline",
+}
