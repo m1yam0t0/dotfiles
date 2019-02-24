@@ -3,9 +3,6 @@
 #-----------------------------------------------------------
 ## LANG
 # set UTF-8
-export LANGUAGE=ja_JP.UTF-8
-export LC_ALL=ja_JP.UTF-8
-export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 
 # set LANG=C to root user
