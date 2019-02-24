@@ -229,10 +229,15 @@ ls_abbrev() {
 # Plugin
 #-----------------------------------------------------------
 # zplug
-[ -d $HOME/.zplug ] && source $XDG_CONFIG_HOME/zsh/zplug.zsh
+[ -d ~/.zplug ] && source $XDG_CONFIG_HOME/zsh/zplug.zsh
 
 # fzf
 if type fzf > /dev/null 2>&1; then
   source $XDG_CONFIG_HOME/zsh/fzf.zsh
 fi
+
+#-----------------------------------------------------------
+# Local Settings
+#-----------------------------------------------------------
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
