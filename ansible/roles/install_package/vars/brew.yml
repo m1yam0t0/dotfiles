@@ -31,6 +31,7 @@ homebrew_packages:
 homebrew_cask_packages:
   - name: 1password
   - name: alfred
+  - name: appcleaner
   - name: bettertouchtool
   - name: clipy
   - name: docker
@@ -38,6 +39,7 @@ homebrew_cask_packages:
   - name: google-japanese-ime
   - name: iterm2
   - name: karabiner-elements
+  - name: onyx
   - name: vagrant
   - name: virtualbox
   - name: virtualbox-extension-pack
