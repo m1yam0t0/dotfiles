@@ -20,6 +20,14 @@ fi
 # zplug load
 zplug load
 
+# fzf
+if type fzf > /dev/null 2>&1; then
+  source $XDG_CONFIG_HOME/zsh/fzf.zsh
+fi
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+
 # dircolor
 if zplug check seebi/dircolors-solarized && [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
   eval `gdircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
