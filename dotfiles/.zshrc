@@ -180,7 +180,7 @@ alias vz='vi ~/.zshrc'
 alias vv='vi ~/.vimrc'
 
 # git
-alias g='git'
+alias git='hub'
 
 #-----------------------------------------------------------
 # Function
