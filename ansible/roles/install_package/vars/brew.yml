@@ -8,6 +8,8 @@ homebrew_packages:
     install_options:
   - name: git
     install_options:
+  - name: hub
+    install_options:
   - name: mas
     install_options:
   - name: neovim
