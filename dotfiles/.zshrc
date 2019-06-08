@@ -27,6 +27,7 @@ setopt IGNOREEOF
 
 # bindkey
 bindkey -v
+bindkey -M viins 'jj' vi-cmd-mode
 bindkey "^h" backward-delete-char
 
 # CountTime when exec time > 3s
