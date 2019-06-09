@@ -4,19 +4,10 @@ homebrew_taps:
 homebrew_packages:
   - name: coreutils
     install_options:
-  - name: ghq
-    install_options:
-  - name: git
-    install_options:
-  - name: hub
-    install_options:
   - name: mas
     install_options:
   - name: neovim
     install_options:
-  - name: ricty
-    install_options:
-      - 'with-powerline'
   - name: ssh-copy-id
     install_options:
   - name: the_silver_searcher
@@ -29,6 +20,21 @@ homebrew_packages:
     install_options:
   - name: zsh
     install_options:
+  - name: git
+    install_options:
+  - name: ghq
+    install_options:
+  - name: hub
+    install_options:
+  - name: kubernetes-cli
+    install_options:
+  - name: kubectx
+    install_options:
+  - name: stern
+    install_options:
+  - name: ricty
+    install_options:
+      - 'with-powerline'
 
 homebrew_cask_packages:
   - name: 1password
