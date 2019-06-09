@@ -72,7 +72,12 @@ zstyle ':vcs_info:*' actionformats '[38;5;001m%c%u[%b|%a][0m'
 add-zsh-hook precmd _update_vcs_info_msg
 function _update_vcs_info_msg() {
 	LANG=en_US.UTF-8 vcs_info
-	PROMPT='[38;5;75m[%n@%m][0m %~ ${vcs_info_msg_0_}
+}
+
+add-zsh-hook precmd _update_prompt
+function _update_prompt() {
+	PROMPT_FIRST_LINE="[38;5;75m[%n@%m][0m %~ ${vcs_info_msg_0_}"
+	PROMPT='${PROMPT_FIRST_LINE}
 %# '
 }
 
