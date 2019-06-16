@@ -29,6 +29,6 @@ fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
 # dircolor
-if zplug check seebi/dircolors-solarized && [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
+if zplug check seebi/dircolors-solarized && type gdircolors > /dev/null 2>&1; then
   eval `gdircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
 fi

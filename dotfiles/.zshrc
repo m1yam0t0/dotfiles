@@ -163,7 +163,7 @@ setopt pushd_ignore_dups
 # ls
 case ${OSTYPE} in
   darwin*)
-  if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
+  if type gls > /dev/null 2>&1; then
     alias ls='gls -F --color=auto'
   fi
   ;;
