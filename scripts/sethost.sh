@@ -2,7 +2,7 @@
 
 HOSTNAME=$1
 
-# install ansible
+# change hostname
 case "${OSTYPE}" in
 	darwin*)
 		# macOS
