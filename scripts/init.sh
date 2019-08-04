@@ -4,26 +4,17 @@
 case "${OSTYPE}" in
 	darwin*)
 		# macOS
+        xcode-select --install
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-		brew install ansible
 		;;
 	linux*)
 		# Debian
 		if [ -e /etc/debian_version ] || [ -e /etc/debian_release ]; then
 			sudo apt-get update
-			sudo apt-get install -y software-properties-common
-			sudo apt-add-repository ppa:ansible/ansible
-			sudo apt-get update
-			sudo apt-get install -y ansible git
+			sudo apt-get install -y git
 		fi
 		;;
 esac
 
 # git clone dotfiles
 git clone https://github.com/m1yam0t0/dotfiles.git ~/.dotfiles
-
-# ansible
-ansible-playbook -i ~/.dotfiles/ansible/hosts ~/.dotfiles/ansible/install.yml
-
-# change shell
-sudo chsh -s `which zsh` $USER
