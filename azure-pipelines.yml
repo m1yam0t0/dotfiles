@@ -5,5 +5,5 @@ pool:
   vmImage: 'macOS-latest'
 
 steps:
-- script: make install
-  displayName: 'make install'
+- script: make init
+  displayName: 'initialize'

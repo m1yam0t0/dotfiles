@@ -1,3 +1,6 @@
+init:
+	./scripts/init.sh
+
 install: brew
 
 brew:
