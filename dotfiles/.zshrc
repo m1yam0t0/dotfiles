@@ -7,9 +7,9 @@ export LANG=ja_JP.UTF-8
 
 # set LANG=C to root user
 case ${UID} in
-  0)
-  	LANG=C
-  	;;
+    0)
+        LANG=C
+        ;;
 esac
 
 # XDG Base Dirctory
@@ -54,10 +54,9 @@ autoload -Uz add-zsh-hook
 # title
 add-zsh-hook precmd _update_term_title
 function _update_term_title() {
-#  print -P "\e]0;$PWD\a"
-  pwd=$(pwd)
-  cwd=${pwd##*/}
-  print -Pn "\e]0;$cwd\a"
+    pwd=$(pwd)
+    cwd=${pwd##*/}
+    print -Pn "\e]0;$cwd\a"
 }
 
 # vcs_info
@@ -71,13 +70,13 @@ zstyle ':vcs_info:*' actionformats '[38;5;001m%c%u[%b|%a][0m'
 # update vcs_info before command
 add-zsh-hook precmd _update_vcs_info_msg
 function _update_vcs_info_msg() {
-	LANG=en_US.UTF-8 vcs_info
+    LANG=en_US.UTF-8 vcs_info
 }
 
 add-zsh-hook precmd _update_prompt
 function _update_prompt() {
-	PROMPT_FIRST_LINE="[38;5;75m[%n@%m][0m %~ ${vcs_info_msg_0_}"
-	PROMPT='${PROMPT_FIRST_LINE}
+    PROMPT_FIRST_LINE="[38;5;75m[%n@%m][0m %~ ${vcs_info_msg_0_}"
+    PROMPT='${PROMPT_FIRST_LINE}
 %# '
 }
 
@@ -96,8 +95,8 @@ SAVEHIST=10000
 
 # Disable history for root
 if [ $UID = 0 ]; then
-	unset HISTFILE
-	SAVEHIST=0
+    unset HISTFILE
+    SAVEHIST=0
 fi
 
 # setopt
@@ -128,7 +127,7 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 if [ -n "$LS_COLORS" ]; then
-  zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 fi
 
 # word settings
@@ -162,16 +161,16 @@ setopt pushd_ignore_dups
 #-----------------------------------------------------------
 # ls
 case ${OSTYPE} in
-  darwin*)
-  if type gls > /dev/null 2>&1; then
-    alias ls='gls -F --color=auto'
-  fi
-  ;;
-  linux*)
-    alias ls='ls -F --color=auto'
-  ;;
+    darwin*)
+        if type gls > /dev/null 2>&1; then
+            alias ls='gls -F --group-directories-first --color=auto'
+        fi
+        ;;
+    linux*)
+        alias ls='ls -F --group-directories-first --color=auto'
+        ;;
 esac
-alias l='ls -lart'
+alias l='ls -lah'
 
 # history
 alias h='history -E 1'
@@ -199,40 +198,40 @@ alias git='hub'
 # Function
 #-----------------------------------------------------------
 chpwd() {
-  ls_abbrev
+    ls_abbrev
 }
 
 ls_abbrev() {
-  if [[ ! -r $PWD ]]; then
-    return
-  fi
-  
-  local cmd_ls='ls'
-  local -a opt_ls
-  opt_ls=('-aCF' '--color=always')
-
-  case "${OSTYPE}" in
-    freebsd*|darwin*)
-    if type gls > /dev/null 2>&1; then
-      cmd_ls='gls'
-    else
-      opt_ls=('-aCFG')
+    if [[ ! -r $PWD ]]; then
+        return
     fi
-    ;;
-  esac
 
-  local ls_result
-  ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
+    local cmd_ls='ls'
+    local -a opt_ls
+    opt_ls=('-aCF' '--group-directories-first' '--color=always')
 
-  local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
-  if [ $ls_lines -gt 10 ]; then
-    echo "$ls_result" | head -n 5
-    echo '...'
-    echo "$ls_result" | tail -n 5
-    echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
-  else
-    echo "$ls_result"
-  fi
+    case "${OSTYPE}" in
+        freebsd*|darwin*)
+            if type gls > /dev/null 2>&1; then
+                cmd_ls='gls'
+            else
+                opt_ls=('-aCFG')
+            fi
+            ;;
+    esac
+
+    local ls_result
+    ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
+
+    local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
+    if [ $ls_lines -gt 10 ]; then
+        echo "$ls_result" | head -n 5
+        echo '...'
+        echo "$ls_result" | tail -n 5
+        echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
+    else
+        echo "$ls_result"
+    fi
 }
 
 #-----------------------------------------------------------
