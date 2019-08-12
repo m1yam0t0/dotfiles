@@ -239,6 +239,8 @@ ls_abbrev() {
 #-----------------------------------------------------------
 # zplug
 [ -d ~/.zplug ] && source $XDG_CONFIG_HOME/zsh/zplug.zsh
+# anyenv
+[ -d ~/.anyenv ] && eval "$(anyenv init -)" && eval "$(pyenv virtualenv-init -)"
 
 #-----------------------------------------------------------
 # Local Settings
