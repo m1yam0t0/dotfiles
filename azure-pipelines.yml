@@ -5,5 +5,7 @@ pool:
   vmImage: 'macOS-latest'
 
 steps:
-- script: make init
+- script: curl -fSsL https://raw.githubusercontent.com/m1yam0t0/dotfiles/master/scripts/init.sh | bash -
   displayName: 'initialize'
+- script: cd ~/.dotfiles && make prepare
+  displayName: 'prepare'
