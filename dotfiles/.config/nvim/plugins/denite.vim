@@ -1,19 +1,27 @@
-" move line in insert mode
-call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
-call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+" key mapiing for denite window
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+    " open file
+    nnoremap <silent><buffer><expr> <CR>    denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> h       denite#do_map('do_action', 'split')
+    nnoremap <silent><buffer><expr> v       denite#do_map('do_action', 'vsplit')
+    nnoremap <silent><buffer><expr> p       denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> i       denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
+    "close Denite
+    nnoremap <silent><buffer><expr> q       denite#do_map('quit')
+    nnoremap <silent><buffer><expr> <C-c>   denite#do_map('quit')
+endfunction
 
-" enter normal mode jj 
-call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
-
-" open split & vsplit
-call denite#custom#map('normal', "<C-h>", '<denite:do_action:split>')
-call denite#custom#map('insert', "<C-h>", '<denite:do_action:split>')
-call denite#custom#map('normal', "<C-v>", '<denite:do_action:vsplit>')
-call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+" key mapping for dentie-filter window
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+    imap <silent><buffer> jj <Plug>(denite_filter_quit)
+endfunction
 
 " use the silver searcher
 if executable('ag')
-    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])
+    call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])
     call denite#custom#var('grep', 'command', ['ag'])
     call denite#custom#var('grep', 'recursive_opts', [])
     call denite#custom#var('grep', 'pattern_opt', [])

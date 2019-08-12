@@ -38,6 +38,12 @@ if dein#check_install()
 endif
 " }}}
 
+" Python settings
+let g:python_host_prog = ''
+if isdirectory(expand($PYENV_ROOT))
+    let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
+endif
+
 syntax enable
 
 " encode options
@@ -54,16 +60,23 @@ set tabstop=4
 set shiftwidth=4
 set smartindent
 
+" Turn off paste mode when leaving insert
+autocmd InsertLeave * set nopaste
+
 " key mappings {{{
 " common
 nnoremap ; :
 nnoremap : ;
 inoremap <silent> jj <ESC>
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
+nnoremap <silent> <C-d> :bdelete<CR>
 
 " Denite
 nnoremap <silent> <C-b> :<C-u>Denite buffer<CR>
-nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
+nnoremap <silent> <C-p> :<C-u>Denite file/rec<CR>
 " }}}
 
+" Color settings
 set background=dark
 colorscheme solarized
