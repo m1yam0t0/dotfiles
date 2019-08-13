@@ -5,7 +5,7 @@ autoload -Uz _zplugin
 
 zplugin light zsh-users/zsh-autosuggestions
 zplugin light zsh-users/zsh-completions
-zplugin light zdharma/fast-syntax-highlighting
+zplugin light zsh-users/zsh-syntax-highlighting
 
 zplugin ice from:"gh-r" as"program"
 zplugin load "junegunn/fzf-bin"
