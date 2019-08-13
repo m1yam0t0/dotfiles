@@ -1,22 +1,26 @@
 # detect OS type and set target
+CHECK_OS := true
 PREPARE_TARGET :=
 INSTALL_TARGET :=
 OS_NAME=$(shell uname -s | tr A-Z a-z)
-ifeq ($(OS_NAME), darwin)
+ifneq ($(OS_NAME), darwin)
 	PREPARE_TARGET += prepare-homebrew
 	INSTALL_TARGET += install-homebrew
 else
-	@echo 'OS_NAME is not darwin.'
-	@exit 1
+	# if your OS is not supported, abort make in 'check-os'
+	CHECK_OS := false
 endif
 PREPARE_TARGET += prepare-plugin-manager
 INSTALL_TARGET += install-dotfiles
 
 .PHONY: prepare
+check-os:
+	@if [ $(CHECK_OS) = false ]; then\
+		echo "This operating system is not supported";\
+		false;\
+	fi
 
-all: prepare
-
-prepare: $(PREPARE_TARGET)
+prepare: check-os $(PREPARE_TARGET)
 
 prepare-homebrew:
 	@echo '----- Prepare Homebrew ------'
@@ -34,6 +38,7 @@ install-homebrew:
 	@echo '----- Install Homebrew -----'
 	@brew bundle install
 	@./scripts/macOS/ricty.sh
+	@./scripts/macOS/docker-completion.sh
 	@echo
 
 install-dotfiles:
