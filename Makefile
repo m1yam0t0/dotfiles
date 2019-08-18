@@ -11,7 +11,7 @@ else
 	CHECK_OS := false
 endif
 PREPARE_TARGET += prepare-plugin-manager
-INSTALL_TARGET += install-dotfiles
+INSTALL_TARGET += install-dotfiles change-shell
 
 .PHONY: prepare
 check-os:
@@ -42,6 +42,11 @@ install-homebrew:
 	@echo
 
 install-dotfiles:
-	@echo '----- Install Dotfiles -----'
+	@echo '----- Install dotfiles -----'
 	@./scripts/symlink.sh
+	@echo
+
+change-shell:
+	@echo '----- Change default shell -----'
+	@./scripts/chsh.sh
 	@echo
