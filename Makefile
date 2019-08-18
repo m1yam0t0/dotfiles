@@ -3,7 +3,7 @@ CHECK_OS := true
 PREPARE_TARGET :=
 INSTALL_TARGET :=
 OS_NAME=$(shell uname -s | tr A-Z a-z)
-ifneq ($(OS_NAME), darwin)
+ifeq ($(OS_NAME), darwin)
 	PREPARE_TARGET += prepare-homebrew
 	INSTALL_TARGET += install-homebrew
 else
@@ -29,7 +29,7 @@ prepare-homebrew:
 
 prepare-plugin-manager:
 	@echo '----- Prepare plugin manager ------'
-	@echo 'TBD'
+	@./scripts/zplugin.sh
 	@echo
 
 install: prepare $(INSTALL_TARGET)

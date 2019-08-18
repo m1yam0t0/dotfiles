@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 
-mkdir ~/.zplugin
-git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+if [ ! -d ~/.zplugin ]; then
+    mkdir ~/.zplugin
+    git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+else
+    echo "zplugin is already installed"
+fi
