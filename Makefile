@@ -1,22 +1,19 @@
 # detect OS type and set target
-CHECK_OS := true
+CHECK_OS := false
 PREPARE_TARGET :=
 INSTALL_TARGET :=
 OS_NAME=$(shell uname -s | tr A-Z a-z)
 ifeq ($(OS_NAME), darwin)
+	CHECK_OS := true
 	PREPARE_TARGET += prepare-homebrew
 	INSTALL_TARGET += install-homebrew
-else
-	# if your OS is not supported, abort make in 'check-os'
-	CHECK_OS := false
 endif
 PREPARE_TARGET += prepare-plugin-manager
 INSTALL_TARGET += install-dotfiles change-shell
 
-.PHONY: prepare
 check-os:
 	@if [ $(CHECK_OS) = false ]; then\
-		echo "This operating system is not supported";\
+		echo "Operating System is not supported";\
 		false;\
 	fi
 
