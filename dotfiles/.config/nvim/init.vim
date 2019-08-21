@@ -70,7 +70,6 @@ nnoremap : ;
 inoremap <silent> jj <ESC>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
-nnoremap <silent> <C-d> :bdelete<CR>
 
 " Denite
 nnoremap <silent> <C-b> :<C-u>Denite buffer<CR>
