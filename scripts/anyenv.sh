@@ -14,7 +14,7 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
 
 # re-init
 eval "$(anyenv init -)"
-eval "$(pyenv virtualenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # install python for neovim
 pyenv install -s 3.7.4
