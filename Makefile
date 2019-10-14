@@ -6,7 +6,7 @@ OS_NAME=$(shell uname -s | tr A-Z a-z)
 ifeq ($(OS_NAME), darwin)
 	CHECK_OS := true
 	PREPARE_TARGET += prepare-homebrew
-	INSTALL_TARGET += install-homebrew
+	INSTALL_TARGET += install-homebrew set-macos-preference
 endif
 PREPARE_TARGET += prepare-plugin-manager
 INSTALL_TARGET += install-dotfiles change-shell
@@ -41,6 +41,11 @@ install-homebrew:
 install-dotfiles:
 	@echo '----- Install dotfiles -----'
 	@./scripts/symlink.sh
+	@echo
+
+set-macos-preference:
+	@echo '----- Set preferences for macOS -----'
+	@./scripts/macOS/preferences.sh
 	@echo
 
 change-shell:
