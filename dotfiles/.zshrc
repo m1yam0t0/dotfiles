@@ -189,7 +189,7 @@ alias grep='grep --color=auto'
 # vim
 alias vi='nvim'
 alias vz='vi ~/.zshrc'
-alias vv='vi ~/.vimrc'
+alias vv='vi ${XDG_CONFIG_HOME}/nvim/init.vim'
 
 # git
 alias git='hub'
