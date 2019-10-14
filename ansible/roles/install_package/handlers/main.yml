@@ -1,2 +1,0 @@
-- name: run fc-cache
-  shell: fc-cache -vf
