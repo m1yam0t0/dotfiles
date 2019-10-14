@@ -33,8 +33,8 @@ install: prepare $(INSTALL_TARGET)
 
 install-homebrew:
 	@echo '----- Install Homebrew -----'
+	@sudo -v
 	@brew bundle install
-	@./scripts/macOS/ricty.sh
 	@./scripts/macOS/docker-completion.sh
 	@echo
 
