@@ -75,7 +75,7 @@ function _update_vcs_info_msg() {
 
 add-zsh-hook precmd _update_prompt
 function _update_prompt() {
-    PROMPT_FIRST_LINE="[38;5;75m[%n@%m][0m %~ ${vcs_info_msg_0_}"
+    PROMPT_FIRST_LINE="[38;5;75m[%n@%m][0m %~ ${vcs_info_msg_0_} $(kube_ps1)"
     PROMPT='${PROMPT_FIRST_LINE}
 %# '
 }
