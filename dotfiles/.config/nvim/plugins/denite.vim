@@ -19,6 +19,13 @@ function! s:denite_filter_my_settings() abort
     imap <silent><buffer> jj <Plug>(denite_filter_quit)
 endfunction
 
+" config
+let s:denite_default_options = {
+    \ 'prompt': '> ',
+    \ 'start_filter': v:true,
+    \ }
+call denite#custom#option('default', s:denite_default_options)
+
 " use the silver searcher
 if executable('ag')
     call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])
