@@ -21,4 +21,4 @@ fi
 
 # load plugin config
 PLUGIN_CONFIG_DIR=$XDG_CONFIG_HOME/zsh/plugins
-for f ($PLUGIN_CONFIG_DIR/*.zsh) {zplugin snippet $f}
+for f ($PLUGIN_CONFIG_DIR/*.zsh) {source $f}
