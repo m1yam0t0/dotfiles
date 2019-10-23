@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Initialize
+      run: |
+        ./scripts/init.sh
+        cd ~/.dotfiles
+    - name: Prepare
+      run: make prepare
+    - name: Install
+      run: make install

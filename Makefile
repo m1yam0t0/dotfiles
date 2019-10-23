@@ -17,7 +17,12 @@ check-os:
 		false;\
 	fi
 
-prepare: check-os $(PREPARE_TARGET)
+keep-sudo:
+	@if [ -z $(GITHUB_ACTION) ]; then\
+		sudo -v;\
+	fi
+
+prepare: check-os keep-sudo $(PREPARE_TARGET)
 
 prepare-homebrew:
 	@echo '----- Prepare Homebrew ------'
@@ -33,7 +38,6 @@ install: prepare $(INSTALL_TARGET)
 
 install-homebrew:
 	@echo '----- Install Homebrew -----'
-	@sudo -v
 	@brew bundle install
 	@./scripts/macOS/docker-completion.sh
 	@echo
