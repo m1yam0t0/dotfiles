@@ -9,7 +9,7 @@ ifeq ($(OS_NAME), darwin)
 	INSTALL_TARGET += install-homebrew set-macos-preference
 endif
 PREPARE_TARGET += prepare-plugin-manager
-INSTALL_TARGET += install-dotfiles change-shell
+INSTALL_TARGET += install-dotfiles install-anyenv change-shell
 
 check-os:
 	@if [ $(CHECK_OS) = false ]; then\
@@ -45,6 +45,11 @@ install-homebrew:
 install-dotfiles:
 	@echo '----- Install dotfiles -----'
 	@./scripts/symlink.sh
+	@echo
+
+install-anyenv:
+	@echo '----- Install anyenv -----'
+	@./scripts/anyenv.sh
 	@echo
 
 set-macos-preference:
