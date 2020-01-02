@@ -11,6 +11,7 @@ call plug#begin( s:plug_dir )
 
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 
