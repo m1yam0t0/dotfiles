@@ -5,13 +5,8 @@ let g:lightline = {
     \ 'colorscheme': 'solarized'
 	\ }
 
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
-
 " show statusbar
 set laststatus=2
-set showtabline=2
 
 " hide --INSERT--
 set noshowmode
