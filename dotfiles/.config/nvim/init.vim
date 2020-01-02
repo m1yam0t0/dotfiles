@@ -50,14 +50,34 @@ set clipboard=unnamed
 autocmd InsertLeave * set nopaste
 
 " key mappings
+let mapleader = "\<Space>"
+
 " common
 nnoremap ; :
 nnoremap : ;
 inoremap <silent> jj <ESC>
+
+" buffer
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
+
+" window
+nnoremap <silent> sh <C-w>h
+nnoremap <silent> sj <C-w>j
+nnoremap <silent> sk <C-w>k
+nnoremap <silent> sl <C-w>l
+nnoremap <silent> sU <C-w>H
+nnoremap <silent> sJ <C-w>J
+nnoremap <silent> sK <C-w>K
+nnoremap <silent> sL <C-w>L
 nnoremap <tab> <C-w>w
 nnoremap <S-tab> <C-w>W
+
+" terminal
+nnoremap <silent> <leader>t :terminal<CR>i
+nnoremap <silent> <leader>ht :new<CR>:terminal<CR>i
+nnoremap <silent> <leader>vt :vnew<CR>:terminal<CR>i
+tnoremap <Esc> <C-\><C-n>
 
 let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
 let s:config_dir = s:config_home . '/nvim'

@@ -2,6 +2,12 @@
 autocmd! FileType fzf
 autocmd  FileType fzf set noshowmode noruler nonu
 
+" extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-h': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 if has('nvim')
   function! s:create_float(hl, opts)
     let buf = nvim_create_buf(v:false, v:true)
@@ -42,7 +48,7 @@ command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git', <bang>0)
 
 " Key mappings
-nnoremap <silent> <C-b> :<C-u>Buffers<CR>
-nnoremap <silent> <C-p> :<C-u>Files<CR>
-nnoremap <C-g> :Ag<Space>
+nnoremap <silent> <leader><leader> :<C-u>Files<CR>
+nnoremap <silent> <leader>b :<C-u>Buffers<CR>
+nnoremap <leader>g :Ag<Space>
 
