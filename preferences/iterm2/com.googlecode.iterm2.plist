@@ -743,7 +743,7 @@
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
-			<string>RictyDiscordForPowerline-Regular 11</string>
+			<string>Menlo-Regular 11</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Non-ASCII Ligatures</key>
@@ -976,7 +976,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>0385F906-9B10-4C12-9C3E-BE1AA352C3EF</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>47</integer>
+	<integer>49</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1779,7 +1779,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-01-01T08:09:15Z</date>
+	<date>2020-01-03T00:16:24Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
