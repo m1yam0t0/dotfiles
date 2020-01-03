@@ -1,6 +1,0 @@
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-if = 'has("nvim")'
-on_cmd = 'Denite'
-on_i = 1
-hook_source = 'source ~/.config/nvim/plugins/denite.vim'
