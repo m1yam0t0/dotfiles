@@ -50,5 +50,6 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git', <
 " Key mappings
 nnoremap <silent> <leader><leader> :<C-u>Files<CR>
 nnoremap <silent> <leader>b :<C-u>Buffers<CR>
+nnoremap <silent> <leader>x :<C-u>Commands<CR>
 nnoremap <leader>g :Ag<Space>
 
