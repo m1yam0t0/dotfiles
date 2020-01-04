@@ -27,7 +27,7 @@ endif
 
 syntax enable
 
-" encode options
+" options
 set backspace=indent,eol,start
 set encoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,sjis
@@ -37,6 +37,7 @@ set number
 set title
 set splitright
 set splitbelow
+set hidden
 
 set tabstop=4
 set softtabstop=4
