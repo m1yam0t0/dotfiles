@@ -1,4 +1,6 @@
 dotfiles/.config/anyenv
+dotfiles/.config/coc
+dotfiles/.config/configstore
 dotfiles/.config/hub
 preferences/alfred/Alfred.alfredpreferences/preferences/local
 preferences/alfred/Alfred.alfredpreferences/remote

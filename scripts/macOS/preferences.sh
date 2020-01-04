@@ -5,7 +5,9 @@
 osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
-sudo -v
+if [ -z ${GITHUB_ACTION} ]; then
+    sudo -v
+fi
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -59,6 +61,8 @@ defaults write com.apple.AppleMultitouchTrackpad Dragging -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -bool true
 
 # three finger
+defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool false
+defaults write com.apple.systempreefeerences trackpad.lastselectedtab -int 2
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
 
