@@ -240,7 +240,10 @@ ls_abbrev() {
 # zplugin
 [ -d ~/.zplugin ] && source $XDG_CONFIG_HOME/zsh/zplugin.zsh
 # anyenv
+export GOENV_DISABLE_GOPATH=1
 [ -d ~/.anyenv ] && eval "$(anyenv init -)" && eval "$(pyenv virtualenv-init -)"
+export GOPATH=~/go
+export PATH="$GOPATH/bin:$PATH"
 
 #-----------------------------------------------------------
 # Local Settings

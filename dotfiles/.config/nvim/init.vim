@@ -11,6 +11,7 @@ call plug#begin( s:plug_dir )
 
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
@@ -18,6 +19,7 @@ Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " Python settings
+let g:loaded_python_provider = 0
 let g:python_host_prog = ''
 if isdirectory(expand($PYENV_ROOT))
     let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
