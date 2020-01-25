@@ -1,6 +1,6 @@
-dotfiles/.config/anyenv
-dotfiles/.config/coc
-dotfiles/.config/configstore
-dotfiles/.config/hub
-preferences/alfred/Alfred.alfredpreferences/preferences/local
-preferences/alfred/Alfred.alfredpreferences/remote
+.config/anyenv
+.config/coc
+.config/configstore
+.config/hub
+etc/preferences/alfred/Alfred.alfredpreferences/preferences/local
+etc/jjpreferences/alfred/Alfred.alfredpreferences/remote
