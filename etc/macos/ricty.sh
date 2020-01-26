@@ -11,7 +11,7 @@ fonts=$(ls -1 ${RICTY_FONT_DIR}/Ricty*.ttf)
 for f in ${fonts};
 do
     font_file=$(basename "$f")
-    ${SCRIPT_DIR}/fix_ricty_backquote.sh "$f" "${USER_FONT_DIR}/${font_file}"
+    ${SCRIPT_DIR}/ricty_fix-backquote.sh "$f" "${USER_FONT_DIR}/${font_file}"
 done
 
 IFS=${IFS_bak}
