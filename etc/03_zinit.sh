@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
-if [ ! -d ~/.zplugin ]; then
-    mkdir ~/.zplugin
-    git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+if [ ! -d ~/.zinit ]; then
+    mkdir ~/.zinit
+    git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 else
-    echo "zplugin is already installed"
+    echo "zinit is already installed"
 fi

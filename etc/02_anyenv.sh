@@ -16,6 +16,7 @@ anyenv install -s pyenv
 
 # install plugins
 eval "$(anyenv init -)"
+
 ANYENV_PLUGIN_DIR="$(anyenv root)/plugins"
 if [ ! -d "${ANYENV_PLUGIN_DIR}/anyenv-git" ]; then
     git clone https://github.com/znz/anyenv-git.git ${ANYENV_PLUGIN_DIR}/anyenv-git

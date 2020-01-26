@@ -238,7 +238,7 @@ ls_abbrev() {
 # Plugin
 #-----------------------------------------------------------
 # zplugin
-[ -d ~/.zplugin ] && source $XDG_CONFIG_HOME/zsh/zplugin.zsh
+[ -d ~/.zinit ] && source $XDG_CONFIG_HOME/zsh/zinit.zsh
 # anyenv
 export GOENV_DISABLE_GOPATH=1
 [ -d ~/.anyenv ] && eval "$(anyenv init -)" && eval "$(pyenv virtualenv-init -)"
