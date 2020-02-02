@@ -4,18 +4,13 @@
 
 - get dotfiles
 
-```
-$ curl -fSsL https://raw.githubusercontent.com/m1yam0t0/dotfiles/master/scripts/init.sh | bash -
-```
-
-- prepare install
-
-```
-cd ~/.dotfiles && make prepare
+```sh
+curl -fSsL https://raw.githubusercontent.com/m1yam0t0/dotfiles/master/etc/00_init.sh | sh -
 ```
 
 - install dotfiles
 
-```
+```sh
 cd ~/.dotfiles && make install
 ```
+

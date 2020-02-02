@@ -8,12 +8,9 @@ jobs:
     runs-on: macOS-latest
     
     steps:
-    - uses: actions/checkout@v1
-    - name: Initialize
-      run: |
-        ./scripts/init.sh
-        cd ~/.dotfiles
-    - name: Prepare
-      run: make prepare
+    - uses: actions/checkout@v2
     - name: Install
-      run: make install
+      run: |
+        cp -rp $GITHUB_WORKSPACE ~/.dotfiles
+        cd ~/.dotfiles
+        make install
