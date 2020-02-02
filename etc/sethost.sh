@@ -1,6 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 HOSTNAME=$1
+
+if [ -z ${HOSTNAME} ]; then
+    echo "Please enter a hostname."
+    exit 1
+fi
 
 # change hostname
 case "${OSTYPE}" in

@@ -60,3 +60,4 @@ macos-preference: keep-sudo
 	@echo '----- Set preferences for macOS -----'
 	@./etc/macos/preferences.sh
 	@echo
+

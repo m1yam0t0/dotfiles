@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # install developer tool
 xcode-select -p > /dev/null

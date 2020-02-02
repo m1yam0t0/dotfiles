@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 PLUG_DIR="${HOME}/.local/share/nvim/site/autoload/plug.vim"
 COC_EXTENTIONS_DIR="${HOME}/.config/coc/extensions"

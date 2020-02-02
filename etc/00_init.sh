@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 REPO_URL=git@github.com:m1yam0t0/dotfiles.git
 TARBALL_URL=https://github.com/m1yam0t0/dotfiles/archive/master.tar.gz
