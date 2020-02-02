@@ -69,7 +69,7 @@ nnoremap <silent> sh <C-w>h
 nnoremap <silent> sj <C-w>j
 nnoremap <silent> sk <C-w>k
 nnoremap <silent> sl <C-w>l
-nnoremap <silent> sU <C-w>H
+nnoremap <silent> sH <C-w>H
 nnoremap <silent> sJ <C-w>J
 nnoremap <silent> sK <C-w>K
 nnoremap <silent> sL <C-w>L
