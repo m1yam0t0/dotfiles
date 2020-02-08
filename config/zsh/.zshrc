@@ -116,7 +116,7 @@ setopt hist_find_no_dups
 #-----------------------------------------------------------
 # Enable compinit
 autoload -Uz compinit
-compinit
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump
 
 zstyle ':completion:*' keep-prefix
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
