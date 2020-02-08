@@ -5,17 +5,6 @@
 # set UTF-8
 export LANG=ja_JP.UTF-8
 
-# set LANG=C to root user
-case ${UID} in
-    0)
-        LANG=C
-        ;;
-esac
-
-# XDG Base Dirctory
-export XDG_CACHE_HOME=~/.cache
-export XDG_CONFIG_HOME=~/.config
-
 # setopt
 setopt print_eight_bit
 setopt no_beep
@@ -89,7 +78,7 @@ preexec() {
 # History
 #-----------------------------------------------------------
 # Save history
-HISTFILE=~/.zsh_history
+HISTFILE=${XDG_CACHE_HOME}/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -116,7 +105,7 @@ setopt hist_find_no_dups
 #-----------------------------------------------------------
 # Enable compinit
 autoload -Uz compinit
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump
+compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump
 
 zstyle ':completion:*' keep-prefix
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
