@@ -9,5 +9,5 @@ DOTIGNORE=".git .github .gitignore etc LICENSE Makefile README.md"
 for f in $DOTFILES
 do
     [ -n "$(echo "${DOTIGNORE}" | grep $f)" ] && continue
-    ln -snfv "${DOTPATH}/$f" $HOME/"$f"
+    ln -snfv "${DOTPATH}/$f" $HOME/."$f"
 done
