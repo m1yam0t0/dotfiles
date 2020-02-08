@@ -1,6 +1,21 @@
 [user]
-	name = m1yam0t0
-	email = 21972700+m1yam0t0@users.noreply.github.com
+    name = m1yam0t0
+    email = 21972700+m1yam0t0@users.noreply.github.com
 [core]
-	editor = nvim -c \"set fenc=utf-8\"
-	trustExitCode = true
+    editor = nvim
+    ignorecase = false
+    quotepath = false
+    trustExitCode = true
+    whitespace = trailing-space,space-before-tab
+[fetch]
+    prune = true
+[pull]
+    default = current
+    rebase = true
+[push]
+    default = current
+[rebase]
+    autosquash = true
+    autostash = true
+[ghq]
+    root = ~/src
