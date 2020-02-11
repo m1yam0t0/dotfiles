@@ -1,6 +1,0 @@
-[user]
-	name = m1yam0t0
-	email = 21972700+m1yam0t0@users.noreply.github.com
-[core]
-	editor = nvim -c \"set fenc=utf-8\"
-	trustExitCode = true

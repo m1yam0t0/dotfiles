@@ -30,15 +30,15 @@ dotfiles:
 
 plugin-manager:
 	@echo '----- Prepare plugin manager ------'
-	@./etc/02_anyenv.sh
+	@./etc/02_make-xdg-basedir.sh
 	@./etc/03_zinit.sh
 	@./etc/04_vim-plug.sh
+	@./etc/05_anyenv.sh
 	@echo
 
 change-shell:
 	@echo '----- Change default shell -----'
 	@./etc/10_chsh.sh
-	@exec $(SHELL) -l
 	@echo
 
 homebrew:

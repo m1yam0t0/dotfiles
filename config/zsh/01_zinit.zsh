@@ -3,6 +3,7 @@ source ~/.zinit/bin/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# load plugings
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma/fast-syntax-highlighting
@@ -15,10 +16,14 @@ zinit load "junegunn/fzf-bin"
 
 # if you already installed coreutils, load dircolors-solarized
 if type gdircolors > /dev/null 2>&1; then
-    zinit ice atclone"gdircolors dircolors.256dark > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
+    # dircolor file name
+    DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'
+
+    # create LS_COLORS settings & load plugin
+    zinit ice atclone"gdircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+        atpull'%atclone' \
+        pick"${DIRCOLOR_SOLARIZED_FILE}" \
+        nocompile'!'
     zinit light seebi/dircolors-solarized
 fi
 
-# load plugin config
-PLUGIN_CONFIG_DIR=$XDG_CONFIG_HOME/zsh/plugins
-for f ($PLUGIN_CONFIG_DIR/*.zsh) {source $f}
