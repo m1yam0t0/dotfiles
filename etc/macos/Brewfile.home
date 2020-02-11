@@ -1,4 +1,6 @@
+brew "ansible"
 brew "wakeonlan"
+cask "dropbox"
 mas "LINE", id: 539883307
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Spark", id: 1176895641
