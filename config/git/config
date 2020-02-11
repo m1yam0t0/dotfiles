@@ -1,6 +1,5 @@
-[user]
-    name = m1yam0t0
-    email = 21972700+m1yam0t0@users.noreply.github.com
+[include]
+    path = ~/.gitconfig.local
 [core]
     editor = nvim
     ignorecase = false
