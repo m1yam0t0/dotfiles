@@ -39,7 +39,6 @@ plugin-manager:
 change-shell:
 	@echo '----- Change default shell -----'
 	@./etc/10_chsh.sh
-	@exec $(SHELL) -l
 	@echo
 
 homebrew:
