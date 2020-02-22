@@ -54,6 +54,7 @@ homebrew-all: keep-sudo
 	@brew bundle --file=./etc/macos/Brewfile.all
 	@./etc/macos/ricty.sh
 	@./etc/macos/docker-completion.sh
+	@./etc/macos/iterm2_install_shell_integration.sh
 	@echo
 
 macos-preference: keep-sudo

@@ -1,5 +1,5 @@
 # iterm2_shell_integration
-[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
+[ -f ~/.iterm2/iterm2_shell_integration.zsh ] && source ~/.iterm2/iterm2_shell_integration.zsh
 
 # environment settings
 export ITERM2_SQUELCH_MARK=1
