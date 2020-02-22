@@ -8,15 +8,6 @@ YELLOW=$'\e[38;5;136m'
 RED=$'\e[38;5;160m'
 RESET=$'\e[0m'
 
-# kube-ps1
-KUBE_PS1_PREFIX=''
-KUBE_PS1_SEPARATOR=''
-KUBE_PS1_DIVIDER='|'
-KUBE_PS1_SUFFIX=''
-KUBE_PS1_SYMBOL_COLOR=33
-KUBE_PS1_CTX_COLOR=33
-KUBE_PS1_NS_COLOR=39
-
 #-----------------------------------------------------------
 # Options
 #-----------------------------------------------------------
@@ -48,5 +39,5 @@ PROMPT_CHAR=$'\u276f'
 PROMPT_DEFAULT=${BLUE}${PROMPT_CHAR}${RESET}
 PROMPT_ERROR=${RED}${PROMPT_CHAR}${RESET}
 PROMPT='
-%~ ${vcs_info_msg_0_} $(kube_ps1)
+%~ ${vcs_info_msg_0_}
 %(?.%{%G${PROMPT_DEFAULT}%}.%{%G${PROMPT_ERROR}%}) '
