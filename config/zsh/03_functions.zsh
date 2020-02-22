@@ -49,6 +49,30 @@ _chpwd_ls() {
 }
 
 #-----------------------------------------------------------
+# Kubernetes
+#-----------------------------------------------------------
+# for iterm2
+_kube_get_context(){
+    KUBE_CONTEXT="$(kubectl config current-context 2> /dev/null)"
+}
+
+_kube_get_context_namespace(){
+    KUBE_NAMESPACE="$(kubectl config view --minify -o 'jsonpath={..namespace}')"
+    KUBE_NAMESPACE="|${KUBE_NAMESPACE:-default}"
+}
+
+_kube_context(){
+    local KUBE_SYMBOL=$'\u2638'
+    local KUBE_CONTEXT
+    local KUBE_NANESPACE
+
+    _kube_get_context
+    [ $? -eq 0 ]; _kube_get_context_namespace
+
+    echo ${KUBE_SYMBOL} ${KUBE_CONTEXT}${KUBE_NAMESPACE}
+}
+
+#-----------------------------------------------------------
 # Plugins
 #-----------------------------------------------------------
 ## fzf
