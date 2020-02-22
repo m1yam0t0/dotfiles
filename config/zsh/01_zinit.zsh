@@ -8,9 +8,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma/fast-syntax-highlighting
 
-zinit ice pick"kube-ps1.sh"
-zinit light "jonmosco/kube-ps1"
-
 zinit ice from:"gh-r" as"program"
 zinit load "junegunn/fzf-bin"
 

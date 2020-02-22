@@ -17,4 +17,5 @@
     autosquash = true
     autostash = true
 [ghq]
+    root = ~/go/src
     root = ~/src
