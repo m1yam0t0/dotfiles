@@ -88,10 +88,10 @@ zle -N _fzf-history
 # cd ghq list
 _fzf-ghq() {
   local selected
-  selected=$( ghq list | fzf +m )
+  selected=$( ghq list --full-path | fzf +m )
 
   if [ -n "${selected}" ]; then
-    BUFFER="cd $(ghq root)/${selected}"
+    BUFFER="cd ${selected}"
     zle accept-line
   fi
 
