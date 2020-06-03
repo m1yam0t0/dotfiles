@@ -2,8 +2,9 @@
 
 " functions for lightline
 function! LightlineFugitive()
-    if exists('*fugitive#head') && strlen(fugitive#head())
-        return "\ue0a0 " . fugitive#head()
+    if exists('*FugitiveHead')
+        let branch = FugitiveHead()
+        return branch !=# '' ? "\ue0a0 ".branch : ''
     else
         return ''
     endif
