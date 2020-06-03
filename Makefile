@@ -32,8 +32,8 @@ plugin-manager:
 	@echo '----- Prepare plugin manager ------'
 	@./etc/02_make-xdg-basedir.sh
 	@./etc/03_zinit.sh
-	@./etc/04_vim-plug.sh
-	@./etc/05_anyenv.sh
+	@./etc/04_asdf.sh
+	@./etc/05_vim-plug.sh
 	@echo
 
 change-shell:
@@ -52,7 +52,6 @@ homebrew:
 homebrew-all: keep-sudo
 	@echo '----- Install Homebrew -----'
 	@brew bundle --file=./etc/macos/Brewfile.all
-	@./etc/macos/ricty.sh
 	@./etc/macos/docker-completion.sh
 	@./etc/macos/iterm2_install_shell_integration.sh
 	@echo
