@@ -1,11 +1,14 @@
+# asdf
+if [ -d ~/.asdf ]; then
+    source $HOME/.asdf/asdf.sh
+    fpath=(${ASDF_DIR}/completions $fpath)
+fi
+
 # source *.zsh
 for rc in $(ls ${ZDOTDIR}/*.zsh);
 do
     source $rc
 done
-
-# anyenv
-[ -d ~/.anyenv ] && eval "$(anyenv init - --no-rehash)" && eval "$(pyenv virtualenv-init - )"
 
 # Local Settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

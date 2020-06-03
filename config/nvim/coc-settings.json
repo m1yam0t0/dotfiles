@@ -5,10 +5,10 @@
         "go"
     ],
     "python.jediEnabled": false,
-    "python.formatting.blackPath": "~/.anyenv/envs/pyenv/versions/neovim/bin/black",
+    "python.formatting.blackPath": "~/.asdf/shims/black",
     "python.formatting.provider": "black",
     "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "~/.anyenv/envs/pyenv/versions/neovim/bin/flake8",
+    "python.linting.flake8Path": "~/.asdf/shims/flake8",
     "languageserver": {
         "dockerfile": {
             "command": "docker-langserver",

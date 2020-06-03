@@ -21,8 +21,8 @@ call plug#end()
 " Python settings
 let g:loaded_python_provider = 0
 let g:python_host_prog = ''
-if isdirectory(expand($PYENV_ROOT))
-    let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
+if isdirectory(expand($ASDF_DIR))
+    let g:python3_host_prog = $ASDF_DIR . '/shims/python'
 endif
 
 syntax enable
