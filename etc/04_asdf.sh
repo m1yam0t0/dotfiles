@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # install asdf
 ASDF_DIR="${HOME}/.asdf"
