@@ -1,4 +1,30 @@
 #-----------------------------------------------------------
+# Common functions
+#-----------------------------------------------------------
+
+_reporttime() {
+    local mode=$1
+
+    case "${mode}" in
+    "off" )
+        if [ -n "${REPORTTIME}" ]; then
+            export REPORTTIME_TMP=${REPORTTIME}
+            unset REPORTTIME
+        fi
+        ;;
+    "on" )
+        if [ -z "${REPORTTIME}" ]; then
+            export REPORTTIME=${REPORTTIME_TMP}
+            unset REPORTTIME_TMP
+        fi
+        ;;
+    * )
+        echo "Please input mode [on|off]"
+        ;;
+    esac
+}
+
+#-----------------------------------------------------------
 # Tab title
 #-----------------------------------------------------------
 
@@ -15,6 +41,7 @@ _preexec_tabtitle() {
 #-----------------------------------------------------------
 # ls
 #-----------------------------------------------------------
+
 _chpwd_ls() {
     if [[ ! -r $PWD ]]; then
         return
@@ -51,6 +78,7 @@ _chpwd_ls() {
 #-----------------------------------------------------------
 # Kubernetes
 #-----------------------------------------------------------
+
 # for iterm2
 _kube_get_context(){
     KUBE_CONTEXT="$(kubectl config current-context 2> /dev/null)"
@@ -75,6 +103,45 @@ _kube_context(){
 #-----------------------------------------------------------
 # Plugins
 #-----------------------------------------------------------
+## adsf
+# install latest version & update '.tool-versions'
+_asdf_upgrade_plugin() {
+
+    _reporttime off
+
+    local plugin=$1
+    echo "Upgrade ${plugin}..."
+
+    asdf install ${plugin} latest
+    local ret=$?
+
+    if [ ${ret} -ne 0 ];then
+        _reporttime on
+        return false
+    fi
+
+    asdf reshim
+    local version=$(asdf latest ${plugin})
+    asdf global ${plugin} ${version}
+
+    echo "Latest version of ${plugin} is installed. (version=${version})"
+
+    _reporttime on
+}
+
+# exec '_asdf_upgrade_plugin' to all plugin
+_asdf_upgrade_all_plugins() {
+
+    echo "Updating all asdf plugins..."
+    asdf plugin update --all
+
+    echo "Updating each plugin to the latest version..."
+    for p in $(asdf plugin-list)
+    do
+        _asdf_upgrade_plugin $p
+    done
+}
+
 ## fzf
 # history
 _fzf-history() {
