@@ -34,5 +34,4 @@ alias vz='vi ${XDG_CONFIG_HOME}/zsh'
 alias vv='vi ${XDG_CONFIG_HOME}/nvim/init.vim'
 
 # git
-alias git='hub'
 

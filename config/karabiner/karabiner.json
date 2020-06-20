@@ -178,7 +178,7 @@
                         "vendor_id": 2131
                     },
                     "ignore": false,
-                    "manipulate_caps_lock_led": false,
+                    "manipulate_caps_lock_led": true,
                     "simple_modifications": [
                         {
                             "from": {
@@ -210,6 +210,22 @@
                             },
                             "to": {
                                 "key_code": "right_command"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": {
+                                "key_code": "caps_lock"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_control"
+                            },
+                            "to": {
+                                "key_code": "left_control"
                             }
                         }
                     ]

@@ -10,7 +10,6 @@ export XDG_CACHE_HOME=~/.cache
 export XDG_DATA_HOME=~/.local/share
 
 # anyenv
-export GOENV_DISABLE_GOPATH=1
 export GOPATH=~/go
 
 # PATH

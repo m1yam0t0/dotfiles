@@ -1,9 +1,11 @@
 #!/usr/bin/env sh
 
+. ${HOME}/.asdf/asdf.sh
+
 PLUG_DIR="${HOME}/.local/share/nvim/site/autoload/plug.vim"
 COC_EXTENTIONS_DIR="${HOME}/.config/coc/extensions"
 
-if [ ! -d "${PLUG_DIR}" ]; then
+if [ ! -f "${PLUG_DIR}" ]; then
     curl -fLo "${PLUG_DIR}" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 else
     echo "vim-plug is already installed"

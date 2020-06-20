@@ -2,4 +2,5 @@
 config/anyenv
 config/coc
 config/configstore
-config/hub
+config/gcloud
+config/gh
