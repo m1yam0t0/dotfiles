@@ -1,6 +1,7 @@
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
+tap "github/gh"
 brew "jq"
 brew "mas"
 brew "tree"
