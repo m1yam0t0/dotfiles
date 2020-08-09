@@ -1,4 +1,5 @@
 **/Brewfile*lock.json
+config/.op
 config/anyenv
 config/gcloud
 config/gh
