@@ -26,11 +26,3 @@ bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-ke
 asdf install
 asdf reshim
 
-# install some packages
-pip install -U pip
-pip install pynvim flake8 black
-
-GO111MODULE=on go get golang.org/x/tools/gopls@latest
-
-npm install -g yarn neovim bash-language-server dockerfile-language-server-nodejs
-
