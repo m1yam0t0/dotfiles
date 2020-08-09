@@ -8,8 +8,11 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma/fast-syntax-highlighting
 
-zinit ice from:"gh-r" as"program"
+zinit ice from"gh-r" as"program"
 zinit load "junegunn/fzf-bin"
+
+zinit ice pick"bin/op-tool" as"program"
+zinit light m1yam0t0/op-tool
 
 # if you already installed coreutils, load dircolors-solarized
 if type gdircolors > /dev/null 2>&1; then
