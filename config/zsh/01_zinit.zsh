@@ -11,6 +11,9 @@ zinit light zdharma/fast-syntax-highlighting
 zinit ice from"gh-r" as"program"
 zinit load "junegunn/fzf-bin"
 
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
+
 zinit ice pick"bin/op-tool" as"program"
 zinit light m1yam0t0/op-tool
 
