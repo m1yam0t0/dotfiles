@@ -9,9 +9,6 @@ HISTFILE=${XDG_DATA_HOME}/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 
-# CountTime when exec time > 3s
-REPORTTIME=3
-
 #-----------------------------------------------------------
 # Plugins
 #-----------------------------------------------------------
