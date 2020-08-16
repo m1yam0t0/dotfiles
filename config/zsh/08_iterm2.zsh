@@ -6,6 +6,6 @@ export ITERM2_SQUELCH_MARK=1
 
 # custom variable for iterm2 status bar
 iterm2_print_user_vars(){
-    iterm2_set_user_var kubeContext "$(_kube_context)"
+    iterm2_set_user_var kubeContext "$(kube_ps1)"
 }
 
