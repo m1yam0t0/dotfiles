@@ -8,11 +8,14 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma/fast-syntax-highlighting
 
-zinit ice from"gh-r" as"program"
-zinit load "junegunn/fzf-bin"
+zinit ice pick"kube-ps1.sh"
+zinit light "jonmosco/kube-ps1"
 
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
+
+zinit ice from"gh-r" as"program"
+zinit load "junegunn/fzf-bin"
 
 zinit ice pick"bin/op-tool" as"program"
 zinit light m1yam0t0/op-tool
