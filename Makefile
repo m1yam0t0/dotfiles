@@ -44,6 +44,7 @@ change-shell:
 homebrew:
 	@echo '----- Install Homebrew ------'
 	@./etc/macos/homebrew.sh
+	@brew update
 	@brew bundle --file=./etc/macos/Brewfile
 	@echo
 
