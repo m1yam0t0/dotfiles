@@ -83,3 +83,10 @@ execute 'source' s:config_dir . '/plugins/fzf.vim'
 
 " Color settings
 colorscheme solarized
+
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight LineNr ctermbg=none
+highlight Folded ctermbg=none
+highlight EndOfBuffer ctermbg=none
+
