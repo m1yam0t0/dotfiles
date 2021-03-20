@@ -7,7 +7,7 @@ DOTPATH="${HOME}/.dotfiles"
 
 # get dotfiles
 GIT='/usr/bin/git'
-if [[ -f "${GIT}" ]]; then
+if [ -f "${GIT}" ]; then
     git clone ${REPO_HTTP_URL} ${DOTPATH}
     cd ${DOTPATH}
     git remote set-url origin ${REPO_SSH_URL}

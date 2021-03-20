@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # install asdf
 ASDF_DIR="${HOME}/.asdf"
@@ -13,7 +13,7 @@ cd -
 source ${ASDF_DIR}/asdf.sh
 
 # install asdf plugins
-ASDF_PLUGINS="$(cat ${HOME}/.tool-versions | awk '{print $1}' | perl -pe 's/\n/ /g')"
+ASDF_PLUGINS=($(cat ${HOME}/.tool-versions | awk '{print $1}' | tr '\n' ' '))
 for p in ${ASDF_PLUGINS}
 do
     asdf plugin add $p

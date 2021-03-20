@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # load environment variables from zshenv
 source ${HOME}/.zshenv
