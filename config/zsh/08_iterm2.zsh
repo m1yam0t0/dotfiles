@@ -8,4 +8,3 @@ export ITERM2_SQUELCH_MARK=1
 iterm2_print_user_vars(){
     iterm2_set_user_var kubeContext "$(kube_ps1)"
 }
-

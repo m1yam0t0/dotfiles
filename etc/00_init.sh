@@ -14,6 +14,6 @@ if [[ -f "${GIT}" ]]; then
     cd -
 else
     # if you cannot use git, get & extract tarball
-    curl -L ${TARBALL_URL} | tar xzv
+    curl -L ${TARBALL_URL} | tar -xzv
     mv -f dotfiles-master ${DOTPATH}
 fi

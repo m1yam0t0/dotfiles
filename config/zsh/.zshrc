@@ -1,6 +1,6 @@
 # asdf
-if [ -d ~/.asdf ]; then
-    source $HOME/.asdf/asdf.sh
+if [ -d "${ASDF_DIR}" ]; then
+    source ${ASDF_DIR}/asdf.sh
     fpath=(${ASDF_DIR}/completions $fpath)
 fi
 
