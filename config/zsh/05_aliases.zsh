@@ -13,25 +13,52 @@ case ${OSTYPE} in
         ;;
 esac
 alias l='ls -lah'
+alias ll='ls -laF'
 
 # history
 alias h='history -E 1'
 
-# rm, cp, mv add -i option
+# add -i option
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# mkdir add -p option
+# add -p option
 alias mkdir='mkdir -p'
 
-# grep color auto
-alias grep='grep --color=auto'
+# the silver seacher as grep
+alias grep='ag'
 
 # vim
 alias vi='nvim'
-alias vz='vi ${XDG_CONFIG_HOME}/zsh'
-alias vv='vi ${XDG_CONFIG_HOME}/nvim/init.vim'
+
+# git
+alias g='git'
+
+# docker
+alias d='docker'
 
 # kubernetes
 alias k='kubectl'
+
+# dotfiles
+alias dot='${HOME}/.dotfiles'
+alias vz='vi +Files ${XDG_CONFIG_HOME}/zsh'
+alias vv='vi ${XDG_CONFIG_HOME}/nvim/init.vim'
+
+# shell
+alias reload='exec $SHELL -l'
+alias bench='time (zsh -i -c exit)'
+
+#-----------------------------------------------------------
+# global
+#-----------------------------------------------------------
+alias -g C='|wc -l' # count
+alias -g G='|ag' # grep(ag)
+alias -g L='|less' # less
+
+#-----------------------------------------------------------
+# suffix
+#-----------------------------------------------------------
+alias -s gz='tar -xzvf' # gz
+alias -s py='python3' # python
