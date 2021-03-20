@@ -10,7 +10,7 @@ fi
 
 if (type nvim > /dev/null 2>&1); then
     echo "install vim plugins"
-    nvim +PlugInstall +qall
+    nvim --headless +PlugInstall +qall
 else
     echo "neovim is not installed"
 fi

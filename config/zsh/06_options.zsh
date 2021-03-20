@@ -46,14 +46,14 @@ zstyle ':completion:*:options' description 'yes'
 # command completion
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-if [ -n "$LS_COLORS" ]; then
+if [ -n "${LS_COLORS}" ]; then
     zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 fi
 
 # word settings
 autoload -Uz select-word-style
 select-word-style default
-zstyle ':zle:*' word-chars " /=;@:{},|"
+zstyle ':zle:*' word-chars ' /=;@:{},|'
 zstyle ':zle:*' word-style unspecified
 
 # setopt
@@ -87,4 +87,3 @@ add-zsh-hook preexec _preexec_tabtitle
 
 # chpwd
 add-zsh-hook chpwd _chpwd_ls
-

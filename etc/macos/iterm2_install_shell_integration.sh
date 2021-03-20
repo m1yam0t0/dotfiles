@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Get Install Script
-TMP_FILE=$(mktemp 2> /dev/null)
+TMP_FILE="$(mktemp 2> /dev/null)"
 curl -sL https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh > ${TMP_FILE}
 
 # Create directory for iterm2
@@ -11,18 +11,18 @@ if [ ! -d ${ITERM_DIR} ]; then
 fi
 
 # Download script
-SHELL=${SHELL##*/}
-ITERM_SCRIPT="${ITERM_DIR}/iterm2_shell_integration.${SHELL}"
+SHELL_TYPE="${SHELL##*/}"
+ITERM_SCRIPT="${ITERM_DIR}/iterm2_shell_integration.${SHELL_TYPE}"
 if [ -f ${ITERM_SCRIPT} ]; then
     echo "Shell integration script is already downloaded."
 else
     echo "Downloading shell integration script..."
-    curl -SsL "https://iterm2.com/shell_integration/${SHELL}" > "${ITERM_SCRIPT}"
+    curl -SsL "https://iterm2.com/shell_integration/${SHELL_TYPE}" > "${ITERM_SCRIPT}"
     chmod +x "${ITERM_SCRIPT}"
 fi
 
 # Download utilities
-UTILITIES=$(grep 'UTILITIES=' ${TMP_FILE} | sed -e "s/^.*(\(.*\)).*$/\1/")
+UTILITIES="$(grep 'UTILITIES=' ${TMP_FILE} | sed -e "s/^.*(\(.*\)).*$/\1/")"
 for u in ${UTILITIES}
 do
     if [ -f ${ITERM_DIR}/$u ]; then
@@ -36,4 +36,3 @@ done
 
 # Delete Install Script
 rm -f ${TMP_FILE}
-

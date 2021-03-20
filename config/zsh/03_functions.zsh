@@ -1,30 +1,4 @@
 #-----------------------------------------------------------
-# Common functions
-#-----------------------------------------------------------
-
-_reporttime() {
-    local mode=$1
-
-    case "${mode}" in
-    "off" )
-        if [ -n "${REPORTTIME}" ]; then
-            export REPORTTIME_TMP=${REPORTTIME}
-            unset REPORTTIME
-        fi
-        ;;
-    "on" )
-        if [ -z "${REPORTTIME}" ]; then
-            export REPORTTIME=${REPORTTIME_TMP}
-            unset REPORTTIME_TMP
-        fi
-        ;;
-    * )
-        echo "Please input mode [on|off]"
-        ;;
-    esac
-}
-
-#-----------------------------------------------------------
 # Tab title
 #-----------------------------------------------------------
 
@@ -82,8 +56,6 @@ _chpwd_ls() {
 # install latest version & update '.tool-versions'
 _asdf_upgrade_plugin() {
 
-    _reporttime off
-
     local plugin=$1
     echo "Upgrade ${plugin}..."
 
@@ -91,7 +63,6 @@ _asdf_upgrade_plugin() {
     local ret=$?
 
     if [ ${ret} -ne 0 ];then
-        _reporttime on
         return false
     fi
 
@@ -100,8 +71,6 @@ _asdf_upgrade_plugin() {
     asdf global ${plugin} ${version}
 
     echo "Latest version of ${plugin} is installed. (version=${version})"
-
-    _reporttime on
 }
 
 # exec '_asdf_upgrade_plugin' to all plugin
@@ -160,4 +129,3 @@ _fzf-kill() {
     echo $pid | xargs kill -${1:-9}
   fi
 }
-

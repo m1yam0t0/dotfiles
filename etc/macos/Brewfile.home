@@ -1,5 +1,8 @@
+brew "mas"
 brew "wakeonlan"
+cask "audirvana"
 cask "dropbox"
+cask "parallels"
+cask "xld"
 mas "LINE", id: 539883307
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "Spark", id: 1176895641

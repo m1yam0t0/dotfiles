@@ -1,5 +1,6 @@
 **/Brewfile*lock.json
-config/.op
-config/anyenv
 config/gcloud
 config/gh
+config/iterm2
+config/nvim/.netrwhist
+config/op

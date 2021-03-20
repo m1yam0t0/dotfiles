@@ -1,24 +1,24 @@
 # init zinit
-source ~/.zinit/bin/zinit.zsh
+source ${HOME}/.zinit/bin/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # load plugings
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
-zinit light zdharma/fast-syntax-highlighting
+zinit light "zsh-users/zsh-autosuggestions"
+zinit light "zsh-users/zsh-completions"
+zinit light "zdharma/fast-syntax-highlighting"
 
 zinit ice pick"kube-ps1.sh"
-zinit light "jonmosco/kube-ps1"
+zinit light jonmosco/kube-ps1
 
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
+zinit ice compile"(pure|async).zsh" pick"async.zsh" src"pure.zsh"
+zinit light "sindresorhus/pure"
 
 zinit ice from"gh-r" as"program"
 zinit load "junegunn/fzf-bin"
 
 zinit ice pick"bin/op-tool" as"program"
-zinit light m1yam0t0/op-tool
+zinit light "m1yam0t0/op-tool"
 
 # if you already installed coreutils, load dircolors-solarized
 if type gdircolors > /dev/null 2>&1; then
@@ -27,9 +27,8 @@ if type gdircolors > /dev/null 2>&1; then
 
     # create LS_COLORS settings & load plugin
     zinit ice atclone"gdircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
-        atpull'%atclone' \
+        atpull"%atclone" \
         pick"${DIRCOLOR_SOLARIZED_FILE}" \
-        nocompile'!'
-    zinit light seebi/dircolors-solarized
+        nocompile"!"
+    zinit light "seebi/dircolors-solarized"
 fi
-

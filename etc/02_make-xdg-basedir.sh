@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # load environment variables from zshenv
-source ~/.zshenv
+source ${HOME}/.zshenv
 
 # list of directories
 CACHE_DIRS="zsh"
