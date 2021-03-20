@@ -2,4 +2,5 @@
 config/gcloud
 config/gh
 config/iterm2
+config/nvim/.netrwhist
 config/op
