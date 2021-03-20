@@ -1,8 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # path of dotfiles
 DOTPATH="${HOME}/.dotfiles"
-DOTFILES="$(find $DOTPATH -depth 1 | sed 's#^.*/##')"
+DOTFILES=($(find $DOTPATH -mindepth 1 -maxdepth 1 | sed 's#^.*/##'))
 DOTIGNORE=".git .github .gitignore etc LICENSE Makefile README.md"
 
 # symlink $DOTFILES -> $home

@@ -1,16 +1,24 @@
-name: CI
+name: Install test
 
 on:
   push:
 
 jobs:
-  build:
+  macos:
     runs-on: macOS-latest
-    
     steps:
-    - uses: actions/checkout@v2
-    - name: Install
-      run: |
-        cp -rp $GITHUB_WORKSPACE ~/.dotfiles
-        cd ~/.dotfiles
-        make install
+      - uses: actions/checkout@v2
+      - name: Install
+        run: |
+          cp -rp $GITHUB_WORKSPACE ~/.dotfiles
+          cd ~/.dotfiles
+          make install
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install
+        run: |
+          cp -rp $GITHUB_WORKSPACE ~/.dotfiles
+          cd ~/.dotfiles
+          make install

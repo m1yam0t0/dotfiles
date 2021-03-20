@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 PLUG_DIR="${HOME}/.local/share/nvim/site/autoload/plug.vim"
 
