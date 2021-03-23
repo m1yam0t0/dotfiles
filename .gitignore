@@ -1,6 +1,7 @@
 **/Brewfile*lock.json
 config/gcloud
-config/gh
+config/gh/hosts.yml
+config/gh/state.yml
 config/iterm2
 config/nvim/.netrwhist
 config/op
