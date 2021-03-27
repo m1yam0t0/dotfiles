@@ -1,5 +1,11 @@
+# set zinit environment variables
+typeset -A ZINIT
+ZINIT_HOME=$XDG_CACHE_HOME/zinit
+ZINIT[HOME_DIR]=$ZINIT_HOME
+ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
+
 # init zinit
-source ${HOME}/.zinit/bin/zinit.zsh
+source ${ZINIT_HOME}/bin/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
