@@ -48,7 +48,7 @@ alias vv='vi ${XDG_CONFIG_HOME}/nvim/init.vim'
 
 # shell
 alias reload='exec $SHELL -l'
-alias bench='time (zsh -i -c exit)'
+alias bench='for i in {1..10} ; do time ( zsh -i -c exit ); done'
 
 #-----------------------------------------------------------
 # global

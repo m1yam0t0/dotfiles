@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
-ZINIT_DIR="${HOME}/.zinit"
+# load environment variables from zshenv
+source ${HOME}/.zshenv
+
+ZINIT_DIR="${XDG_CACHE_HOME}/zinit"
 
 if [ ! -d ${ZINIT_DIR} ]; then
     mkdir ${ZINIT_DIR}

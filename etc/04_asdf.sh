@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
+# load environment variables from zshenv
+source ${HOME}/.zshenv
+
 # install asdf
-ASDF_DIR="${HOME}/.asdf"
 if [ ! -d "${ASDF_DIR}" ]; then
     git clone https://github.com/asdf-vm/asdf.git ${ASDF_DIR}
 fi
@@ -18,9 +20,6 @@ for p in ${ASDF_PLUGINS}
 do
     asdf plugin add $p
 done
-
-# Import the Node.js release team's OpenPGP keys to main keyring
-bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
 
 # install each plugin
 asdf install
