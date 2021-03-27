@@ -4,9 +4,13 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # load plugings
-zinit light "zsh-users/zsh-autosuggestions"
-zinit light "zsh-users/zsh-completions"
-zinit light "zdharma/fast-syntax-highlighting"
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions \
+ blockf \
+    zsh-users/zsh-completions
 
 zinit ice pick"kube-ps1.sh"
 zinit light jonmosco/kube-ps1

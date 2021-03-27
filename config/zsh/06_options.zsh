@@ -34,10 +34,6 @@ setopt hist_find_no_dups
 #-----------------------------------------------------------
 # Completion
 #-----------------------------------------------------------
-# Enable compinit
-autoload -Uz compinit
-compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump
-
 zstyle ':completion:*' keep-prefix
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:default' menu select=2
