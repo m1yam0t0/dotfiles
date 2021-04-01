@@ -8,7 +8,7 @@ sudo apt upgrade
 sudo apt install -y \
     curl \
     git \
-    language-pack-ja \
+    locales \
     neovim \
     python \
     silversearcher-ag \
@@ -17,5 +17,6 @@ sudo apt install -y \
     zsh
 
 # change LANG
-sudo update-locale LANG=ja_JP.UTF-8
+sudo locale-gen en_US.UTF-8
+sudo update-locale LANG=en_US.UTF-8
 
