@@ -9,7 +9,7 @@ source ${ZINIT_HOME}/bin/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# load plugings
+# load plugins
 zinit wait lucid for \
  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma/fast-syntax-highlighting \
@@ -18,24 +18,39 @@ zinit wait lucid for \
  blockf \
     zsh-users/zsh-completions
 
-zinit ice pick"kube-ps1.sh"
-zinit light jonmosco/kube-ps1
-
-zinit ice compile"(pure|async).zsh" pick"async.zsh" src"pure.zsh"
-zinit light "sindresorhus/pure"
+zinit ice depth=1
+zinit light "romkatv/powerlevel10k"
 
 zinit ice from"gh-r" as"program"
 zinit load "junegunn/fzf-bin"
 
+zinit ice from"gh-r" as"program" pick"**/gh"
+zinit light "cli/cli"
+
+zinit ice from"gh-r" as"program" pick"ghq_**/ghq"
+zinit light "x-motemen/ghq"
+
+zinit ice from"gh-r" as"program" pick"kustomize_**/kustomize"
+zinit light "kubernetes-sigs/kustomize"
+
+zinit ice from"gh-r" as"program" pick"stern_**/stern"
+zinit light "stern/stern"
+
 zinit ice pick"bin/op-tool" as"program"
 zinit light "m1yam0t0/op-tool"
 
-# if you already installed coreutils, load dircolors-solarized
-if type gdircolors > /dev/null 2>&1; then
-    # dircolor file name
-    DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'
+# if you already installed dircolors, load dircolors-solarized
+# dircolor file name
+DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'
 
-    # create LS_COLORS settings & load plugin
+# create LS_COLORS settings & load plugin
+if type dircolors > /dev/null 2>&1; then
+    zinit ice atclone"dircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+        atpull"%atclone" \
+        pick"${DIRCOLOR_SOLARIZED_FILE}" \
+        nocompile"!"
+    zinit light "seebi/dircolors-solarized"
+elif type gdircolors > /dev/null 2>&1; then
     zinit ice atclone"gdircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
         atpull"%atclone" \
         pick"${DIRCOLOR_SOLARIZED_FILE}" \
