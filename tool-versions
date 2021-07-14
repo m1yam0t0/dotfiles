@@ -1,4 +1,1 @@
-kubectl 1.20.5
-kubectx 0.9.3
-stern 1.14.0
-gcloud 332.0.0
+kubectl 1.21.2
