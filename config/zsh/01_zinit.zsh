@@ -27,6 +27,18 @@ zinit light "sindresorhus/pure"
 zinit ice from"gh-r" as"program"
 zinit load "junegunn/fzf-bin"
 
+zinit ice from"gh-r" as"program" pick"**/gh"
+zinit light "cli/cli"
+
+zinit ice from"gh-r" as"program" pick"ghq_**/ghq"
+zinit light "x-motemen/ghq"
+
+zinit ice from"gh-r" as"program" pick"kustomize_**/kustomize"
+zinit light "kubernetes-sigs/kustomize"
+
+zinit ice from"gh-r" as"program" pick"stern_**/stern"
+zinit light "stern/stern"
+
 zinit ice pick"bin/op-tool" as"program"
 zinit light "m1yam0t0/op-tool"
 
