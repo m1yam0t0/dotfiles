@@ -18,11 +18,8 @@ zinit wait lucid for \
  blockf \
     zsh-users/zsh-completions
 
-zinit ice pick"kube-ps1.sh"
-zinit light jonmosco/kube-ps1
-
-zinit ice compile"(pure|async).zsh" pick"async.zsh" src"pure.zsh"
-zinit light "sindresorhus/pure"
+zinit ice depth=1
+zinit light "romkatv/powerlevel10k"
 
 zinit ice from"gh-r" as"program"
 zinit load "junegunn/fzf-bin"
