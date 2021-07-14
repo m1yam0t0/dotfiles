@@ -42,12 +42,18 @@ zinit light "stern/stern"
 zinit ice pick"bin/op-tool" as"program"
 zinit light "m1yam0t0/op-tool"
 
-# if you already installed coreutils, load dircolors-solarized
-if type gdircolors > /dev/null 2>&1; then
-    # dircolor file name
-    DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'
+# if you already installed dircolors, load dircolors-solarized
+# dircolor file name
+DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'
 
-    # create LS_COLORS settings & load plugin
+# create LS_COLORS settings & load plugin
+if type dircolors > /dev/null 2>&1; then
+    zinit ice atclone"dircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+        atpull"%atclone" \
+        pick"${DIRCOLOR_SOLARIZED_FILE}" \
+        nocompile"!"
+    zinit light "seebi/dircolors-solarized"
+elif type gdircolors > /dev/null 2>&1; then
     zinit ice atclone"gdircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
         atpull"%atclone" \
         pick"${DIRCOLOR_SOLARIZED_FILE}" \
