@@ -40,8 +40,9 @@ alias k='kubectl'
 
 # dotfiles
 alias dot='${HOME}/.dotfiles'
-alias vz='vi +Files ${XDG_CONFIG_HOME}/zsh'
+alias va='vi ${AQUA_GLOBAL_CONFIG}'
 alias vv='vi ${XDG_CONFIG_HOME}/nvim/init.vim'
+alias vz='vi +Files ${XDG_CONFIG_HOME}/zsh'
 
 # shell
 alias reload='exec $SHELL -l'
