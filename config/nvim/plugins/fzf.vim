@@ -45,11 +45,11 @@ endif
 
 " Custom command
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git', <bang>0)
+command! -bang -nargs=* Rg call fzf#vim#grep(<q-args>, 'rg --hidden --ignore .git', <bang>0)
 
 " Key mappings
 nnoremap <silent> <leader><leader> :<C-u>Files<CR>
 nnoremap <silent> <leader>b :<C-u>Buffers<CR>
 nnoremap <silent> <leader>x :<C-u>Commands<CR>
-nnoremap <leader>g :Ag<Space>
+nnoremap <leader>g :Rg<Space>
 
