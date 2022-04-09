@@ -6,6 +6,8 @@
     quotepath = false
     trustExitCode = true
     whitespace = trailing-space,space-before-tab
+[init]
+    defaultBranch = main
 [fetch]
     prune = true
 [pull]
