@@ -41,8 +41,8 @@ dotfiles:
 plugin-manager:
 	@echo '----- Prepare plugin manager ------'
 	@./etc/02_make-xdg-basedir.sh
-	@./etc/03_zinit.sh
-	@./etc/04_asdf.sh
+	@./etc/03_zi.sh
+	@./etc/04_aqua.sh
 	@./etc/05_vim-plug.sh
 	@echo
 
