@@ -26,9 +26,6 @@ alias mv='mv -i'
 # add -p option
 alias mkdir='mkdir -p'
 
-# the silver seacher as grep
-alias grep='ag'
-
 # vim
 alias vi='nvim'
 
