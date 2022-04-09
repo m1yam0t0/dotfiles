@@ -10,3 +10,6 @@ else
     echo "auqa is already installed."
 fi
 
+# install packages
+aqua i -a
+
