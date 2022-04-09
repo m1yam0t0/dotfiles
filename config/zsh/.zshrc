@@ -5,12 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# asdf
-if [ -d "${ASDF_DIR}" ]; then
-    source ${ASDF_DIR}/asdf.sh
-    fpath=(${ASDF_DIR}/completions $fpath)
-fi
-
 # source *.zsh
 for rc in $(ls ${ZDOTDIR}/*.zsh);
 do

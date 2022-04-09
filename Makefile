@@ -41,8 +41,8 @@ dotfiles:
 plugin-manager:
 	@echo '----- Prepare plugin manager ------'
 	@./etc/02_make-xdg-basedir.sh
-	@./etc/03_zinit.sh
-	@./etc/04_asdf.sh
+	@./etc/03_zi.sh
+	@./etc/04_aqua.sh
 	@./etc/05_vim-plug.sh
 	@echo
 
@@ -59,11 +59,10 @@ homebrew:
 	@brew bundle --file=./etc/macos/Brewfile
 	@echo
 
-homebrew-all: keep-sudo
+homebrew-cask: keep-sudo
 	@echo '----- Install Homebrew -----'
-	@brew bundle --file=./etc/macos/Brewfile.all
+	@brew bundle --file=./etc/macos/Brewfile.cask
 	@./etc/macos/docker-completion.sh
-	@./etc/macos/iterm2_install_shell_integration.sh
 	@echo
 
 homebrew-home: keep-sudo

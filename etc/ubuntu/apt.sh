@@ -9,9 +9,7 @@ sudo apt install -y \
     curl \
     git \
     locales \
-    neovim \
     python \
-    silversearcher-ag \
     tig \
     tmux \
     zsh
