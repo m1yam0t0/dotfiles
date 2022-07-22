@@ -3,11 +3,10 @@
 # load environment variables from zshenv
 source ${HOME}/.zshenv
 
-ZI_DIR="${XDG_CACHE_HOME}/zi"
+ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 
-if [ ! -d ${ZI_DIR} ]; then
-    mkdir ${ZI_DIR}
-    git clone https://github.com/z-shell/zi.git ${ZI_DIR}/bin
+if [ ! -d ${ZINIT_HOME} ]; then
+    git clone https://github.com/zdharma-continuum/zinit.git ${ZINIT_HOME}
 else
-    echo "zi is already installed"
+    echo "zinit is already installed"
 fi

@@ -1,28 +1,28 @@
-# set zi environment variables
-typeset -A ZI
-ZI_HOME=$XDG_CACHE_HOME/zi
-ZI[HOME_DIR]=$ZI_HOME
-ZI[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/zcompdump
+# set zinit environment variables
+typeset -A ZINIT
+ZINIT_HOME=${XDG_DATA_HOME}/zinit/zinit.git
+ZINIT[HOME_DIR]=${ZINIT_HOME}
+ZINIT[ZCOMPDUMP_PATH]=${XDG_CACHE_HOME}/zsh/zcompdump
 
-# init zi
-source ${ZI_HOME}/bin/zi.zsh
-autoload -Uz _zi
-(( ${+_comps} )) && _comps[zi]=_zi
+# init zinit
+source ${ZINIT_HOME}/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # load plugins
-zi wait lucid for \
- atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     z-shell/fast-syntax-highlighting \
  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions \
  blockf \
     zsh-users/zsh-completions
 
-zi ice depth=1
-zi light "romkatv/powerlevel10k"
+zinit ice depth=1
+zinit light "romkatv/powerlevel10k"
 
-zi ice pick"bin/op-tool" as"program"
-zi light "m1yam0t0/op-tool"
+zinit ice pick"bin/op-tool" as"program"
+zinit light "m1yam0t0/op-tool"
 
 # if you already installed dircolors, load dircolors-solarized
 # dircolor file name
@@ -30,15 +30,15 @@ DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'
 
 # create LS_COLORS settings & load plugin
 if type dircolors > /dev/null 2>&1; then
-    zi ice atclone"dircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+    zinit ice atclone"dircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
         atpull"%atclone" \
         pick"${DIRCOLOR_SOLARIZED_FILE}" \
         nocompile"!"
-    zi light "seebi/dircolors-solarized"
+    zinit light "seebi/dircolors-solarized"
 elif type gdircolors > /dev/null 2>&1; then
-    zi ice atclone"gdircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+    zinit ice atclone"gdircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
         atpull"%atclone" \
         pick"${DIRCOLOR_SOLARIZED_FILE}" \
         nocompile"!"
-    zi light "seebi/dircolors-solarized"
+    zinit light "seebi/dircolors-solarized"
 fi
