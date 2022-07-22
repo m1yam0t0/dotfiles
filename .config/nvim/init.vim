@@ -14,7 +14,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'itchyny/lightline.vim'
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 
@@ -83,7 +83,8 @@ execute 'source' s:config_dir . '/plugins/lightline.vim'
 execute 'source' s:config_dir . '/plugins/fzf.vim'
 
 " Color settings
-colorscheme solarized
+set background=dark
+colorscheme solarized8
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
