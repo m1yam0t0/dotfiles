@@ -35,38 +35,38 @@ install: prepare $(INSTALL_TARGET)
 
 dotfiles:
 	@echo '----- Install dotfiles -----'
-	@./etc/01_symlink.sh
+	@./etc/symlink.sh
 	@echo
 
 plugin-manager:
 	@echo '----- Prepare plugin manager ------'
-	@./etc/02_make-xdg-basedir.sh
-	@./etc/03_zi.sh
-	@./etc/04_aqua.sh
-	@./etc/05_vim-plug.sh
+	@./etc/make-xdg-basedir.sh
+	@./etc/zinit.sh
+	@./etc/aqua.sh
+	@./etc/vim-plug.sh
 	@echo
 
 change-shell:
 	@echo '----- Change default shell -----'
-	@./etc/10_chsh.sh
+	@./etc/chsh.sh
 	@echo
 
 # macOS
 homebrew:
-	@echo '----- Install Homebrew ------'
+	@echo '----- Install Pakcages via Homebrew ------'
 	@./etc/macos/homebrew.sh
 	@brew update
 	@brew bundle --file=./etc/macos/Brewfile
 	@echo
 
 homebrew-cask: keep-sudo
-	@echo '----- Install Homebrew -----'
+	@echo '----- Install Packages via Homebrew cask -----'
 	@brew bundle --file=./etc/macos/Brewfile.cask
 	@./etc/macos/docker-completion.sh
 	@echo
 
 homebrew-home: keep-sudo
-	@echo '----- Install Homebrew -----'
+	@echo '----- Install Packages for private machine via Homebrew -----'
 	@brew bundle --file=./etc/macos/Brewfile.home
 	@echo
 
