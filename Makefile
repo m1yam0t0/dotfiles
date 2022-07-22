@@ -75,8 +75,8 @@ macos-preference: keep-sudo
 	@./etc/macos/preferences.sh
 	@echo
 
-# ubuntu
+# debian
 apt:
 	@echo '----- Install Package ------'
-	@./etc/ubuntu/apt.sh
+	@./etc/debian/apt.sh
 	@echo
