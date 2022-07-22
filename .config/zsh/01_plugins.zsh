@@ -11,12 +11,12 @@ autoload -Uz _zinit
 
 # load plugins
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    z-shell/fast-syntax-highlighting \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
- blockf \
-    zsh-users/zsh-completions
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+    blockf \
+        zsh-users/zsh-completions \
+    atload"!_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions
 
 zinit ice depth=1
 zinit light "romkatv/powerlevel10k"
