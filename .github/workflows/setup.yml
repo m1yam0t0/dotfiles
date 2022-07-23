@@ -1,20 +1,16 @@
-name: Install test
+name: test
 
 on:
   push:
 
 jobs:
-  macos:
-    runs-on: macOS-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install
-        run: |
-          cp -rp $GITHUB_WORKSPACE ~/.dotfiles
-          cd ~/.dotfiles
-          make install
-  ubuntu:
-    runs-on: ubuntu-latest
+  install:
+    strategy:
+      matrix:
+        os:
+          - macos-12
+          - ubuntu-22.04
+    runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
       - name: Install
