@@ -5,7 +5,7 @@
 - get dotfiles
 
 ```sh
-curl -fSsL https://raw.githubusercontent.com/m1yam0t0/dotfiles/master/etc/00_init.sh | sh -
+curl -fSsL https://raw.githubusercontent.com/m1yam0t0/dotfiles/main/etc/init.sh | sh -
 ```
 
 - install dotfiles
