@@ -4,4 +4,3 @@ cask "dropbox"
 cask "notion"
 cask "ticktick"
 mas "LINE", id: 539883307
-mas "Spark", id: 1176895641
