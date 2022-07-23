@@ -24,4 +24,3 @@ do
     rm -rf "${XDG_CONFIG_HOME}/$f"
     ln -snfv "${DOTPATH}/.config/$f" "${XDG_CONFIG_HOME}/$f"
 done
-

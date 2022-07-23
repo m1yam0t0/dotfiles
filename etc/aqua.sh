@@ -12,4 +12,3 @@ fi
 
 # install packages
 aqua i -a
-
