@@ -20,7 +20,7 @@ alias vi='nvim'
 alias watch='viddy'
 
 # ls
-alias l='ls -lagF --icons --git'
+alias l='ls -laghF --icons --git'
 alias ll='ls -laF'
 
 # history
