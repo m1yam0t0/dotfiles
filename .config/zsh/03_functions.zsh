@@ -70,7 +70,7 @@ _aqua_upgrade() {
 ## fzf
 # history
 _fzf-history() {
-    BUFFER=$( fc -l 1 | fzf +m +s --tac | sed 's/ *[0-9]* *//' )
+    BUFFER=$(fc -l 1 | fzf +m +s --tac | sed 's/ *[0-9]* *//')
     CURSOL=$#BUFFER
 
     zle reset-prompt
@@ -80,10 +80,10 @@ zle -N _fzf-history
 # cd ghq list
 _fzf-ghq() {
     local selected
-    selected=$( ghq list --full-path | fzf +m )
+    selected=$(ghq list | fzf +m)
 
     if [ -n "${selected}" ]; then
-        BUFFER="cd ${selected}"
+        BUFFER="cd $(ghq root)/${selected}"
         zle accept-line
     fi
 
@@ -94,7 +94,7 @@ zle -N _fzf-ghq
 # git switch
 _fzf-git-switch() {
     local selected
-    selected=$( git branch --all | grep -v HEAD | fzf +m | sed "s/.* //" | sed "s#remotes/[^/]*/##" )
+    selected=$(git branch --all | grep -v HEAD | fzf +m | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 
     if [ -n "${selected}" ]; then
         git switch ${selected}
@@ -104,7 +104,7 @@ _fzf-git-switch() {
 # kill process
 _fzf-kill() {
     local pid
-    pid=$( ps -ef | sed 1d | fzf -m | awk '{print $2}' )
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
     if [ -n "${pid}" ]; then
         echo $pid | xargs kill -${1:-9}
