@@ -20,8 +20,8 @@ alias vi='nvim'
 alias watch='viddy'
 
 # ls
-alias l='ls -laghF --icons --git'
-alias ll='ls -laF'
+alias l='exa -laghF --icons --git'
+alias ll='exa -laF'
 
 # history
 alias h='history -E 1'
