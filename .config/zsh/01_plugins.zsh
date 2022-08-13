@@ -24,3 +24,21 @@ zinit light "romkatv/powerlevel10k"
 zinit ice pick"bin/op-tool" as"program"
 zinit light "m1yam0t0/op-tool"
 
+# if you already installed dircolors, load dircolors-solarized
+# dircolor file name
+DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'
+
+# create LS_COLORS settings & load plugin
+if type dircolors > /dev/null 2>&1; then
+    zi ice atclone"dircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+        atpull"%atclone" \
+        pick"${DIRCOLOR_SOLARIZED_FILE}" \
+        nocompile"!"
+    zi light "seebi/dircolors-solarized"
+elif type gdircolors > /dev/null 2>&1; then
+    zi ice atclone"gdircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+        atpull"%atclone" \
+        pick"${DIRCOLOR_SOLARIZED_FILE}" \
+        nocompile"!"
+    zi light "seebi/dircolors-solarized"
+fi
