@@ -14,4 +14,5 @@ x-motemen/ghq
 kubernetes/kubectl
 kubernetes-sigs/kustomize
 kubernetes-sigs/krew
+doitintl/kube-no-trouble
 stern/stern
