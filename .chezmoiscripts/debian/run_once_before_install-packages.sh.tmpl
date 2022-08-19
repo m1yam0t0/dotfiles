@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+{{ if eq .chezmoi.osRelease.idLike "debian" -}}
+#!/usr/bin/env bash
 
 # updgrade to latest packages
 sudo apt update
@@ -12,3 +13,4 @@ sudo apt install -y \
     tig \
     tmux \
     zsh
+{{ end -}}
