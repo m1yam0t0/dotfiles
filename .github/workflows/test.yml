@@ -14,7 +14,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install
-        run: |
-          cp -rp $GITHUB_WORKSPACE ~/.dotfiles
-          cd ~/.dotfiles
-          make install
+        run: sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply m1yam0t0
+
