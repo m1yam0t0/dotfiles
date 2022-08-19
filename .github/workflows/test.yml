@@ -15,6 +15,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install
         run: |
-          sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply m1yam0t0
+          sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply --branch ${GITHUB_REF_NAME} m1yam0t0
           rm -rf $(pwd)/bin
 
