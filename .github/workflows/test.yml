@@ -14,5 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install
-        run: sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply m1yam0t0
+        run: |
+          sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply m1yam0t0
+          rm -rf $(pwd)/bin
 
