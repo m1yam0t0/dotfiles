@@ -27,7 +27,6 @@ alias ll='exa -laF'
 alias h='history -E 1'
 
 # dotfiles
-alias dot='${HOME}/.dotfiles'
 alias reload='exec $SHELL -l'
 alias bench='for i in {1..10} ; do time ( zsh -i -c exit ); done'
 
