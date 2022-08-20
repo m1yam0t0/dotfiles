@@ -10,7 +10,7 @@ if [ "${SHELL}" != "${SHELL_PATH}" ]; then
     fi
 
     # change default shell
-    chsh -s ${SHELL_PATH} ${USER}
+    sudo chsh -s ${SHELL_PATH} ${USER}
 else
     echo "${USER}'s shell is already changed."
 fi
