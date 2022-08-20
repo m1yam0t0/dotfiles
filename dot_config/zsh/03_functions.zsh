@@ -52,21 +52,6 @@ _chpwd_ls() {
 #-----------------------------------------------------------
 # Plugins
 #-----------------------------------------------------------
-## aqua
-# upgrade aqua & packages
-_aqua_upgrade() {
-    cd ${XDG_CONFIG_HOME}/aquaproj-aqua
-
-    aqua-installer
-
-    rm -f aqua.yaml
-    aqua init
-    aqua g -i -f packages.txt
-    aqua i -a -l
-
-    cd -
-}
-
 ## fzf
 # history
 _fzf-history() {
