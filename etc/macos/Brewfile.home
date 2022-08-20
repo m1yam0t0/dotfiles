@@ -1,6 +1,0 @@
-brew "mas"
-brew "wakeonlan"
-cask "dropbox"
-cask "notion"
-cask "ticktick"
-mas "LINE", id: 539883307
