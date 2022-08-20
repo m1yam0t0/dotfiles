@@ -1,6 +1,3 @@
-[user]
-    name = {{ .name }}
-    email = {{ .email }}
 [core]
     editor = nvim
     ignorecase = false
@@ -34,3 +31,5 @@
     side-by-side = true
 [ghq]
     root = ~/src
+[include]
+    path = ~/.gitconfig.local
