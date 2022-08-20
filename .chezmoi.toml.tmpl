@@ -3,5 +3,10 @@
 {{-   $osBase = .chezmoi.osRelease.idLike -}}
 {{- end -}}
 
+{{- $headless := false -}}
+{{- $private := false -}}
+
 [data]
     osbase = {{ $osBase | quote }}
+    headless = {{ $headless }}
+    private = {{ $private }}
