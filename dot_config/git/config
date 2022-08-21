@@ -1,0 +1,35 @@
+[core]
+    editor = nvim
+    ignorecase = false
+    pager = delta
+    quotepath = false
+    trustExitCode = true
+    whitespace = trailing-space,space-before-tab
+[diff]
+    colorMoved = default
+[fetch]
+    prune = true
+[init]
+    defaultBranch = main
+[interactive]
+    diffFilter = delta --color-only
+[add.interactive]
+    useBuiltin = false
+[merge]
+    conflictstyle = diff3
+[pull]
+    default = current
+    rebase = true
+[push]
+    default = current
+[rebase]
+    autosquash = true
+    autostash = true
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[delta]
+    side-by-side = true
+[ghq]
+    root = ~/src
+[include]
+    path = ~/.gitconfig.local

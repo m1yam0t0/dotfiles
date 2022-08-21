@@ -1,0 +1,53 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+
+# install developer tool
+xcode-select -p > /dev/null
+
+if [[ $? != 0 ]]; then
+    echo "install developer tool"
+    xcode-select --install
+else
+    echo "developer tool is already installed."
+fi
+
+# install homebrew
+if !(type brew > /dev/null 2>&1); then
+    echo "install homebrew."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "homebrew is already installed."
+fi
+
+# install packages via homebrew
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+brew "git"
+brew "tig"
+brew "tmux"
+brew "zsh"
+{{ if not .headless }}
+cask "1password"
+cask "1password-cli"
+cask "alfred"
+cask "appcleaner"
+cask "bettertouchtool"
+cask "docker"
+cask "google-japanese-ime"
+cask "karabiner-elements"
+cask "rectangle"
+cask "visual-studio-code"
+cask "vivaldi"
+cask "wezterm"
+{{ end }}
+{{ if .private }}
+brew "mas"
+cask "dropbox"
+cask "notion"
+cask "ticktick"
+mas "LINE", id: 539883307
+{{ end }}
+EOF
+{{ end -}}

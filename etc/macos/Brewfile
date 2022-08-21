@@ -1,6 +1,0 @@
-tap "homebrew/core"
-tap "homebrew/bundle"
-brew "git"
-brew "tig"
-brew "tmux"
-brew "zsh"

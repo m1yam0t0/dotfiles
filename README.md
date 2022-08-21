@@ -1,16 +1,43 @@
 # dotfiles
 
-## How to Install
+m1yam0t0's dotfiles.
 
-- get dotfiles
+## Install
 
 ```sh
-curl -fSsL https://raw.githubusercontent.com/m1yam0t0/dotfiles/main/etc/init.sh | sh -
+sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply m1yam0t0
+rm -rf $(pwd)/bin
 ```
 
-- install dotfiles
+## Maintenance
+
+Pull and apply latest dotfiles
 
 ```sh
-cd ~/.dotfiles && make install
+chezmoi update
+```
+
+Add files
+
+```sh
+chezmoi add ${file}
+```
+
+Edit files
+
+```sh
+chezmoi edit ${file}
+```
+
+Simulate template file
+
+```sh
+chezmoi execute-template --init < ${file}
+```
+
+Reflect local modified files
+
+```sh
+chezmoi re-add
 ```
 

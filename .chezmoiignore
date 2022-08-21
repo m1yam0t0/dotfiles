@@ -1,0 +1,13 @@
+README.md
+LICENSE
+
+{{ if ne .chezmoi.os "darwin" }}
+.config/karabiner
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.config/autostart
+.config/i3
+.xinitrc
+.xprofile
+{{ end }}

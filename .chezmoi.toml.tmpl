@@ -1,0 +1,16 @@
+{{- $osBase := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "idLike" -}}
+{{-   $osBase = .chezmoi.osRelease.idLike -}}
+{{- end -}}
+
+{{- $headless := false -}}
+{{- $private := false -}}
+
+{{- if env "GITHUB_ACTION" -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+[data]
+    osbase = {{ $osBase | quote }}
+    headless = {{ $headless }}
+    private = {{ $private }}

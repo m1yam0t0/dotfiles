@@ -1,0 +1,55 @@
+{{ if eq .osbase "arch" -}}
+#!/usr/bin/env bash
+
+# upgrade to latest packages
+sudo pacman -Syyu --noconfirm
+
+# install require packages for yay
+sudo pacman -S --noconfirm --needed \
+    git \
+    base-devel
+
+# install yay
+if [ "$(lsb_release -si)" = "Arch" ]; then
+    echo "Install yay manually."
+
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
+    makepkg -si
+    cd -
+    rm -rf yay-bin
+else
+    echo "Install yay via pacman."
+    sudo pacman -S --noconfirm --needed yay
+fi
+
+# install packages via pacman
+echo "Install packages via pacman"
+sudo pacman -S --noconfirm --needed \
+    docker \
+    fcitx5-im \
+    gnome-keyring \
+    htop \
+    tailscale \
+    tig \
+    tmux \
+    wezterm \
+    vivaldi \
+    zsh
+
+# install packages via yay
+echo "Install packages via yay"
+yay -S --noconfirm --needed --cleanafter \
+    1password \
+    1password-cli \
+    fcitx5-mozc-ut \
+    light-git \
+    mozc-ut \
+    notion-app \
+    ttf-meslo-nerd-font-powerlevel10k \
+    visual-studio-code-bin
+
+# clean packages
+yay -c --noconfirm
+rm -rf ${HOME}/.cache/bazel
+{{ end -}}
