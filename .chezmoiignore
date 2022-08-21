@@ -1,5 +1,6 @@
-README.md
 LICENSE
+README.md
+renovate.json
 
 {{ if ne .chezmoi.os "darwin" }}
 .config/karabiner
