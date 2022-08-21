@@ -28,6 +28,7 @@ brew "git"
 brew "tig"
 brew "tmux"
 brew "zsh"
+{{ if not .headless }}
 cask "1password"
 cask "1password-cli"
 cask "alfred"
@@ -40,6 +41,7 @@ cask "rectangle"
 cask "visual-studio-code"
 cask "vivaldi"
 cask "wezterm"
+{{ end }}
 {{ if .private }}
 brew "mas"
 cask "dropbox"

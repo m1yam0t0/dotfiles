@@ -6,6 +6,10 @@
 {{- $headless := false -}}
 {{- $private := false -}}
 
+{{- if env "GITHUB_ACTION" -}}
+{{-   $headless = true -}}
+{{- end -}}
+
 [data]
     osbase = {{ $osBase | quote }}
     headless = {{ $headless }}
