@@ -15,5 +15,12 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install
         run: |
-          sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply --branch ${GITHUB_REF_NAME} m1yam0t0
-          rm -rf $(pwd)/bin
+          sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ${HOME}/.local/bin init --apply --branch ${GITHUB_REF_NAME} m1yam0t0
+          rm -rf $(pwd)/.local/bin/chezmoi
+  install-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install
+        run: |
+          '$params = "-b ~/.local/bin init --apply --branch $env:GITHUB_REF_NAME m1yam0t0"', (irm https://chezmoi.io/get.ps1) | powershell -c -
