@@ -12,3 +12,13 @@ renovate.json
 .xinitrc
 .xprofile
 {{ end }}
+
+{{ if ne .chezmoi.os "windows" }}
+Documents
+{{ else }}
+.config/aquaproj-aqua
+.config/gh
+.config/nvim
+.config/zsh
+.zshenv
+{{ end }}
