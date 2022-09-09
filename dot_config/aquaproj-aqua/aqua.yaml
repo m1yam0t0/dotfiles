@@ -11,7 +11,7 @@ packages:
 - name: dandavison/delta@0.14.0
 - name: gohugoio/hugo@v0.102.3
 - name: junegunn/fzf@0.33.0
-- name: mikefarah/yq@v4.27.3
+- name: mikefarah/yq@v4.27.5
 - name: neovim/neovim@v0.7.2
 - name: ogham/exa@v0.10.1
 - name: sachaos/viddy@v0.3.6
