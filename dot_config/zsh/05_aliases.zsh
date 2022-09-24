@@ -14,6 +14,7 @@ alias mkdir='mkdir -p'
 
 # replace command
 alias cat='bat -pp'
+alias imgcat='wezterm imgcat'
 alias ls='exa --color=always'
 alias tree='exa -T'
 alias vi='nvim'
