@@ -278,7 +278,10 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 ## App shortcuts
 bindsym $mod+w exec /usr/bin/vivaldi-stable
 bindsym $mod+n exec /usr/bin/thunar
-bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym Print exec scrot ~/Desktop/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Desktop/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym Ctrl+Print exec scrot /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png && rm -f /tmp/screenshot.png && notify-send "Screenshot saved to clipboard"
+bindsym --release Shift+Print exec scrot -s ~/Desktop/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Desktop/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym --release Ctrl+Shift+Print exec scrot -s /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png && rm -f /tmp/screenshot.png && notify-send "Screenshot saved to clipboard"
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
