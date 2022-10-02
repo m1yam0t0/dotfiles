@@ -1,0 +1,21 @@
+{{- if ne .chezmoi.os "windows" -}}
+[".local/share/aquaproj-aqua/bin/aqua"]
+    type = "file"
+    url = "https://github.com/aquaproj/aqua/releases/latest/download/aqua_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+    executable = true
+    [".local/share/aquaproj-aqua/bin/aqua".filter]
+        command = "tar"
+        args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "aqua"]
+
+[".local/share/nvim/site/pack/packer/start/packer.nvim"]
+    type = "git-repo"
+    url = "https://github.com/wbthomason/packer.nvim.git"
+    [".local/share/nvim/site/pack/packer/start/packer.nvim".clone]
+        args = ["--depth", "1"]
+
+[".local/share/zinit/zinit.git"]
+    type = "git-repo"
+    url = "https://github.com/zdharma-continuum/zinit.git"
+    [".local/share/zinit/zinit.git".clone]
+        args = ["--depth", "1"]
+{{- end -}}
