@@ -6,6 +6,10 @@
 {{- $headless := false -}}
 {{- $private := false -}}
 
+{{- if eq .chezmoi.username "m1yam0t0" -}}
+{{-   $private = true -}}
+{{- end -}}
+
 {{- if env "GITHUB_ACTION" -}}
 {{-   $headless = true -}}
 {{- end -}}
