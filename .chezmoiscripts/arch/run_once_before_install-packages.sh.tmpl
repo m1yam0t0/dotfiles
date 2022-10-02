@@ -26,6 +26,7 @@ fi
 # install packages via pacman
 echo "Install packages via pacman"
 sudo pacman -S --noconfirm --needed \
+    discord \
     docker \
     fcitx5-im \
     gnome-keyring \
@@ -47,8 +48,10 @@ yay -S --noconfirm --needed --cleanafter \
     light-git \
     mozc-ut \
     notion-app \
+    slack-desktop \
     ttf-meslo-nerd-font-powerlevel10k \
-    visual-studio-code-bin
+    visual-studio-code-bin \
+    zoom
 
 # clean packages
 yay -c --noconfirm

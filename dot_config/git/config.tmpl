@@ -25,8 +25,10 @@
 [rebase]
     autosquash = true
     autostash = true
+{{- if env "GITHUB_ACTION" -}}
 [url "git@github.com:"]
     insteadOf = https://github.com/
+{{- end -}}
 [delta]
     side-by-side = true
 [ghq]
