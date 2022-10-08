@@ -25,11 +25,13 @@
 [rebase]
     autosquash = true
     autostash = true
-{{- if env "GITHUB_ACTION" -}}
+{{- if not (env "GITHUB_ACTION") }}
 [url "git@github.com:"]
     insteadOf = https://github.com/
-{{- end -}}
+{{- end }}
 [delta]
+    navigate = true
+    light = false
     side-by-side = true
 [ghq]
     root = ~/src
