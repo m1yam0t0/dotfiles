@@ -7,14 +7,14 @@ m1yam0t0's dotfiles.
 Linux/Unix
 
 ```sh
-sh -c "$(curl -fsLS https://chezmoi.io/get)" -- -b ${HOME}/.local/bin init --apply m1yam0t0
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init --apply m1yam0t0
 rm -rf $(pwd)/.local/bin/chezmoi
 ```
 
 Windows
 
 ```pwsh
-'$params = "-b ~/.local/bin init --apply m1yam0t0"', (irm https://chezmoi.io/get.ps1) | powershell -c -
+'$params = "-b ~/.local/bin init --apply m1yam0t0"', (irm https://get.chezmoi.io/ps1) | powershell -c -
 ```
 
 ## Maintenance
