@@ -21,9 +21,6 @@ zinit wait lucid for \
 zinit ice depth=1
 zinit light "romkatv/powerlevel10k"
 
-zinit ice pick"bin/op-tool" as"program"
-zinit light "m1yam0t0/op-tool"
-
 # if you already installed dircolors, load dircolors-solarized
 # dircolor file name
 DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'

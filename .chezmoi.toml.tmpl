@@ -1,5 +1,5 @@
 {{- $osBase := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "idLike" -}}
+{{- if eq .chezmoi.os "linux" -}}
 {{-   $osBase = .chezmoi.osRelease.idLike -}}
 {{- end -}}
 
