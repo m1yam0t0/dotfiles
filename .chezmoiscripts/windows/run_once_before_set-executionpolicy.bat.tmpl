@@ -1,0 +1,3 @@
+{{ if eq .chezmoi.os "windows" -}}
+PowerShell -Command "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force;"
+{{ end -}}
