@@ -18,6 +18,7 @@ Documents
 {{ else }}
 .config/aquaproj-aqua
 .config/gh
+.config/git
 .config/nvim
 .config/zsh
 .zshenv
