@@ -23,3 +23,11 @@ Documents
 .config/zsh
 .zshenv
 {{ end }}
+
+{{ if .headless }}
+.config/autostart
+.config/i3
+.config/wezterm
+.xinitrc
+.xprofile
+{{ end }}
