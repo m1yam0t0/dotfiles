@@ -1,0 +1,3 @@
+{{ if and (eq .chezmoi.os "windows") (not .headless) -}}
+wsl --install Ubuntu
+{{ end -}}

@@ -1,3 +1,4 @@
+{{ if ne .chezmoi.os "windows" -}}
 #!/usr/bin/env bash
 
 SHELL_PATH="$(which zsh)"
@@ -14,4 +15,4 @@ if [ "${SHELL}" != "${SHELL_PATH}" ]; then
 else
     echo "${USER}'s shell is already changed."
 fi
-
+{{ end -}}

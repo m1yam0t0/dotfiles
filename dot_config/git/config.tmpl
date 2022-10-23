@@ -25,10 +25,6 @@
 [rebase]
     autosquash = true
     autostash = true
-{{- if not (env "GITHUB_ACTION") }}
-[url "git@github.com:"]
-    insteadOf = https://github.com/
-{{- end }}
 [delta]
     navigate = true
     light = false
