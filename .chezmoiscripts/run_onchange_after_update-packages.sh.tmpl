@@ -1,0 +1,20 @@
+{{ if ne .chezmoi.os "windows" -}}
+#!/usr/bin/env zsh
+
+# load environment variables
+. ${HOME}/.zshenv
+. ${XDG_CONFIG_HOME}/zsh/.zshenv
+
+# aqua
+echo "Update aqua packages..."
+aqua i -a
+
+# zinit
+echo "Update zsh plugins..."
+. ${XDG_CONFIG_HOME}/zsh/01_plugins.zsh
+zinit update -n
+
+# packer(neovim)
+echo "Update neovim plugins..."
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+{{ end -}}
