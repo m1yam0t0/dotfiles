@@ -1,5 +1,7 @@
 # dotfiles
 
+[![test](https://github.com/m1yam0t0/dotfiles/actions/workflows/test.yml/badge.svg)](https://github.com/m1yam0t0/dotfiles/actions/workflows/test.yml)
+
 m1yam0t0's dotfiles.
 
 ## Install
