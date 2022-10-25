@@ -3,6 +3,7 @@
     type = "file"
     url = "https://github.com/aquaproj/aqua/releases/latest/download/aqua_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
     executable = true
+    refreshPeriod = "168h"
     [".local/share/aquaproj-aqua/bin/aqua".filter]
         command = "tar"
         args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "aqua"]
