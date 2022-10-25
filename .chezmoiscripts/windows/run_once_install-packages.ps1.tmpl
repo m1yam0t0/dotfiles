@@ -1,5 +1,5 @@
 {{ if and (eq .chezmoi.os "windows") (not .headless) -}}
-function Check-Package-Installation {
+function Check-Winget-Package-Installation {
     param(
         [Parameter(Mandatory)][string]$package
     )
@@ -9,48 +9,35 @@ function Check-Package-Installation {
     if ($LastExitCode -ne 0) {
         return 0
     } else {
-        Write-Host $package has already installed
+        Write-Host "$package has already installed."
         return 1
     }
 }
 
-# Install Git via winget
-if ((Check-Package-Installation('git.git')) -eq 0) {
-    # Create INF file for Git
-    Write-Output @"
-[Setup]
-Lang=default
-Dir=C:\Program Files\Git
-Group=Git
-NoIcons=0
-SetupType=default
-Components=gitlfs,assoc,assoc_sh,windowsterminal,scalar
-Tasks=
-EditorOption=VIM
-CustomEditorPath=
-DefaultBranchOption=main
-PathOption=Cmd
-SSHOption=OpenSSH
-TortoiseOption=false
-CURLOption=OpenSSL
-CRLFOption=CRLFCommitAsIs
-BashTerminalOption=MinTTY
-GitPullBehaviorOption=Merge
-UseCredentialManager=Enabled
-PerformanceTweaksFSCache=Enabled
-EnableSymlinks=Disabled
-EnablePseudoConsoleSupport=Disabled
-EnableFSMonitor=Disabled
-"@ > $env:TEMP\git-git.inf
+# Install scoop
+Write-Host 'Install packages via scoop'
+If (Get-Command scoop) {
+    Write-Host 'scoop has already installed.'
+} else {
+    irm get.scoop.sh | iex
+}
 
-    winget install git.git --override "/VERYSILENT /LOADINF=$env:TEMP\git-git.inf"
+# Install Package via scoop
+$scoopPackages =@(
+    '1password-cli',
+    'delta',
+    'fd',
+    'git',
+    'ripgrep'
+)
 
-    # Delete INF file for Git
-    Remove-Item -Path $env:TEMP\git-git.inf
+foreach ( $package in $scoopPackages ) {
+    scoop install $package
 }
 
 # Install Package via winget
-$packages =@(
+Write-Host 'Install packages via winget'
+$wingetPackages =@(
     '7zip.7zip',
     'AgileBits.1Password',
     'Discord.Discord',
@@ -70,8 +57,8 @@ $packages =@(
     'Zoom.Zoom'
 )
 
-foreach ( $package in $packages ) {
-    if ((Check-Package-Installation($package)) -eq 0) {
+foreach ( $package in $wingetPackages ) {
+    if ((Check-Winget-Package-Installation($package)) -eq 0) {
         winget install -e --id $package
     }
 }
