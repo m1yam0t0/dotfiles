@@ -1,1 +1,3 @@
-{{ onepasswordRead "op://personal/ssh_key/public_key" }}
+{{ if .private -}}
+{{   onepasswordRead "op://personal/ssh_key/public_key" }}
+{{ end -}}

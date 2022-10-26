@@ -34,7 +34,7 @@ Documents
 .xprofile
 {{ end }}
 
-{{ if .private }}
+{{ if env "GITHUB_ACTION" }}
 .gitconfig
 .gitconfig.local
 .ssh
