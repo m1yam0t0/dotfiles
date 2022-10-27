@@ -4,7 +4,6 @@ return require("packer").startup(function(use)
 	-- Package Manager
 	use({
 		"wbthomason/packer.nvim",
-		opt = true,
 	})
 
 	-- Package Manager for LSP

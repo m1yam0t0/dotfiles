@@ -10,6 +10,10 @@
 {{-   $private = true -}}
 {{- end -}}
 
+{{- if eq .chezmoi.hostname "mymt-thinkpad" -}}
+{{-   $private = true -}}
+{{- end -}}
+
 {{- if or (env "GITHUB_ACTION") (env "WSL_DISTRO_NAME") -}}
 {{-   $headless = true -}}
 {{- end -}}

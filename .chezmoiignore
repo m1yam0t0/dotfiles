@@ -15,12 +15,14 @@ renovate.json
 
 {{ if ne .chezmoi.os "windows" }}
 Documents
+.gitconfig
 {{ else }}
 .config/aquaproj-aqua
 .config/gh
 .config/git
 .config/nvim
 .config/zsh
+.gitconfig.local
 .zshenv
 {{ end }}
 
@@ -30,4 +32,10 @@ Documents
 .config/wezterm
 .xinitrc
 .xprofile
+{{ end }}
+
+{{ if env "GITHUB_ACTION" }}
+.gitconfig
+.gitconfig.local
+.ssh
 {{ end }}

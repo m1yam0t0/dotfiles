@@ -1,0 +1,71 @@
+{{ if and (eq .chezmoi.os "windows") -}}
+function Check-Winget-Package-Installation {
+    param(
+        [Parameter(Mandatory)][string]$package
+    )
+
+    # check package installation
+    winget list $package | Out-Null
+    if ($LastExitCode -ne 0) {
+        return 0
+    } else {
+        Write-Host "$package has already installed."
+        return 1
+    }
+}
+
+# Install scoop
+Write-Host 'Install packages via scoop'
+If (Get-Command scoop) {
+    Write-Host 'scoop has already installed.'
+} else {
+{{- if env "GITHUB_ACTION" }}
+    iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+{{- else }}
+    irm get.scoop.sh | iex
+{{- end }}
+}
+
+# Install Package via scoop
+$scoopPackages =@(
+    '1password-cli',
+    'delta',
+    'fd',
+    'git',
+    'ripgrep'
+)
+
+foreach ( $package in $scoopPackages ) {
+    scoop install $package
+}
+
+{{ if not .headless -}}
+# Install Package via winget
+Write-Host 'Install packages via winget'
+$wingetPackages =@(
+    '7zip.7zip',
+    'AgileBits.1Password',
+    'Discord.Discord',
+    'Dropbox.Dropbox',
+    'Google.JapaneseIME',
+    'LINE.LINE',
+    'Microsoft.VisualStudioCode',
+    'Microsoft.WindowsTerminal',
+    'Mozilla.Thunderbird',
+    'Notion.Notion',
+    'Obsidian.Obsidian',
+    'SlackTechnologies.Slack',
+    'tailscale.tailscale',
+    'Valve.Steam',
+    #'VivaldiTechnologies.Vivaldi',
+    'wez.wezterm',
+    'Zoom.Zoom'
+)
+
+foreach ( $package in $wingetPackages ) {
+    if ((Check-Winget-Package-Installation($package)) -eq 0) {
+        winget install -e --id $package
+    }
+}
+{{ end -}}
+{{ end -}}
