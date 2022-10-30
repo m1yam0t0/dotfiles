@@ -10,7 +10,7 @@
 {{-   $private = true -}}
 {{- end -}}
 
-{{- if eq .chezmoi.hostname "mymt-thinkpad" -}}
+{{- if or (eq .chezmoi.hostname "mymt-desktop") (eq .chezmoi.hostname "mymt-thinkpad") -}}
 {{-   $private = true -}}
 {{- end -}}
 
