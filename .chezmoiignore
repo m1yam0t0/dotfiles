@@ -4,6 +4,8 @@ renovate.json
 
 {{ if ne .chezmoi.os "darwin" }}
 .config/karabiner
+{{ else }}
+.config/zsh/.zprofile
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}

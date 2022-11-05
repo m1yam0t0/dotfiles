@@ -7,4 +7,9 @@ export LANG=en_US.UTF-8
 # aqua
 export AQUA_GLOBAL_CONFIG=${XDG_CONFIG_HOME}/aquaproj-aqua/aqua.yaml
 export AQUA_ROOT_DIR=${XDG_DATA_HOME}/aquaproj-aqua
-export PATH=${AQUA_ROOT_DIR}/bin:$PATH
+
+# krew
+export KREW_ROOT=${HOME}/.krew
+
+# PATH
+export PATH=$PATH:${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin
