@@ -25,4 +25,4 @@ jobs:
         run: |
           Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
           '$params = "-b $HOME/.local/bin init --apply --branch $env:GITHUB_REF_NAME m1yam0t0"', (irm https://get.chezmoi.io/ps1) | powershell -c -
-          rm $HOME/.local/bin/chezmoi -Force
+          rm $HOME/.local/bin/chezmoi.exe -Force
