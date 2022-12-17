@@ -10,14 +10,15 @@ m1yam0t0's dotfiles.
 
 ```sh
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init --apply m1yam0t0
-rm -rf $(pwd)/.local/bin/chezmoi
+rm -f ${HOME}/.local/bin/chezmoi
 ```
 
 ### Windows
 
 ```pwsh
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-'$params = "-b ~/.local/bin init --apply m1yam0t0"', (irm https://get.chezmoi.io/ps1) | powershell -c -
+'$params = "-b $HOME/.local/bin init --apply m1yam0t0"', (irm https://get.chezmoi.io/ps1) | powershell -c -
+rm $HOME/.local/bin/chezmoi.exe
 ```
 
 ## Maintenance

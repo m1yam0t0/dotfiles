@@ -29,10 +29,12 @@ If (Get-Command scoop) {
 # Install Package via scoop
 $scoopPackages =@(
     '1password-cli',
+    'chezmoi',
     'delta',
     'fd',
     'git',
-    'ripgrep'
+    'ripgrep',
+    'sudo'
 )
 
 foreach ( $package in $scoopPackages ) {
@@ -58,7 +60,7 @@ $wingetPackages =@(
     'SlackTechnologies.Slack',
     'tailscale.tailscale',
     'Valve.Steam',
-    #'VivaldiTechnologies.Vivaldi',
+    'VivaldiTechnologies.Vivaldi',
     'wez.wezterm',
     'Zoom.Zoom'
 )
