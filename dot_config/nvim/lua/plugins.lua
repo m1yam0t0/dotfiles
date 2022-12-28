@@ -30,16 +30,12 @@ return require("packer").startup(function(use)
 	})
 
 	-- ColorScheme
-	use({
-		"maxmx03/solarized.nvim",
-		event = {
-			"VimEnter",
-			"ColorSchemePre",
-		},
-		config = function()
-			require("plugin-config/solarized")
-		end,
-	})
+    use({
+        "shaunsingh/nord.nvim",
+        config = function()
+            vim.cmd[[colorscheme nord]]
+        end,
+    })
 
 	-- Fuzzy Finder
 	use({

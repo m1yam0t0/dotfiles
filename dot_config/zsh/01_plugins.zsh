@@ -22,20 +22,17 @@ zinit ice depth=1
 zinit light "romkatv/powerlevel10k"
 
 # if you already installed dircolors, load dircolors-solarized
-# dircolor file name
-DIRCOLOR_SOLARIZED_FILE='dircolors-solarized.zsh'
-
 # create LS_COLORS settings & load plugin
 if type dircolors > /dev/null 2>&1; then
-    zi ice atclone"dircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+    zi ice atclone"dircolors src/dir_colors > ls_colors" \
         atpull"%atclone" \
-        pick"${DIRCOLOR_SOLARIZED_FILE}" \
+        pick"ls_colors" \
         nocompile"!"
-    zi light "seebi/dircolors-solarized"
+    zi light "arcticicestudio/nord-dircolors"
 elif type gdircolors > /dev/null 2>&1; then
-    zi ice atclone"gdircolors dircolors.256dark > ${DIRCOLOR_SOLARIZED_FILE}" \
+    zi ice atclone"gdircolors src/dir_colors > ls_colors" \
         atpull"%atclone" \
-        pick"${DIRCOLOR_SOLARIZED_FILE}" \
+        pick"ls_colors" \
         nocompile"!"
-    zi light "seebi/dircolors-solarized"
+    zi light "arcticicestudio/nord-dircolors"
 fi
