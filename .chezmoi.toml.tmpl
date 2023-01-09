@@ -18,6 +18,10 @@
 {{-   $headless = true -}}
 {{- end -}}
 
+{{- if or (env "SSH_CLIENT") (env "SSH_CONNECTION") -}}
+{{-   $headless = true -}}
+{{- end -}}
+
 [data]
     osbase = {{ $osBase | quote }}
     headless = {{ $headless }}
