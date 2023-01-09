@@ -21,8 +21,7 @@ alias vi='nvim'
 alias watch='viddy'
 
 # ls
-alias l='exa -laghF --icons --git'
-alias ll='exa -laF'
+alias l='exa -laghF --group-directories-first --icons --git'
 
 # history
 alias h='history -E 1'
@@ -30,13 +29,6 @@ alias h='history -E 1'
 # dotfiles
 alias reload='exec $SHELL -l'
 alias bench='for i in {1..10} ; do time ( zsh -i -c exit ); done'
-
-#-----------------------------------------------------------
-# global
-#-----------------------------------------------------------
-alias -g C='|wc -l'     # count
-alias -g G='|rg'        # grep(ripgrep)
-alias -g L='|less'      # less
 
 #-----------------------------------------------------------
 # suffix
