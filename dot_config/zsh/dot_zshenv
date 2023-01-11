@@ -13,3 +13,6 @@ export KREW_ROOT=${HOME}/.krew
 
 # PATH
 export PATH=$PATH:${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin
+
+# EDITOR
+export EDITOR=nvim
