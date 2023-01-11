@@ -20,11 +20,14 @@ Documents
 .gitconfig
 {{ else }}
 .config/aquaproj-aqua
+.config/bat
 .config/gh
 .config/git
 .config/nvim
+.config/sops
 .config/zsh
 .gitconfig.local
+.local/share/zsh
 .zshenv
 {{ end }}
 
@@ -34,6 +37,10 @@ Documents
 .config/wezterm
 .xinitrc
 .xprofile
+{{ end }}
+
+{{ if not .private }}
+.config/sops
 {{ end }}
 
 {{ if env "GITHUB_ACTION" }}
