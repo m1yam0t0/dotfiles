@@ -8,15 +8,13 @@
         command = "tar"
         args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "aqua"]
 
-[".local/share/nvim/site/pack/packer/start/packer.nvim"]
+[".local/share/nvim/lazy/lazy.nvim"]
     type = "git-repo"
-    url = "https://github.com/wbthomason/packer.nvim.git"
-    [".local/share/nvim/site/pack/packer/start/packer.nvim".clone]
-        args = ["--depth", "1"]
+    url = "https://github.com/folke/lazy.nvim.git"
+    clone.args = ["--filter", "blob:none", "--branch", "stable"]
 
 [".local/share/zinit/zinit.git"]
     type = "git-repo"
     url = "https://github.com/zdharma-continuum/zinit.git"
-    [".local/share/zinit/zinit.git".clone]
-        args = ["--depth", "1"]
+    clone.args = ["--depth", "1"]
 {{- end -}}
