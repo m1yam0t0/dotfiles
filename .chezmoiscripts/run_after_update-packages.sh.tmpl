@@ -9,12 +9,12 @@
 echo "Update aqua packages..."
 aqua i -a
 
-# zinit
-echo "Update zsh plugins..."
+# zsh
+echo "\nUpdate zsh plugins..."
 . ${XDG_CONFIG_HOME}/zsh/01_plugins.zsh
-zinit update -n
+zinit update -a -n
 
-# packer(neovim)
-echo "Update neovim plugins..."
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# vim
+echo "\nUpdate neovim plugins..."
+nvim --headless "+Lazy! sync" +qa
 {{ end -}}
