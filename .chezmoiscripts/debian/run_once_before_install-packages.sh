@@ -1,4 +1,3 @@
-{{ if eq .osbase "debian" -}}
 #!/usr/bin/env bash
 
 # NOTE: this is workaround. see below comment in issue.
@@ -46,4 +45,3 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
 # install 1password-cli
 sudo apt update
 sudo apt install -y 1password-cli
-{{ end -}}

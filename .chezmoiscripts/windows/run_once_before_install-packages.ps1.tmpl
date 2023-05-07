@@ -1,4 +1,4 @@
-{{ if and (eq .chezmoi.os "windows") -}}
+# Check package installation
 function Check-Winget-Package-Installation {
     param(
         [Parameter(Mandatory)][string]$package
@@ -70,5 +70,4 @@ foreach ( $package in $wingetPackages ) {
         winget install -e --id $package
     }
 }
-{{ end -}}
 {{ end -}}
