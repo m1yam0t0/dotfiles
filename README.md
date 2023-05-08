@@ -2,11 +2,11 @@
 
 [![test](https://github.com/m1yam0t0/dotfiles/actions/workflows/test.yml/badge.svg)](https://github.com/m1yam0t0/dotfiles/actions/workflows/test.yml)
 
-m1yam0t0's dotfiles.
+m1yam0t0's dotfiles. managed with [chezmoi](https://github.com/twpayne/chezmoi).
 
 ## Install
 
-### Linux/Unix
+### MacOS, Ubuntu
 
 ```sh
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init --apply m1yam0t0
@@ -21,34 +21,3 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 rm $HOME/.local/bin/chezmoi.exe
 ```
 
-## Maintenance
-
-Pull and apply latest dotfiles
-
-```sh
-chezmoi update
-```
-
-Add files
-
-```sh
-chezmoi add ${file}
-```
-
-Edit files
-
-```sh
-chezmoi edit ${file}
-```
-
-Simulate template file
-
-```sh
-chezmoi execute-template --init < ${file}
-```
-
-Reflect local modified files
-
-```sh
-chezmoi re-add
-```

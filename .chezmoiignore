@@ -3,48 +3,42 @@ README.md
 renovate.json
 
 {{ if ne .chezmoi.os "darwin" }}
-.config/karabiner
+.chezmoiscripts/macos/**
+.config/karabiner/**
 {{ else }}
 .config/zsh/.zprofile
 {{ end }}
 
-{{ if ne .chezmoi.os "linux" }}
-.config/autostart
-.config/i3
-.xinitrc
-.xprofile
+{{ if ne .osbase "debian" }}
+.chezmoiscripts/debian/**
 {{ end }}
 
 {{ if ne .chezmoi.os "windows" }}
-Documents
+.chezmoiscripts/windows/**
+Documents/**
 .gitconfig
 {{ else }}
-.config/aquaproj-aqua
-.config/bat
-.config/gh
-.config/git
-.config/nvim
-.config/sops
-.config/zsh
+.chezmoiscripts/*.sh
+.config/aquaproj-aqua/**
+.config/bat/**
+.config/gh/**
+.config/git/**
+.config/nvim/**
+.config/sops/**
+.config/zsh/**
+.local/share/zsh/**
 .gitconfig.local
-.local/share/zsh
 .zshenv
 {{ end }}
 
 {{ if .headless }}
-.config/autostart
-.config/i3
-.config/wezterm
-.xinitrc
-.xprofile
+.config/karabiner/**
+.config/wezterm/**
 {{ end }}
 
 {{ if not .private }}
-.config/sops
-{{ end }}
-
-{{ if env "GITHUB_ACTION" }}
-.gitconfig
+.config/sops/**
+.ssh/**
 .gitconfig.local
-.ssh
+.gitconfig
 {{ end }}
