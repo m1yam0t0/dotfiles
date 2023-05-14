@@ -6,10 +6,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # source *.zsh
-for rc in $(ls ${ZDOTDIR}/*.zsh);
-do
-    source $rc
-done
+source ${ZDOTDIR}/plugins.zsh
+source ${ZDOTDIR}/options.zsh
+source ${ZDOTDIR}/aliases.zsh
+source ${ZDOTDIR}/functions.zsh
+source ${ZDOTDIR}/completions.zsh
+
 
 # Local Settings
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
