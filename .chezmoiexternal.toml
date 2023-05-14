@@ -1,4 +1,28 @@
 {{- if ne .chezmoi.os "windows" -}}
+[".local/share/zsh/plugins/powerlevel10k"]
+    type = "git-repo"
+    url = "https://github.com/romkatv/powerlevel10k.git"
+    refreshPeriod = "168h"
+    clone.args = ["--depth", "1"]
+
+[".local/share/zsh/plugins/enhancd"]
+    type = "git-repo"
+    url = "https://github.com/b4b4r07/enhancd.git"
+    refreshPeriod = "168h"
+    clone.args = ["--depth", "1"]
+
+[".local/share/zsh/plugins/fast-syntax-highlighting"]
+    type = "git-repo"
+    url = "https://github.com/zdharma-continuum/fast-syntax-highlighting.git"
+    refreshPeriod = "168h"
+    clone.args = ["--depth", "1"]
+
+[".local/share/zsh/plugins/zsh-autosuggestions"]
+    type = "git-repo"
+    url = "https://github.com/zsh-users/zsh-autosuggestions.git"
+    refreshPeriod = "168h"
+    clone.args = ["--depth", "1"]
+
 [".local/share/aquaproj-aqua/bin/aqua"]
     type = "file"
     url = "https://github.com/aquaproj/aqua/releases/latest/download/aqua_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
@@ -12,9 +36,5 @@
     type = "git-repo"
     url = "https://github.com/folke/lazy.nvim.git"
     clone.args = ["--filter", "blob:none", "--branch", "stable"]
-
-[".local/share/zinit/zinit.git"]
-    type = "git-repo"
-    url = "https://github.com/zdharma-continuum/zinit.git"
-    clone.args = ["--depth", "1"]
+    pull.args = ["origin", "main"]
 {{- end -}}

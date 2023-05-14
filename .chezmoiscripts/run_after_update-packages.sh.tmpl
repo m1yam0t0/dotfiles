@@ -8,11 +8,6 @@
 echo "Update aqua packages..."
 aqua i -a
 
-# zsh
-echo "\nUpdate zsh plugins..."
-. ${XDG_CONFIG_HOME}/zsh/01_plugins.zsh
-zinit update -a -n
-
 # vim
 echo "\nUpdate neovim plugins..."
 nvim --headless "+Lazy! sync" +qa
