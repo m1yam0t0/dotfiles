@@ -1,5 +1,5 @@
 #-----------------------------------------------------------
-# general
+# alias
 #-----------------------------------------------------------
 # shorten
 alias d='docker'
@@ -7,9 +7,9 @@ alias g='git'
 alias k='kubectl'
 
 # add option
-alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias rm='rm -i'
 alias mkdir='mkdir -p'
 
 # replace command
@@ -20,15 +20,20 @@ alias tree='exa -T'
 alias vi='nvim'
 alias watch='viddy'
 
-# ls
-alias l='exa -laghF --group-directories-first --icons --git'
+# git
+alias gl='git log --oneline'
+alias gs='git status'
+alias gsw='_fzf-git-switch'
 
 # history
-alias h='history -E 1'
+alias h='history -i 1'
+
+# ls
+alias l='exa -laghF --color=always --group-directories-first --icons --git'
 
 # dotfiles
-alias reload='exec $SHELL -l'
 alias bench='for i in {1..10} ; do time ( zsh -i -c exit ); done'
+alias reload='exec $SHELL -l'
 
 #-----------------------------------------------------------
 # suffix
