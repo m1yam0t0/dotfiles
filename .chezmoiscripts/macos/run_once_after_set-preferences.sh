@@ -1,16 +1,20 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
-if [ -z ${GITHUB_ACTION} ]; then
-    sudo -v
+if [ -z "$GITHUB_ACTION" ]; then
+	sudo -v
 fi
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+	sudo -n true
+	sleep 60
+	kill -0 "$$" || exit
+done 2>/dev/null &
 
 ##################################################
 # General UI/UX
@@ -76,11 +80,11 @@ defaults write NSGlobalDomain com.apple.trackpad.scaling -int 5
 # show Date MM/DD
 defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.clock" -bool true
 defaults write com.apple.systemuiserver menuExtras -array \
-    "/System/Library/CoreServices/Menu Extras/Battery.menu" \
-    "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-    "/System/Library/CoreServices/Menu Extras/Displays.menu" \
-    "/System/Library/CoreServices/Menu Extras/SafeEjectGPUExtra.menu" \
-    "/System/Library/CoreServices/Menu Extras/Clock.menu"
+	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
+	"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+	"/System/Library/CoreServices/Menu Extras/Displays.menu" \
+	"/System/Library/CoreServices/Menu Extras/SafeEjectGPUExtra.menu" \
+	"/System/Library/CoreServices/Menu Extras/Clock.menu"
 defaults write com.apple.menuextra.clock DateFormat -string "M\\U6708d\\U65e5(EEE)  H:mm"
 
 # show battery percentage
@@ -105,11 +109,11 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # Disable hibernatemode
 sudo pmset -a \
-    standby              0 \
-    hibernatemode        0 \
-    highstandbythreshold 0 \
-    standbydelaylow      86400 \
-    standbydelayhigh     86400
+	standby 0 \
+	hibernatemode 0 \
+	highstandbythreshold 0 \
+	standbydelaylow 86400 \
+	standbydelayhigh 86400
 
 # Disable to write sleepimage
 sudo rm -f /private/var/vm/sleepimage
@@ -118,41 +122,45 @@ sudo chflags -f uchg /private/var/vm/sleepimage
 
 # Disable disksleep
 sudo pmset -a \
-    disksleep   0
+	disksleep 0
 
 # On battery
 sudo pmset -b \
-    sleep           10 \
-    displaysleep    10 \
-    powernap        0
+	sleep 10 \
+	displaysleep 10 \
+	powernap 0
 
 # While charging
 sudo pmset -c \
-    sleep           0 \
-    displaysleep    0 \
-    powernap        1 \
-    womp            1
+	sleep 0 \
+	displaysleep 0 \
+	powernap 1 \
+	womp 1
 
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
+apps=(
+	"Activity Monitor"
+	"Address Book"
+	"Calendar"
+	"cfprefsd"
+	"Contacts"
+	"Dock"
+	"Finder"
+	"Google Chrome"
+	"Mail"
+	"Messages"
+	"Photos"
+	"Safari"
+	"SystemUIServer"
+	"Terminal"
+	"Vivaldi"
+	"iCal"
+)
 
-for app in "Activity Monitor" \
-	"Address Book" \
-	"Calendar" \
-	"cfprefsd" \
-	"Contacts" \
-	"Dock" \
-	"Finder" \
-	"Google Chrome" \
-	"Mail" \
-	"Messages" \
-	"Photos" \
-	"Safari" \
-	"SystemUIServer" \
-	"Terminal" \
-	"Vivaldi" \
-	"iCal"; do
-	killall "${app}" &> /dev/null
+for app in "${apps[@]}"; do
+	killall "${app}" >/dev/null
 done
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."

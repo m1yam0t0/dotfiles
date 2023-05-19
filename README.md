@@ -20,4 +20,3 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 '$params = "-b $HOME/.local/bin init --apply m1yam0t0"', (irm https://get.chezmoi.io/ps1) | powershell -c -
 rm $HOME/.local/bin/chezmoi.exe
 ```
-
