@@ -15,10 +15,10 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
   }
 end)
 
-  config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
-  config.color_scheme = 'nord'
-  config.font = wezterm.font 'MesloLGS NF'
-  config.font_size = 12.0
+config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
+config.color_scheme = 'nord'
+config.font = wezterm.font 'MesloLGS NF'
+config.font_size = 12.0
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   config.default_prog = { 'wsl.exe', '~' }
@@ -39,7 +39,7 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   }
 
   config.keys = {
-    { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|LAUNCH_MENU_ITEMS' }},
+    { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|LAUNCH_MENU_ITEMS' } },
   }
 end
 
