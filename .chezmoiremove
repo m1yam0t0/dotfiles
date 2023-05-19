@@ -2,5 +2,7 @@
 .bash_logout
 .bash_profile
 .bashrc
+.enhancd
 .profie
+.ssh/id_rsa*
 .tig_history
