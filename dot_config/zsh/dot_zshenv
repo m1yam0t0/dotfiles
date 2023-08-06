@@ -10,7 +10,10 @@ export AQUA_POLICY_CONFIG="${XDG_CONFIG_HOME}/aquaproj-aqua/aqua-policy.yaml:${A
 export AQUA_ROOT_DIR="${XDG_DATA_HOME}/aquaproj-aqua"
 
 # krew
-export KREW_ROOT=${HOME}/.krew
+export KREW_ROOT="${HOME}/.krew"
+
+# enhancd
+export ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"
 
 # PATH
 export PATH="${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin:${PATH}"
