@@ -4,6 +4,6 @@
     "config:base",
     ":automergeAll",
     ":prHourlyLimitNone",
-    "github>aquaproj/aqua-renovate-config#1.7.0"
+    "github>aquaproj/aqua-renovate-config#1.8.0"
   ]
 }
