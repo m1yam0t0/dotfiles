@@ -18,9 +18,7 @@ add-zsh-hook preexec _preexec_tabtitle
 
 # chpwd
 _chpwd_ls() {
-    if [ $(pwd) != ${HOME} ]; then;
-        exa --color=always
-	fi
+    exa --color=always
 }
 add-zsh-hook chpwd _chpwd_ls
 

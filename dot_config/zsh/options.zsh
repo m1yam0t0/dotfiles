@@ -31,6 +31,3 @@ bindkey '^?' backward-delete-char
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-
-# enhancd
-export ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"

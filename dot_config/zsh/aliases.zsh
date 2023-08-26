@@ -21,8 +21,8 @@ alias vi='nvim'
 alias watch='viddy'
 
 # git
-alias gl='git log --oneline'
-alias gs='git status'
+alias gl='git log --oneline origin..HEAD'
+alias gs='git status --short'
 alias gsw='_fzf-git-switch'
 
 # history
