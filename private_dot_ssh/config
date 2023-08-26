@@ -1,7 +1,5 @@
 Include conf.d/*
 
-AddKeysToAgent yes
 CheckHostIP yes
-PasswordAuthentication no
 ServerAliveInterval 60
 StrictHostKeyChecking yes
