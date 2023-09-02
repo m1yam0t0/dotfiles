@@ -1,1 +1,1 @@
-wsl --install Ubuntu
+wsl --install -d Ubuntu-22.04
