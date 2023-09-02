@@ -1,5 +1,5 @@
 Include conf.d/*
 
+User m1yam0t0
 CheckHostIP yes
 ServerAliveInterval 60
-StrictHostKeyChecking yes
