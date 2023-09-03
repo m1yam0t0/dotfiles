@@ -28,11 +28,19 @@
     url = "https://github.com/aquaproj/aqua/releases/latest/download/aqua_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
     executable = true
     refreshPeriod = "168h"
-    path = aqua
+    path = "aqua"
 
 [".local/share/nvim/lazy/lazy.nvim"]
     type = "git-repo"
     url = "https://github.com/folke/lazy.nvim.git"
     clone.args = ["--filter", "blob:none", "--branch", "stable"]
     pull.args = ["origin", "main"]
+
+{{ if env "WSL_DISTRO_NAME" -}}
+[".local/bin/wsl2-ssh-agent"]
+    type = "file"
+    url = "https://github.com/mame/wsl2-ssh-agent/releases/latest/download/wsl2-ssh-agent"
+    executable = true
+    refreshPeriod = "168h"
+{{ end -}}
 {{- end -}}
