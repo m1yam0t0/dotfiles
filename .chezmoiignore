@@ -41,6 +41,10 @@ Documents/**
 .config/zsh/.zprofile
 {{ end }}
 
+{{ if .github_actions }}
+.chezmoiscripts/windows/install-wsl.ps1
+{{ end }}
+
 {{ if not .private }}
 .config/sops/**
 .ssh/**
