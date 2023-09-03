@@ -4,6 +4,8 @@
 {{- end -}}
 
 {{- $headless := false -}}
+{{- $wsl := false -}}
+{{- $github_actions := false -}}
 {{- $private := false -}}
 
 {{- if eq .chezmoi.username "m1yam0t0" -}}
@@ -14,8 +16,14 @@
 {{-   $private = true -}}
 {{- end -}}
 
-{{- if or (env "GITHUB_ACTION") (env "WSL_DISTRO_NAME") -}}
+{{- if (env "WSL_DISTRO_NAME") -}}
 {{-   $headless = true -}}
+{{-   $wsl = true -}}
+{{- end -}}
+
+{{- if (env "GITHUB_ACTION") -}}
+{{-   $headless = true -}}
+{{-   $github_actions = true -}}
 {{- end -}}
 
 {{- if or (env "SSH_CLIENT") (env "SSH_CONNECTION") -}}
@@ -25,4 +33,6 @@
 [data]
     osbase = {{ $osBase | quote }}
     headless = {{ $headless }}
+    wsl = {{ $wsl }}
+    github_actions = {{ $github_actions }}
     private = {{ $private }}
