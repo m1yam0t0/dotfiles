@@ -17,18 +17,15 @@ renovate.json
 {{ if ne .chezmoi.os "windows" }}
 .chezmoiscripts/windows/**
 Documents/**
-.gitconfig
 {{ else }}
 .chezmoiscripts/*.sh
 .config/aquaproj-aqua/**
 .config/bat/**
 .config/gh/**
-.config/git/**
 .config/nvim/**
 .config/sops/**
 .config/zsh/**
 .local/share/zsh/**
-.gitconfig.local
 .zshenv
 {{ end }}
 
@@ -43,6 +40,4 @@ Documents/**
 {{ if not .private }}
 .config/sops/**
 .ssh/**
-.gitconfig.local
-.gitconfig
 {{ end }}
