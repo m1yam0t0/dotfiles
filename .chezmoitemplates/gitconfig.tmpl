@@ -1,5 +1,9 @@
 [core]
+{{ if ne .chezmoi.os "windows" -}}
     editor = nvim
+{{ else -}}
+    editor = "code --wait"
+{{ end -}}
     ignorecase = false
     pager = delta
     quotepath = false
@@ -32,5 +36,9 @@
     syntax-theme = Nord
 [ghq]
     root = ~/src
+{{ if .private -}}
+{{ onepasswordRead "op://personal/gitconfig/gitconfig_local" }}
+{{ else -}}
 [include]
     path = ~/.gitconfig.local
+{{ end -}}
