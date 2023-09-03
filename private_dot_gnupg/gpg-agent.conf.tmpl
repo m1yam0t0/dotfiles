@@ -1,5 +1,3 @@
 {{- if eq .chezmoi.os "darwin" -}}
 pinentry-program /opt/homebrew/bin/pinentry-mac
-{{- else if (env "WSL_DISTRO_NAME") -}}
-pinentry-program /mnt/c/Program Files (x86)/Gpg4win/bin/pinentry.exe
 {{- end -}}
