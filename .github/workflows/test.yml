@@ -13,22 +13,19 @@ jobs:
         with:
           scandir: .chezmoiscripts
           ignore_paths: .chezmoiscripts/windows
-
   install:
     strategy:
       matrix:
         os:
           - macos-latest
-          - ubuntu-latest
-          - ubuntu-20.04
+          - ubuntu-22.04
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v3
       - name: Install
         run: |
           sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init --apply --branch ${GITHUB_REF_NAME} m1yam0t0
-          rm -rf ${HOME}/.local/bin/chezmoi
-
+          rm -f ${HOME}/.local/bin/chezmoi
   install-windows:
     runs-on: windows-latest
     steps:
