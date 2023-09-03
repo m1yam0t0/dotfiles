@@ -22,25 +22,6 @@ config.font_size = 12.0
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   config.default_prog = { 'wsl.exe', '~' }
-
-  config.launch_menu = {
-    {
-      label = 'Ubuntu(WSL)',
-      args = { 'wsl.exe', '~', '-d', 'Ubuntu' },
-    },
-    {
-      label = 'PowerShell',
-      args = { 'powershell.exe', '-NoLogo' },
-    },
-    {
-      label = 'Command Prompt',
-      args = { 'cmd.exe' },
-    },
-  }
-
-  config.keys = {
-    { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|LAUNCH_MENU_ITEMS' } },
-  }
 end
 
 return config
