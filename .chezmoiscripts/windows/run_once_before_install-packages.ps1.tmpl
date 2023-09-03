@@ -19,7 +19,7 @@ Write-Host 'Install packages via scoop'
 If (Get-Command scoop) {
     Write-Host 'scoop has already installed.'
 } else {
-{{- if env "GITHUB_ACTION" }}
+{{- if .github_actions }}
     iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
 {{- else }}
     irm get.scoop.sh | iex

@@ -37,6 +37,10 @@ Documents/**
 .ssh/id_ed25519.pub
 {{ end }}
 
+{{ if not .wsl }}
+.config/zsh/.zprofile
+{{ end }}
+
 {{ if not .private }}
 .config/sops/**
 .ssh/**

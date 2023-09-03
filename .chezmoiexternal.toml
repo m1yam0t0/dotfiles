@@ -36,7 +36,7 @@
     clone.args = ["--filter", "blob:none", "--branch", "stable"]
     pull.args = ["origin", "main"]
 
-{{ if env "WSL_DISTRO_NAME" -}}
+{{ if .wsl -}}
 [".local/bin/wsl2-ssh-agent"]
     type = "file"
     url = "https://github.com/mame/wsl2-ssh-agent/releases/latest/download/wsl2-ssh-agent"
