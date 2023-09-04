@@ -1,0 +1,32 @@
+name: Installation test
+on:
+  push:
+permissions:
+  contents: read
+jobs:
+  install:
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init --apply --branch ${{ github.ref_name }} m1yam0t0
+      - name: Remove chezmoi binary
+        run: rm -f ${HOME}/.local/bin/chezmoi
+  install-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set ExecutionPolicy
+        run: |
+          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+      - name: Install
+        run: |
+          '$params = "-b $HOME/.local/bin init --apply --branch ${{ github.ref_name }} m1yam0t0"', (irm https://get.chezmoi.io/ps1) | powershell -c -
+      - name: Remove chezmoi binary
+        run: |
+          rm $HOME/.local/bin/chezmoi.exe -Force

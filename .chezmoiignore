@@ -38,6 +38,7 @@ Documents/**
 {{ end }}
 
 {{ if not .wsl }}
+.chezmoiscripts/debian/wsl-enable-systemd.sh
 .config/zsh/.zprofile
 {{ end }}
 
