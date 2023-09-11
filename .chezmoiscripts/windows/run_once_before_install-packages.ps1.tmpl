@@ -45,10 +45,12 @@ foreach ( $package in $scoopPackages ) {
 # Install Package via winget
 Write-Host 'Install packages via winget'
 $wingetPackages =@(
+{{- if eq .chezmoi.hostname "mymt-desktop" -}}
+    'tailscale.tailscale',
+{{- end -}}
     '7zip.7zip',
     'AgileBits.1Password',
     'Discord.Discord',
-    'Dropbox.Dropbox',
     'Google.JapaneseIME',
     'LINE.LINE',
     'Microsoft.PowerToys',
@@ -57,7 +59,7 @@ $wingetPackages =@(
     'Mozilla.Thunderbird',
     'Obsidian.Obsidian',
     'SlackTechnologies.Slack',
-    'tailscale.tailscale',
+    'Synology.DriveClient',
     'Valve.Steam',
     'VivaldiTechnologies.Vivaldi',
     'wez.wezterm',

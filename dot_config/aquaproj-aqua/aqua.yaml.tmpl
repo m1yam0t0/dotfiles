@@ -12,7 +12,6 @@ packages:
 - name: cli/cli@v2.34.0
 - name: dandavison/delta@0.16.5
 - name: FiloSottile/age@v1.1.1
-- name: gohugoio/hugo@v0.118.2
 - name: junegunn/fzf@0.42.0
 - name: koalaman/shellcheck@v0.9.0
 - name: mikefarah/yq@v4.35.1
@@ -26,13 +25,15 @@ packages:
 - name: stedolan/jq@jq-1.6
 - name: twpayne/chezmoi@v2.39.1
 - name: x-motemen/ghq@v1.4.2
+# kubernetes
 {{- if .private }}
 - name: kubernetes/kubectl@v1.28.1
 {{- end }}
+- name: cilium/cilium-cli@v0.15.7
+- name: doitintl/kube-no-trouble@0.7.0
+- name: fluxcd/flux2@v2.1.0
+- name: helm/helm@v3.12.3
 - name: kubernetes-sigs/kustomize@kustomize/v5.1.1
 - name: kubernetes-sigs/krew@v0.4.4
-- name: doitintl/kube-no-trouble@0.7.0
-- name: helm/helm@v3.12.3
-- name: fluxcd/flux2@v2.1.0
 - name: stern/stern@v1.26.0
-- name: hashicorp/terraform@v1.5.7
+- name: yannh/kubeconform@v0.6.3

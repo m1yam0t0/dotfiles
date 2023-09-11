@@ -26,6 +26,7 @@ Documents/**
 .config/sops/**
 .config/zsh/**
 .local/share/zsh/**
+.tool-versions
 .zshenv
 {{ end }}
 
@@ -38,7 +39,7 @@ Documents/**
 {{ end }}
 
 {{ if not .wsl }}
-.chezmoiscripts/debian/wsl-enable-systemd.sh
+.chezmoiscripts/debian/wsl/**
 .config/zsh/.zprofile
 {{ end }}
 

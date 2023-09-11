@@ -7,7 +7,7 @@
 
 [".local/share/zsh/plugins/enhancd"]
     type = "git-repo"
-    url = "https://github.com/b4b4r07/enhancd.git"
+    url = "https://github.com/babarot/enhancd.git"
     refreshPeriod = "168h"
     clone.args = ["--depth", "1"]
 
@@ -35,6 +35,11 @@
     url = "https://github.com/folke/lazy.nvim.git"
     clone.args = ["--filter", "blob:none", "--branch", "stable"]
     pull.args = ["origin", "main"]
+
+[".asdf"]
+    type = "git-repo"
+    url = "https://github.com/asdf-vm/asdf.git"
+    refreshPeriod = "168h"
 
 {{ if .wsl -}}
 [".local/bin/wsl2-ssh-agent"]
