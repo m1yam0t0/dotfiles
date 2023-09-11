@@ -34,7 +34,7 @@ $scoopPackages =@(
     'fd',
     'git',
     'ripgrep',
-    'sudo'
+    'sudo',
 )
 
 foreach ( $package in $scoopPackages ) {
@@ -48,7 +48,6 @@ $wingetPackages =@(
     '7zip.7zip',
     'AgileBits.1Password',
     'Discord.Discord',
-    'Dropbox.Dropbox',
     'Google.JapaneseIME',
     'LINE.LINE',
     'Microsoft.PowerToys',
@@ -57,11 +56,14 @@ $wingetPackages =@(
     'Mozilla.Thunderbird',
     'Obsidian.Obsidian',
     'SlackTechnologies.Slack',
-    'tailscale.tailscale',
+    'Synology.DriveClient',
     'Valve.Steam',
     'VivaldiTechnologies.Vivaldi',
     'wez.wezterm',
-    'Zoom.Zoom'
+    'Zoom.Zoom',
+{{- if eq .chezmoi.hostname "mymt-desktop" -}}
+    'tailscale.tailscale'
+{{- end -}}
 )
 
 foreach ( $package in $wingetPackages ) {
