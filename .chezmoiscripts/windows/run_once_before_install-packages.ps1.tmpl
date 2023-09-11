@@ -34,7 +34,7 @@ $scoopPackages =@(
     'fd',
     'git',
     'ripgrep',
-    'sudo',
+    'sudo'
 )
 
 foreach ( $package in $scoopPackages ) {
@@ -45,6 +45,9 @@ foreach ( $package in $scoopPackages ) {
 # Install Package via winget
 Write-Host 'Install packages via winget'
 $wingetPackages =@(
+{{- if eq .chezmoi.hostname "mymt-desktop" -}}
+    'tailscale.tailscale',
+{{- end -}}
     '7zip.7zip',
     'AgileBits.1Password',
     'Discord.Discord',
@@ -60,10 +63,7 @@ $wingetPackages =@(
     'Valve.Steam',
     'VivaldiTechnologies.Vivaldi',
     'wez.wezterm',
-    'Zoom.Zoom',
-{{- if eq .chezmoi.hostname "mymt-desktop" -}}
-    'tailscale.tailscale'
-{{- end -}}
+    'Zoom.Zoom'
 )
 
 foreach ( $package in $wingetPackages ) {
