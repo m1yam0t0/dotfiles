@@ -15,6 +15,10 @@ asdf update
 asdf plugin update --all
 asdf install
 
+# GitHub CLI
+echo "Update gh extensions..."
+gh extension upgrade --all
+
 # neovim
 echo "Update neovim plugins..."
 nvim --headless "+Lazy! sync" +qa
