@@ -4,7 +4,17 @@
 # shellcheck disable=SC1091
 source "${HOME}/.zshenv"
 
-# If already installed extension. Installation is skipped.
+# Check login status.
+# If you are no logged into GitHub. Run gh auth login.
+gh auth status
+ret=$?
+if [ $ret -ne 0 ]; then
+    gh auth login
+else
+    echo "You have already logged in to GitHub."
+fi
+
+# If you have already installed extension. Installation is skipped.
 ## extension-list format example
 ## gh poi  seachicken/gh-poi  v0.9.5
 installed=$(gh extension list)
