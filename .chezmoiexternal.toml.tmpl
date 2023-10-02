@@ -39,6 +39,7 @@
 [".asdf"]
     type = "git-repo"
     url = "https://github.com/asdf-vm/asdf.git"
+    pull.args = ["origin", "master"]
 
 {{ if .wsl -}}
 [".local/bin/wsl2-ssh-agent"]
