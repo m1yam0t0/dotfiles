@@ -5,6 +5,7 @@
 alias d='docker'
 alias g='git'
 alias k='kubectl'
+alias tf='terraform'
 
 # add option
 alias cp='cp -i'
