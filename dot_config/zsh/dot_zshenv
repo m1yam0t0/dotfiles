@@ -16,7 +16,7 @@ export KREW_ROOT="${HOME}/.krew"
 export ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"
 
 # PATH
-export PATH="${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin:${PATH}"
 
 # EDITOR
 export EDITOR=nvim
