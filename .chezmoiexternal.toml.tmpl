@@ -1,4 +1,14 @@
 {{- if ne .chezmoi.os "windows" -}}
+[".asdf"]
+    type = "git-repo"
+    url = "https://github.com/asdf-vm/asdf.git"
+    pull.args = ["origin", "master"]
+
+[".config/dircolors"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/nordtheme/dircolors/develop/src/dir_colors"
+    refreshPeriod = "168h"
+
 [".local/share/zsh/plugins/powerlevel10k"]
     type = "git-repo"
     url = "https://github.com/romkatv/powerlevel10k.git"
@@ -35,11 +45,6 @@
     url = "https://github.com/folke/lazy.nvim.git"
     clone.args = ["--filter", "blob:none", "--branch", "stable"]
     pull.args = ["origin", "main"]
-
-[".asdf"]
-    type = "git-repo"
-    url = "https://github.com/asdf-vm/asdf.git"
-    pull.args = ["origin", "master"]
 
 {{ if .wsl -}}
 [".local/bin/wsl2-ssh-agent"]
