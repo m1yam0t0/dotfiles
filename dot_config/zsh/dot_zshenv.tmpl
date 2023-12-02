@@ -4,6 +4,11 @@
 # LANG
 export LANG=en_US.UTF-8
 
+{{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") }}
+# Homebrew(Apple Silicon)
+export HOMEBREW_DIR="/opt/homebrew"
+{{- end }}
+
 # aqua
 export AQUA_GLOBAL_CONFIG="${XDG_CONFIG_HOME}/aquaproj-aqua/aqua.yaml:${AQUA_GLOBAL_CONFIG:-}"
 export AQUA_POLICY_CONFIG="${XDG_CONFIG_HOME}/aquaproj-aqua/aqua-policy.yaml:${AQUA_POLICY_CONFIG:-}"
@@ -16,7 +21,11 @@ export KREW_ROOT="${HOME}/.krew"
 export ENHANCD_DIR="${XDG_CONFIG_HOME}/enhancd"
 
 # PATH
+{{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") }}
+export PATH="${HOME}/.local/bin:${HOMEBREW_DIR}/bin:${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin:${PATH}"
+{{- else }}
 export PATH="${HOME}/.local/bin:${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin:${PATH}"
+{{- end }}
 
 # EDITOR
 export EDITOR=nvim
