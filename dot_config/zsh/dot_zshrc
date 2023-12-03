@@ -11,6 +11,10 @@ if [ -d "${HOME}/.asdf" ]; then
     fpath=(${ASDF_DIR}/completions $fpath)
 fi
 
+# Enable zsh completion
+autoload -Uz compinit
+compinit
+
 # source *.zsh
 source ${ZDOTDIR}/plugins.zsh
 source ${ZDOTDIR}/options.zsh

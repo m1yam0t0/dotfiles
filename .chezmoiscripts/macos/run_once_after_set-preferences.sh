@@ -79,16 +79,17 @@ defaults write NSGlobalDomain com.apple.trackpad.scaling -int 5
 
 # show Date MM/DD
 defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.clock" -bool true
-defaults write com.apple.systemuiserver menuExtras -array \
-	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
-	"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-	"/System/Library/CoreServices/Menu Extras/Displays.menu" \
-	"/System/Library/CoreServices/Menu Extras/SafeEjectGPUExtra.menu" \
-	"/System/Library/CoreServices/Menu Extras/Clock.menu"
-defaults write com.apple.menuextra.clock DateFormat -string "M\\U6708d\\U65e5(EEE)  H:mm"
+defaults write com.apple.menuextra.clock DateFormat -string "M\\U6708d\\U65e5(EEE) H:mm"
 
 # show battery percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+##################################################
+# NotificatinCenter
+##################################################
+
+# remove all widgets
+defaults write com.apple.notificationcenterui widgets -dict-add instances "()"
 
 ##################################################
 # Finder
@@ -148,14 +149,13 @@ apps=(
 	"Contacts"
 	"Dock"
 	"Finder"
-	"Google Chrome"
 	"Mail"
 	"Messages"
+	"NotificationCenter"
 	"Photos"
 	"Safari"
 	"SystemUIServer"
 	"Terminal"
-	"Vivaldi"
 	"iCal"
 )
 
