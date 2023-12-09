@@ -1,0 +1,56 @@
+#!/usr/bin/bash
+
+gh_config_dir=${XDG_CONFIG_HOME}/gh
+
+usage(){
+    cat <<EOF
+Usage: $0 [COMMAND] | -h
+
+Commands:
+    install: Install GitHub CLI extensions from $gh_config_dir/extension-list
+    upgrade: Upgrade GitHub CLI extensions and update $gh_config_dir/extension-list
+
+Options:
+    -h, --help: Show this message and exit
+EOF
+}
+
+# Install GitHub CLI extensions from $gh_config_dir/extension-list
+install_gh_extensions(){
+    while read -r extension; do
+        gh extension install "$extension"
+    done < "${gh_config_dir}/extension-list"
+}
+
+# If $gh_config_dir/extension-list does not exist, return 1
+check_gh_extension_list(){
+    if [[ ! -f $gh_config_dir/extension-list ]]; then
+        echo "File not found: $gh_config_dir/extension-list"
+        echo "Please create $gh_config_dir/extension-list"
+        exit 1
+    fi
+}
+
+# Update $gh_config_dir/extension-list from output of `gh extension list`
+update_gh_extension_list(){
+    gh extension list | tail -n +1 | awk '{print $3}' > "${gh_config_dir}/extension-list"
+}
+
+case $1 in
+    install)
+        check_gh_extension_list
+        install_gh_extensions
+        ;;
+    upgrade)
+        gh extension upgrade --all
+        update_gh_extension_list
+        ;;
+    -h|--help)
+        usage
+        ;;
+    *)
+        echo "Invalid command: $1"
+        usage
+        exit 1
+        ;;
+esac
