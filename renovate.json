@@ -5,6 +5,6 @@
     ":automergeAll",
     ":prHourlyLimitNone",
     "github>aquaproj/aqua-renovate-config#1.13.0",
-    "github>aquaproj/aqua-renovate-config:file#1.13.0(dot_config/aquaproj-aqua/imports/*.yaml)"
+    "github>aquaproj/aqua-renovate-config:file#1.13.0(dot_config/aquaproj-aqua/imports/.*\\.yaml)"
   ]
 }
