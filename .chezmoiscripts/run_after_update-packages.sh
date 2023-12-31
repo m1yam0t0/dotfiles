@@ -7,7 +7,7 @@ source "${XDG_CONFIG_HOME}/zsh/.zshenv"
 
 # aqua
 echo "Update aqua packages..."
-aqua i -a
+aqua i -a -l
 
 # asdf
 echo "Update asdf packages..."
