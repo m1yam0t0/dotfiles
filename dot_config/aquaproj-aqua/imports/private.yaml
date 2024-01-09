@@ -11,5 +11,5 @@ packages:
 - name: doitintl/kube-no-trouble@0.7.1
 - name: fluxcd/flux2@v2.2.2
 - name: helm/helm@v3.13.3
-- name: stern/stern@v1.27.0
+- name: stern/stern@v1.28.0
 - name: yannh/kubeconform@v0.6.4
