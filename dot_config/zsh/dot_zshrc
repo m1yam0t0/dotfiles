@@ -5,15 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# asdf
-if [ -d "${HOME}/.asdf" ]; then
-    source ${HOME}/.asdf/asdf.sh
-    fpath=(${ASDF_DIR}/completions $fpath)
-fi
-
-# Enable zsh completion
-autoload -Uz compinit
-compinit
+# activate mise
+eval "$(mise activate zsh)"
 
 # source *.zsh
 source ${ZDOTDIR}/plugins.zsh

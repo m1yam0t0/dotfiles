@@ -1,9 +1,4 @@
 {{- if ne .chezmoi.os "windows" -}}
-[".asdf"]
-    type = "git-repo"
-    url = "https://github.com/asdf-vm/asdf.git"
-    pull.args = ["origin", "master"]
-
 [".config/dircolors"]
     type = "file"
     url = "https://raw.githubusercontent.com/nordtheme/dircolors/develop/src/dir_colors"
@@ -12,12 +7,6 @@
 [".local/share/zsh/plugins/powerlevel10k"]
     type = "git-repo"
     url = "https://github.com/romkatv/powerlevel10k.git"
-    refreshPeriod = "168h"
-    clone.args = ["--depth", "1"]
-
-[".local/share/zsh/plugins/enhancd"]
-    type = "git-repo"
-    url = "https://github.com/babarot/enhancd.git"
     refreshPeriod = "168h"
     clone.args = ["--depth", "1"]
 

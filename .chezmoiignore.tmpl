@@ -1,6 +1,5 @@
 LICENSE
 README.md
-renovate.json
 
 {{ if ne .chezmoi.os "darwin" }}
 .chezmoiscripts/macos/**
@@ -22,6 +21,7 @@ Documents/**
 .config/aquaproj-aqua/**
 .config/bat/**
 .config/gh/**
+.config/mise/**
 .config/nvim/**
 .config/sops/**
 .config/zsh/**
@@ -49,6 +49,7 @@ Documents/**
 
 {{ if not .private }}
 .config/aquaproj-aqua/imports/private.yaml
+.config/mise/**
 .config/sops/**
 .ssh/**
 {{ end }}
