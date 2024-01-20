@@ -1,9 +1,4 @@
 {{- if ne .chezmoi.os "windows" -}}
-[".asdf"]
-    type = "git-repo"
-    url = "https://github.com/asdf-vm/asdf.git"
-    pull.args = ["origin", "master"]
-
 [".config/dircolors"]
     type = "file"
     url = "https://raw.githubusercontent.com/nordtheme/dircolors/develop/src/dir_colors"
