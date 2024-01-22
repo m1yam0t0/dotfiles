@@ -53,4 +53,12 @@
     executable = true
     refreshPeriod = "168h"
 {{ end -}}
+
+{{ if .private -}}
+[".local/bin/mc"]
+    type = "file"
+    url = "https://dl.min.io/client/mc/release/linux-{{ .chezmoi.arch }}/mc"
+    executable = true
+    refreshPeriod = "168h"
+{{ end -}}
 {{- end -}}
