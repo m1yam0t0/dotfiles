@@ -1,0 +1,12 @@
+{
+    "version": "10",
+    "aliases": {
+        "infra": {
+            "url": "{{ onepasswordRead "op://personal/minio-infra/api/url" }}",
+            "accessKey": "{{ onepasswordRead "op://personal/minio-infra/personal_account/accesskey" }}",
+            "secretKey": "{{ onepasswordRead "op://personal/minio-infra/personal_account/secretkey" }}",
+            "api": "s3v4",
+            "path": "auto"
+        }
+    }
+}
