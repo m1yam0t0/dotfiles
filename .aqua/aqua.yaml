@@ -8,7 +8,7 @@
 #   - all
 registries:
 - type: standard
-  ref: v4.137.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.138.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: koalaman/shellcheck@v0.9.0
 - name: mvdan/sh@v3.8.0
