@@ -19,11 +19,7 @@ Write-Host 'Install packages via scoop'
 If (Get-Command scoop) {
     Write-Host 'scoop has already installed.'
 } else {
-{{- if .github_actions }}
-    iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
-{{- else }}
-    irm get.scoop.sh | iex
-{{- end }}
+    $env:PSModulePath = ''; Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 
 # Install Package via scoop

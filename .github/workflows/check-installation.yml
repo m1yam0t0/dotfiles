@@ -22,11 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set ExecutionPolicy
-        run: |
-          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+        run: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
       - name: Install
-        run: |
-          '$params = "-b $HOME/.local/bin init --apply --branch ${{ github.ref_name }} m1yam0t0"', (irm https://get.chezmoi.io/ps1) | powershell -c -
+        run: iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b $HOME/.local/bin -- init --apply --branch ${{ github.ref_name }} m1yam0t0"
       - name: Remove chezmoi binary
-        run: |
-          rm $HOME/.local/bin/chezmoi.exe -Force
+        run: rm $HOME/.local/bin/chezmoi.exe -Force
