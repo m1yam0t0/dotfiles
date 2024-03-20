@@ -16,8 +16,8 @@ alias mkdir='mkdir -p'
 # replace command
 alias cat='bat -pp'
 alias imgcat='wezterm imgcat'
-alias ls='exa --color=always'
-alias tree='exa -T'
+alias ls='eza --color=always'
+alias tree='eza -T'
 alias vi='nvim'
 alias watch='viddy'
 
@@ -30,7 +30,7 @@ alias gsw='_fzf-git-switch'
 alias h='history -i 1'
 
 # ls
-alias l='exa -laghF --color=always --group-directories-first --icons --git'
+alias l='eza -laghF --color=always --group-directories-first --icons --git'
 
 # dotfiles
 alias bench='for i in {1..10} ; do time ( zsh -i -c exit ); done'

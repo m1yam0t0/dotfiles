@@ -18,7 +18,7 @@ add-zsh-hook preexec _preexec_tabtitle
 
 # chpwd
 _chpwd_ls() {
-    exa --color=always
+    eza --color=always
 }
 add-zsh-hook chpwd _chpwd_ls
 
