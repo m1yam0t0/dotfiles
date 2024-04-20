@@ -13,6 +13,11 @@ aqua i -a -l
 echo "Update gh extensions..."
 gh extension upgrade --all
 
+# kubectl plugins
+echo "Update kubectl plugins..."
+krew install < ${HOME}/.krew/plugins.txt
+krew upgrade
+
 # neovim
 echo "Update neovim plugins..."
 nvim --headless "+Lazy! sync" +qa
