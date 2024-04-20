@@ -31,8 +31,12 @@ bindkey -M viins 'jj' vi-cmd-mode
 bindkey '^?' backward-delete-char
 
 #-----------------------------------------------------------
-# Command Options
+# Other Options
 #-----------------------------------------------------------
+# zsh-syntax-highlighting
+export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=cyan
+export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=cyan
+
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
