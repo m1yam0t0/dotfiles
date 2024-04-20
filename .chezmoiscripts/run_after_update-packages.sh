@@ -15,7 +15,7 @@ gh extension upgrade --all
 
 # kubectl plugins
 echo "Update kubectl plugins..."
-krew install < ${HOME}/.krew/plugins.txt
+krew install < "${HOME}/.krew/plugins.txt"
 krew upgrade
 
 # neovim
