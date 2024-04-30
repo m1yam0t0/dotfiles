@@ -7,7 +7,7 @@ packages:
 - name: kubernetes-sigs/kind@v0.22.0
 - name: kubernetes-sigs/kustomize@kustomize/v5.4.1
 - name: kubernetes-sigs/krew@v0.4.4
-- name: cilium/cilium-cli@v0.16.5
+- name: cilium/cilium-cli@v0.16.6
 - name: doitintl/kube-no-trouble@0.7.2
 - name: fluxcd/flux2@v2.2.3
 - name: helm/helm@v3.14.4
