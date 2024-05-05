@@ -41,5 +41,13 @@
     url = "https://github.com/mame/wsl2-ssh-agent/releases/latest/download/wsl2-ssh-agent"
     executable = true
     refreshPeriod = "168h"
-{{ end -}}
+{{- end }}
+
+{{ if .private -}}
+[".local/bin/mc"]
+    type = "file"
+    url = "https://dl.min.io/client/mc/release/{{ .chezmoi.os }}-{{ .chezmoi.arch }}/mc"
+    executable = true
+    refreshPeriod = "168h"
+{{- end }}
 {{- end -}}
