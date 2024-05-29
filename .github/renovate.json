@@ -4,7 +4,7 @@
     "config:recommended",
     ":automergeAll",
     ":prHourlyLimitNone",
-    "github>aquaproj/aqua-renovate-config#2.3.0",
-    "github>aquaproj/aqua-renovate-config:file#2.3.0(dot_config/aquaproj-aqua/imports/.*\\.yaml)"
+    "github>aquaproj/aqua-renovate-config#2.3.1",
+    "github>aquaproj/aqua-renovate-config:file#2.3.1(dot_config/aquaproj-aqua/imports/.*\\.yaml)"
   ]
 }
