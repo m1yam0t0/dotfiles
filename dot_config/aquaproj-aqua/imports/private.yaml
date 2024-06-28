@@ -1,7 +1,7 @@
 packages:
 # encryption
 - name: FiloSottile/age@v1.2.0
-- name: mozilla/sops@v3.8.1
+- name: mozilla/sops@v3.9.0
 # kubernetes
 - name: kubernetes/kubectl@v1.30.2
 - name: kubernetes-sigs/kind@v0.23.0
