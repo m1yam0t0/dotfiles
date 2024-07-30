@@ -12,4 +12,4 @@ packages:
 - name: fluxcd/flux2@v2.3.0
 - name: helm/helm@v3.15.3
 - name: stern/stern@v1.30.0
-- name: yannh/kubeconform@v0.6.6
+- name: yannh/kubeconform@v0.6.7
