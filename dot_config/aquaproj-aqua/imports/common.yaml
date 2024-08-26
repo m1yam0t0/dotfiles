@@ -12,7 +12,7 @@ packages:
 - name: mozilla/sops@v3.9.0
 - name: mvdan/sh@v3.9.0
 - name: neovim/neovim@v0.10.1
-- name: sachaos/viddy@v1.0.1
+- name: sachaos/viddy@v1.0.2
 - name: sharkdp/bat@v0.24.0
 - name: sharkdp/fd@v10.2.0
 - name: stedolan/jq@jq-1.6
