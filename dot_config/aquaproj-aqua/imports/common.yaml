@@ -18,4 +18,4 @@ packages:
 - name: stedolan/jq@jq-1.6
 - name: twpayne/chezmoi@v2.52.2
 - name: x-motemen/ghq@v1.6.2
-- name: ynqa/jnv@v0.4.0
+- name: ynqa/jnv@v0.4.1
