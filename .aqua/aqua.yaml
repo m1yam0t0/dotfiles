@@ -11,4 +11,4 @@ registries:
   ref: v4.238.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: koalaman/shellcheck@v0.10.0
-- name: mvdan/sh@v3.9.0
+- name: mvdan/sh@v3.10.0
