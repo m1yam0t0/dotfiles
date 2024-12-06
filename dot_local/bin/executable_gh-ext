@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 gh_config_dir=${XDG_CONFIG_HOME}/gh
 
