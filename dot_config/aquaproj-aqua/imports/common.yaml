@@ -7,7 +7,7 @@ packages:
 - name: jdx/mise@v2024.12.1
 - name: junegunn/fzf@v0.56.3
 - name: koalaman/shellcheck@v0.10.0
-- name: mikefarah/yq@v4.44.5
+- name: mikefarah/yq@v4.44.6
 - name: FiloSottile/age@v1.2.0
 - name: mozilla/sops@v3.9.2
 - name: mvdan/sh@v3.10.0
