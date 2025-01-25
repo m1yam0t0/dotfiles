@@ -9,7 +9,7 @@ packages:
 - name: koalaman/shellcheck@v0.10.0
 - name: mikefarah/yq@v4.45.1
 - name: FiloSottile/age@v1.2.1
-- name: mozilla/sops@v3.9.3
+- name: mozilla/sops@v3.9.4
 - name: mvdan/sh@v3.10.0
 - name: neovim/neovim@v0.10.3
 - name: sachaos/viddy@v1.3.0
