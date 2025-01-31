@@ -11,7 +11,7 @@ packages:
 - name: FiloSottile/age@v1.2.1
 - name: mozilla/sops@v3.9.4
 - name: mvdan/sh@v3.10.0
-- name: neovim/neovim@v0.10.3
+- name: neovim/neovim@v0.10.4
 - name: sachaos/viddy@v1.3.0
 - name: sharkdp/bat@v0.25.0
 - name: sharkdp/fd@v10.2.0
