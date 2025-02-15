@@ -4,7 +4,7 @@ packages:
 - name: mozilla/sops@v3.9.4
 # kubernetes
 - name: kubernetes/kubectl@v1.32.2
-- name: kubernetes-sigs/kind@v0.26.0
+- name: kubernetes-sigs/kind@v0.27.0
 - name: kubernetes-sigs/kustomize@kustomize/v5.6.0
 - name: kubernetes-sigs/krew@v0.4.4
 - name: cilium/cilium-cli@v0.16.24
