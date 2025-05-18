@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install
-        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init m1yam0t0 --apply --branch "${{ github.ref_name }}"
+        run: sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init m1yam0t0 --apply --branch "${{ github.ref_name }}"
       - name: Remove chezmoi binary
         run: rm -f ${HOME}/.local/bin/chezmoi
   install-windows:

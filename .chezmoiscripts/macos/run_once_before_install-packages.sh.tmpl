@@ -18,8 +18,7 @@ else
 fi
 
 # install packages via homebrew
-brew bundle --no-lock --file=/dev/stdin <<EOF
-tap "homebrew/bundle"
+brew bundle --file=/dev/stdin <<EOF
 brew "coreutils"
 brew "git"
 brew "pinentry-mac"

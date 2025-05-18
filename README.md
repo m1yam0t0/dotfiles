@@ -9,7 +9,7 @@ m1yam0t0's dotfiles. managed with [chezmoi](https://github.com/twpayne/chezmoi).
 ### MacOS, Ubuntu
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ${HOME}/.local/bin init m1yam0t0 --apply
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init m1yam0t0 --apply
 rm -f ${HOME}/.local/bin/chezmoi
 ```
 
@@ -17,6 +17,6 @@ rm -f ${HOME}/.local/bin/chezmoi
 
 ```pwsh
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-'$params = "-b $HOME/.local/bin init m1yam0t0 --apply"', (irm https://get.chezmoi.io/ps1) | powershell -c -
+iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b $HOME/.local/bin -- init m1yam0t0 --apply"
 rm $HOME/.local/bin/chezmoi.exe
 ```
