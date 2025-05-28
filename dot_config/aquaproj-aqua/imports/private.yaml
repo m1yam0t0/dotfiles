@@ -10,6 +10,6 @@ packages:
 - name: cilium/cilium-cli@v0.18.3
 - name: doitintl/kube-no-trouble@0.7.3
 - name: fluxcd/flux2@v2.5.1
-- name: helm/helm@v3.18.0
+- name: helm/helm@v3.18.1
 - name: stern/stern@v1.32.0
 - name: yannh/kubeconform@v0.7.0
