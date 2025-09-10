@@ -3,7 +3,7 @@ packages:
 - name: FiloSottile/age@v1.2.1
 - name: mozilla/sops@v3.10.2
 # kubernetes
-- name: kubernetes/kubectl@v1.34.0
+- name: kubernetes/kubectl@v1.34.1
 - name: kubernetes-sigs/kind@v0.30.0
 - name: kubernetes-sigs/kustomize@kustomize/v5.7.1
 - name: kubernetes-sigs/krew@v0.4.5
