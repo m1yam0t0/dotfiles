@@ -1,5 +1,5 @@
 packages:
-- name: BurntSushi/ripgrep@15.0.0
+- name: BurntSushi/ripgrep@15.1.0
 - name: cli/cli@v2.82.1
 - name: dandavison/delta@0.18.2
 - name: dundee/gdu@v5.31.0
