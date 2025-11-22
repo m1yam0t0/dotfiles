@@ -12,7 +12,7 @@ jobs:
           - ubuntu-22.04
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install
         run: sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init m1yam0t0 --apply --branch "${{ github.ref_name }}"
       - name: Remove chezmoi binary
@@ -20,7 +20,7 @@ jobs:
   install-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Set ExecutionPolicy
         run: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
       - name: Install
