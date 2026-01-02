@@ -4,8 +4,6 @@ README.md
 {{ if ne .chezmoi.os "darwin" }}
 .chezmoiscripts/macos/**
 .config/karabiner/**
-{{ else }}
-.config/zsh/.zprofile
 {{ end }}
 
 {{ if ne .osbase "debian" }}
@@ -40,7 +38,6 @@ Documents/**
 
 {{ if not .wsl }}
 .chezmoiscripts/debian/wsl/**
-.config/zsh/.zprofile
 {{ end }}
 
 {{ if .github_actions }}

@@ -1,3 +1,0 @@
-# SSH Agent
-# https://github.com/mame/wsl2-ssh-agent
-eval "$($HOME/.local/bin/wsl2-ssh-agent)"
