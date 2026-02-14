@@ -15,5 +15,5 @@ packages:
 - name: sharkdp/fd@v10.3.0
 - name: stedolan/jq@jq-1.6
 - name: twpayne/chezmoi@v2.69.4
-- name: x-motemen/ghq@v1.9.2
+- name: x-motemen/ghq@v1.9.3
 - name: ynqa/jnv@v0.6.1
