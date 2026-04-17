@@ -14,6 +14,6 @@ packages:
 - name: sharkdp/bat@v0.26.1
 - name: sharkdp/fd@v10.4.2
 - name: stedolan/jq@jq-1.6
-- name: twpayne/chezmoi@v2.70.1
+- name: twpayne/chezmoi@v2.70.2
 - name: x-motemen/ghq@v1.10.1
 - name: ynqa/jnv@v0.7.1
