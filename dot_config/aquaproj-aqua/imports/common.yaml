@@ -1,6 +1,6 @@
 packages:
 - name: BurntSushi/ripgrep@15.1.0
-- name: cli/cli@v2.90.0
+- name: cli/cli@v2.91.0
 - name: dandavison/delta@0.19.2
 - name: dundee/gdu@v5.35.0
 - name: eza-community/eza@v0.23.4
