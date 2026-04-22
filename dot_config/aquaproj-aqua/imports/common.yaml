@@ -9,7 +9,7 @@ packages:
 - name: koalaman/shellcheck@v0.11.0
 - name: mikefarah/yq@v4.53.2
 - name: mvdan/sh@v3.13.1
-- name: neovim/neovim@v0.12.1
+- name: neovim/neovim@v0.12.2
 - name: sachaos/viddy@v1.3.0
 - name: sharkdp/bat@v0.26.1
 - name: sharkdp/fd@v10.4.2
