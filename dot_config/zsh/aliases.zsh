@@ -35,6 +35,7 @@ alias l='eza -laghF --color=always --group-directories-first --icons --git'
 # dotfiles
 alias bench='for i in {1..10} ; do time ( zsh -i -c exit ); done'
 alias reload='exec $SHELL -l'
+alias chezmoi-work='chezmoi --config ~/.config/chezmoi/chezmoi-work.toml'
 
 #-----------------------------------------------------------
 # suffix
