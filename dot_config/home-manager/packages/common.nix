@@ -1,22 +1,23 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.bat
-    pkgs.chezmoi
-    pkgs.delta
-    pkgs.eza
-    pkgs.fd
-    pkgs.fzf
-    pkgs.git
-    pkgs.gh
-    pkgs.ghq
-    pkgs.jnv
-    pkgs.jq
-    pkgs.mise
-    pkgs.neovim
-    pkgs.ripgrep
-    pkgs.viddy
-    pkgs.yq-go
+  home.packages = with pkgs; [
+    bat
+    chezmoi
+    curl
+    delta
+    eza
+    fd
+    fzf
+    git
+    gh
+    ghq
+    jnv
+    jq
+    mise
+    neovim
+    ripgrep
+    viddy
+    yq-go
   ];
 }
