@@ -3,9 +3,7 @@
 {
   imports = [
     ./packages/common.nix
-{{- if .private }}
-    ./packages/private.nix
-{{- end }}
+    ./packages/local.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

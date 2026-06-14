@@ -44,8 +44,12 @@ Documents/**
 .chezmoiscripts/windows/install-wsl.ps1
 {{ end }}
 
+{{ if .private }}
+.chezmoiscripts/ensure-local-nix.sh
+{{ end }}
+
 {{ if not .private }}
-.config/home-manager/packages/private.nix
+.config/home-manager/packages/local.nix
 .config/mise/**
 .config/sops/**
 .mc/**
