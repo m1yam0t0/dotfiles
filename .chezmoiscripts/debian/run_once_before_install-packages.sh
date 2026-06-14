@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # NOTE: this is workaround. see below comment in issue.
 # https://github.com/actions/runner-images/issues/7192#issuecomment-1446766800
@@ -9,11 +10,8 @@ echo 'APT::Get::Always-Include-Phased-Updates "false";' | sudo tee /etc/apt/apt.
 sudo apt update
 sudo apt upgrade -y
 
-# install packages
+# install packages that still need OS-level setup on Debian/Ubuntu.
 sudo apt install -y \
-	curl \
-	git \
+	ca-certificates \
 	locales \
-	tig \
-	tmux \
 	zsh
