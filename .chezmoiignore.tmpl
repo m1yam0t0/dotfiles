@@ -16,7 +16,6 @@ README.md
 Documents/**
 {{ else }}
 .chezmoiscripts/*.sh
-.config/aquaproj-aqua/**
 .config/bat/**
 .config/gh/**
 .config/mise/**
@@ -38,14 +37,19 @@ Documents/**
 
 {{ if not .wsl }}
 .chezmoiscripts/debian/wsl/**
+.local/bin/xdg-open
 {{ end }}
 
 {{ if .github_actions }}
 .chezmoiscripts/windows/install-wsl.ps1
 {{ end }}
 
+{{ if .private }}
+.chezmoiscripts/ensure-local-nix.sh
+{{ end }}
+
 {{ if not .private }}
-.config/aquaproj-aqua/imports/private.yaml
+.config/home-manager/packages/local.nix
 .config/mise/**
 .config/sops/**
 .mc/**

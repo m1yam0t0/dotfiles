@@ -20,6 +20,10 @@ alias ls='eza --color=always'
 alias tree='eza -T'
 alias vi='nvim'
 alias watch='viddy'
+{{ if .wsl -}}
+## For WSL
+alias open=xdg-open
+{{- end }}
 
 # git
 alias gl='git log --oneline origin..HEAD'
