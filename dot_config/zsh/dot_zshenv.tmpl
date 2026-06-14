@@ -1,0 +1,17 @@
+# for profiling
+#zmodload zsh/zprof && zprof
+
+# LANG
+export LANG=en_US.UTF-8
+
+# krew
+export KREW_ROOT="${HOME}/.krew"
+
+# aqua
+export AQUA_ROOT_DIR="${XDG_DATA_HOME}/aquaproj-aqua"
+
+# PATH
+export PATH="${HOME}/.local/bin:${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin:${PATH}"
+
+# EDITOR
+export EDITOR=nvim
