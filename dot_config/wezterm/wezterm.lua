@@ -14,6 +14,22 @@ config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.color_scheme = 'nord'
 config.font = wezterm.font 'MesloLGS NF'
 config.font_size = 12.0
+config.keys = {
+  {
+    key = 'd',
+    mods = 'ALT',
+    action = wezterm.action.SplitHorizontal {
+      domain = 'CurrentPaneDomain',
+    },
+  },
+  {
+    key = 'D',
+    mods = 'ALT|SHIFT',
+    action = wezterm.action.SplitVertical {
+      domain = 'CurrentPaneDomain',
+    },
+  },
+}
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   config.default_prog = { 'wsl.exe', '~' }
