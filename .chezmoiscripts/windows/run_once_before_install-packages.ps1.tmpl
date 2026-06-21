@@ -14,29 +14,6 @@ function Check-Winget-Package-Installation {
     }
 }
 
-# Install scoop
-Write-Host 'Install packages via scoop'
-If (Get-Command scoop) {
-    Write-Host 'scoop has already installed.'
-} else {
-    $env:PSModulePath = ''; Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-}
-
-# Install Package via scoop
-$scoopPackages =@(
-    '1password-cli',
-    'chezmoi',
-    'delta',
-    'fd',
-    'git',
-    'ripgrep',
-    'sudo'
-)
-
-foreach ( $package in $scoopPackages ) {
-    scoop install $package
-}
-
 {{ if not .headless -}}
 # Install Package via winget
 Write-Host 'Install packages via winget'
@@ -46,20 +23,31 @@ $wingetPackages =@(
 {{- end -}}
     '7zip.7zip',
     'AgileBits.1Password',
+    'AgileBits.1Password.CLI',
+    'dandavison.delta',
     'Discord.Discord',
+    'Git.MinGit',
+    'GitHub.cli',
     'Google.JapaneseIME',
-    'LINE.LINE',
-    'Microsoft.PowerToys',
     'Microsoft.VisualStudioCode',
     'Microsoft.WindowsTerminal',
     'Mozilla.Thunderbird',
+    'Neovim.Neovim',
     'Obsidian.Obsidian',
+    'OpenAI.Codex',
     'SlackTechnologies.Slack',
     'Synology.DriveClient',
+    'twpayne.chezmoi',
     'Valve.Steam',
-    'VivaldiTechnologies.Vivaldi',
+    'Vivaldi.Vivaldi',
     'wez.wezterm',
-    'Zoom.Zoom'
+    'ZedIndustries.Zed',
+    'Zoom.Zoom',
+{{- /* MS Store Apps */- }}
+    'Apple Music',
+    'LINE Desktop',
+    'Raycast',
+    '9PLM9XGG6VKS' # Codex
 )
 
 foreach ( $package in $wingetPackages ) {
@@ -67,4 +55,7 @@ foreach ( $package in $wingetPackages ) {
         winget install -e --id $package
     }
 }
+
+# Install Package via MSStore
+
 {{ end -}}
