@@ -28,7 +28,9 @@ $scoopPackages =@(
     'chezmoi',
     'delta',
     'fd',
-    'git',
+    'gh',
+    'mingit',
+    'neovim',
     'ripgrep',
     'sudo'
 )
@@ -48,8 +50,6 @@ $wingetPackages =@(
     'AgileBits.1Password',
     'Discord.Discord',
     'Google.JapaneseIME',
-    'LINE.LINE',
-    'Microsoft.PowerToys',
     'Microsoft.VisualStudioCode',
     'Microsoft.WindowsTerminal',
     'Mozilla.Thunderbird',
@@ -57,9 +57,15 @@ $wingetPackages =@(
     'SlackTechnologies.Slack',
     'Synology.DriveClient',
     'Valve.Steam',
-    'VivaldiTechnologies.Vivaldi',
+    'Vivaldi.Vivaldi',
     'wez.wezterm',
-    'Zoom.Zoom'
+    'ZedIndustries.Zed',
+    'Zoom.Zoom',
+{{- /* MS Store Apps */ -}}
+    'Apple Music',
+    'LINE Desktop',
+    'Raycast',
+    '9PLM9XGG6VKS' # Codex
 )
 
 foreach ( $package in $wingetPackages ) {

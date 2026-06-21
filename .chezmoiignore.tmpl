@@ -13,12 +13,12 @@ README.md
 
 {{ if ne .chezmoi.os "windows" }}
 .chezmoiscripts/windows/**
+AppData/**
 Documents/**
 {{ else }}
 .chezmoiscripts/*.sh
 .config/aquaproj-aqua/**
 .config/bat/**
-.config/gh/**
 .config/mise/**
 .config/nvim/**
 .config/sops/**
