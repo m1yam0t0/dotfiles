@@ -22,21 +22,22 @@ brew bundle --file=/dev/stdin <<EOF
 brew "coreutils"
 brew "zsh"
 {{ if not .headless }}
+tap "nikitabobko/tap"
+tap "stablyai/orca"
 cask "1password"
 cask "appcleaner"
+cask "nikitabobko/tap/aerospace"
 cask "google-japanese-ime"
 cask "hhkb"
 cask "karabiner-elements"
 cask "logi-options+"
 cask "obsidian"
+cask "stablyai/orca/orca"
 cask "raycast"
-cask "visual-studio-code"
 cask "vivaldi"
 {{ if .private }}
 brew "mas"
-cask "notion"
 cask "synology-drive"
-cask "ticktick"
 mas "LINE", id: 539883307
 {{ end }}
 {{ end }}
