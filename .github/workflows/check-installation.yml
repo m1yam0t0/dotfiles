@@ -1,29 +1,63 @@
 name: Installation test
 on:
+  pull_request:
+    branches:
+      - main
   push:
 permissions:
   contents: read
 jobs:
   install:
+    name: Install (${{ matrix.os }})
+    timeout-minutes: 60
     strategy:
+      fail-fast: false
       matrix:
         os:
-          - macos-latest
-          - ubuntu-22.04
+          - macos-26
+          - ubuntu-26.04
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v6
-      - name: Install
-        run: sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init m1yam0t0 --apply --branch "${{ github.ref_name }}"
+      - name: Install chezmoi
+        run: sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- -b "${HOME}/.local/bin"
+      - name: Apply checked-out dotfiles
+        run: '"${HOME}/.local/bin/chezmoi" init --source "${GITHUB_WORKSPACE}" --apply'
       - name: Remove chezmoi binary
-        run: rm -f ${HOME}/.local/bin/chezmoi
+        run: rm -f "${HOME}/.local/bin/chezmoi"
+      - name: Verify Nix packages and zsh plugins
+        run: |
+          source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+          export PATH="${HOME}/.nix-profile/bin:${PATH}"
+
+          nix --version
+          home-manager generations
+
+          for command in chezmoi git eza jq op; do
+            test -x "${HOME}/.nix-profile/bin/${command}"
+          done
+          git --version
+          op --version
+
+          zsh -f <<'EOF'
+          set -e
+          source "${HOME}/.config/zsh/plugins.zsh"
+          (( $+functions[p10k] ))
+          (( $+functions[_zsh_highlight] ))
+          (( $+functions[_zsh_autosuggest_start] ))
+          EOF
   install-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v6
       - name: Set ExecutionPolicy
         run: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
-      - name: Install
-        run: iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b $HOME/.local/bin -- init m1yam0t0 --apply --branch '${{ github.ref_name }}'"
+      - name: Install chezmoi
+        run: iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b $HOME/.local/bin"
+      - name: Apply checked-out dotfiles
+        run: '& "$HOME/.local/bin/chezmoi.exe" init --source "$env:GITHUB_WORKSPACE" --apply'
       - name: Remove chezmoi binary
         run: rm $HOME/.local/bin/chezmoi.exe -Force
