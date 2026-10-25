@@ -20,14 +20,12 @@ fi
 # install packages via homebrew
 brew bundle --file=/dev/stdin <<EOF
 brew "coreutils"
-brew "git"
 brew "pinentry-mac"
 brew "tig"
 brew "tmux"
 brew "zsh"
 {{ if not .headless }}
 cask "1password"
-cask "1password-cli"
 cask "appcleaner"
 cask "google-japanese-ime"
 cask "hhkb"

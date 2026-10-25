@@ -6,3 +6,4 @@
 .profie
 .ssh/id_rsa*
 .tig_history
+.config/aquaproj-aqua
