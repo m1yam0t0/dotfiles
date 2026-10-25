@@ -10,6 +10,7 @@
     trustExitCode = true
     whitespace = trailing-space,space-before-tab
 [credential "https://github.com"]
+    helper =
     helper = !gh auth git-credential
 [diff]
     colorMoved = default
@@ -38,9 +39,5 @@
     syntax-theme = Nord
 [ghq]
     root = ~/src
-{{ if .private -}}
-{{ onepasswordRead "op://personal/gitconfig/gitconfig_local" }}
-{{ else -}}
 [include]
     path = ~/.gitconfig.local
-{{ end -}}

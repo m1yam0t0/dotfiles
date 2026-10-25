@@ -16,10 +16,10 @@ function Check-Winget-Package-Installation {
 
 # Install scoop
 Write-Host 'Install packages via scoop'
-If (Get-Command scoop) {
+if (Get-Command scoop -ErrorAction SilentlyContinue) {
     Write-Host 'scoop has already installed.'
 } else {
-    $env:PSModulePath = ''; Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 
 # Install Package via scoop
@@ -28,7 +28,9 @@ $scoopPackages =@(
     'chezmoi',
     'delta',
     'fd',
-    'git',
+    'gh',
+    'mingit',
+    'neovim',
     'ripgrep',
     'sudo'
 )
@@ -46,20 +48,26 @@ $wingetPackages =@(
 {{- end -}}
     '7zip.7zip',
     'AgileBits.1Password',
+    'AmN.yasb',
     'Discord.Discord',
     'Google.JapaneseIME',
-    'LINE.LINE',
-    'Microsoft.PowerToys',
-    'Microsoft.VisualStudioCode',
-    'Microsoft.WindowsTerminal',
+    'LGUG2Z.komorebi',
+    'LGUG2Z.whkd',
     'Mozilla.Thunderbird',
     'Obsidian.Obsidian',
+    'REALiX.HWiNFO',
     'SlackTechnologies.Slack',
+    'StablyAI.Orca',
     'Synology.DriveClient',
     'Valve.Steam',
-    'VivaldiTechnologies.Vivaldi',
+    'Vivaldi.Vivaldi',
     'wez.wezterm',
-    'Zoom.Zoom'
+    'Zoom.Zoom',
+{{- /* MS Store Apps */ -}}
+    'Apple Music',
+    'LINE Desktop',
+    'Raycast',
+    '9PLM9XGG6VKS' # Codex
 )
 
 foreach ( $package in $wingetPackages ) {

@@ -1,0 +1,1224 @@
+/*
+A version of Nord's arctic, north-bluish color palette,
+with a Nord4 based colour pallete for light mode,
+and a Nord0 based colour pallete for dark mode.
+
+:root {
+	--nord0: rgb(46, 52, 64); // Darkest Night
+	--nord1: rgb(59, 66, 82);
+	--nord2: rgb(67, 76, 94);
+	--nord3: rgb(76, 86, 106); // Lightest Night
+
+	--nord4: rgb(216, 222, 233); // Darkest Snow
+	--nord5: rgb(229, 233, 240);
+	--nord6: rgb(236, 239, 244); // Lighest Snow
+
+	--nord7: rgb(143, 188, 187); // Light Frost
+	--nord8: rgb(136, 192, 208); // Lightest Frost
+	--nord9: rgb(129, 161, 193); // Dark Frost
+	--nord10: rgb(94, 129, 172); // Darkest Frost
+
+--nord11: rgb(191, 97, 106);  // Red
+	--nord12: rgb(208, 135, 112); // Orange
+	--nord13: rgb(235, 203, 139); // Yellow
+	--nord14: rgb(163, 190, 140); // Green
+	--nord15: rgb(180, 142, 173); // Magenta
+}
+*/
+
+:root {
+	--font-family-base: "JetBrainsMono NF";
+	--font-family-text: "JetBrainsMono NFP", "JetBrainsMono Nerd Font Propo";
+	--font-family-icon: "Segoe Fluent Icons", "JetBrainsMono NFP", "JetBrainsMono Nerd Font Propo";
+}
+
+* {
+	font-size: 12px;
+	color: rgb(76, 86, 106);
+	font-weight: 500;
+	font-family: var(--font-family-base);
+	margin: 0;
+	padding: 0;
+}
+
+.yasb-bar {
+	padding: 0;
+	margin: 0;
+    background-color: rgb(216, 222, 233);
+	border-radius: 5px;
+}
+
+.widget {
+	padding: 0 6px;
+	margin: 0 3px;
+}
+.widget .label {
+	padding: 0px 2px;
+}
+.widget .label.alt {
+	padding: 0px 8px;
+}
+
+/* TOOLTIP */
+.tooltip,
+.dark.tooltip {
+	background-color: rgb(46, 52, 64);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 6px;
+	color: rgb(236, 239, 244);
+	font-family: var(--font-family-text);
+	font-size: 11px;
+	font-weight: 600;
+	margin-top: 4px;
+	opacity: 1;
+	padding: 6px 10px;
+}
+
+.active-window-widget {
+	border-radius: 4px;
+	margin: 0 3px;
+}
+
+.komorebi-workspaces {
+	margin: 4px 3px;
+	border-radius: 4px;
+    padding: 4px 0;
+}
+.komorebi-workspaces .ws-btn {
+	font-family: var(--font-family-icon);
+	font-size: 12px;
+    border: none;
+    color: rgb(76, 86, 106);
+    padding: 0 8px 0 8px;
+}
+.komorebi-workspaces .ws-btn:hover {
+    color: rgb(46, 52, 64);
+}
+.komorebi-workspaces .ws-btn.populated {
+	color: rgb(76, 86, 106);
+}
+.komorebi-workspaces .ws-btn.active {
+    color: rgb(129, 161, 193);
+}
+
+/* Blue Power Button: rgb(94, 129, 172); */
+.power-menu-widget .label {
+	color: rgb(191, 97, 106);
+	font-size: 16px;
+	padding-right: 4px;
+}
+
+.uptime {
+	font-size: 14px;
+	margin-bottom: 10px;
+	color: rgb(216, 222, 233);
+	font-weight: 600;
+}
+.power-menu-popup {
+	background-color: rgb(46, 52, 64);
+	border-radius: 6px;
+}
+.power-menu-popup .button {
+	width: 240px;
+	height: 120px;
+	border-radius: 8px;
+	background-color: rgb(59, 66, 82);
+	color: rgb(229, 233, 240);
+	margin: 8px;
+}
+.power-menu-popup .button.hover {
+	background-color: rgb(76, 86, 106);
+}
+.power-menu-popup .button .label {
+	margin-bottom: 8px;
+	font-size: 16px;
+	color: rgb(216, 222, 233);
+}
+
+.power-menu-popup .button .icon {
+	font-size: 48px;
+	padding-top: 12px;
+	padding-right: 8px;
+	color: rgb(229, 233, 240);
+}
+.power-menu-popup .button.cancel .icon {
+	color: rgb(94, 129, 172);
+}
+.power-menu-popup .button.cancel .label {
+	color: rgb(94, 129, 172);
+}
+
+/* Blue Power Button: rgb(143, 188, 187); */
+.power-menu-popup .button.shutdown .icon {
+	color: rgb(191, 97, 106);
+}
+.power-menu-popup .button.shutdown .label {
+	color: rgb(191, 97, 106);
+}
+
+/* POWER MENU - COMPACT POPUP
+   Scoped to popup mode so the bar widget keeps its existing style. */
+.power-menu-compact {
+	background-color: rgba(46, 52, 64, 0.98);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 10px;
+	color: rgb(229, 233, 240);
+	min-width: 280px;
+}
+.power-menu-compact .profile-info {
+	background: transparent;
+	border-bottom: 1px solid rgb(76, 86, 106);
+	padding: 18px 12px 16px;
+}
+.power-menu-compact .profile-info .profile-avatar {
+	border: 2px solid rgb(129, 161, 193);
+	border-radius: 34px;
+}
+.power-menu-compact .profile-info .profile-username {
+	color: rgb(236, 239, 244);
+	font-size: 16px;
+	font-weight: 600;
+	margin-top: 6px;
+}
+.power-menu-compact .profile-info .profile-account-type {
+	background-color: rgb(94, 129, 172);
+	border-radius: 5px;
+	color: rgb(236, 239, 244);
+	font-size: 11px;
+	font-weight: 600;
+	margin-top: 7px;
+	padding: 2px 7px;
+}
+.power-menu-compact .profile-info .profile-email {
+	color: rgb(143, 188, 187);
+	font-size: 11px;
+	margin-top: 3px;
+}
+.power-menu-compact .manage-accounts {
+	background-color: rgb(59, 66, 82);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 5px;
+	color: rgb(216, 222, 233);
+	font-size: 11px;
+	margin-top: 12px;
+	padding: 4px 9px;
+}
+.power-menu-compact .manage-accounts:hover {
+	background-color: rgb(67, 76, 94);
+	color: rgb(236, 239, 244);
+}
+.power-menu-compact .buttons {
+	background-color: rgb(59, 66, 82);
+	border: 1px solid rgba(76, 86, 106, 0.8);
+	border-radius: 8px;
+	margin: 10px;
+	padding: 3px;
+}
+.power-menu-compact .button {
+	background: transparent;
+	border: none;
+	border-radius: 5px;
+	margin: 2px;
+	padding: 8px 12px;
+}
+.power-menu-compact .button.hover {
+	background-color: rgb(67, 76, 94);
+}
+.power-menu-compact .button .icon {
+	color: rgb(129, 161, 193);
+	font-family: var(--font-family-icon);
+	font-size: 16px;
+	min-width: 22px;
+	padding-right: 10px;
+}
+.power-menu-compact .button .label {
+	color: rgb(216, 222, 233);
+	font-family: var(--font-family-text);
+	font-size: 12px;
+	font-weight: 500;
+}
+.power-menu-compact .button.hover .icon,
+.power-menu-compact .button.hover .label,
+.power-menu-compact .icon.hover,
+.power-menu-compact .label.hover {
+	color: rgb(236, 239, 244);
+}
+.power-menu-compact .button.shutdown .icon,
+.power-menu-compact .button.shutdown .label {
+	color: rgb(191, 97, 106);
+}
+.power-menu-compact .button.restart .icon {
+	color: rgb(208, 135, 112);
+}
+.power-menu-compact .button.lock .icon {
+	color: rgb(129, 161, 193);
+}
+.power-menu-compact .button.sleep .icon {
+	color: rgb(163, 190, 140);
+}
+.power-menu-compact .button.hibernate .icon {
+	color: rgb(235, 203, 139);
+}
+.power-menu-compact .button.signout .icon {
+	color: rgb(180, 142, 173);
+}
+
+/* ICONS */
+.icon {
+	font-family: var(--font-family-icon);
+	font-size: 16px;
+    margin-right:4px;
+}
+.cpu-widget .icon {
+	font-size: 14px;
+	color: rgb(163, 190, 140);
+}
+
+.memory-widget .icon {
+	font-size: 14px;
+	color: rgb(208, 135, 112);
+}
+
+.weather-widget .label,
+.weather-widget .icon {
+    color: rgb(235, 203, 139);
+}
+.weather-widget .icon {
+	font-size: 16px;
+}
+.weather-widget .icon.clearNight {
+	font-size: 16px;
+}
+.weather-widget .icon.cloudyNight {
+    font-size: 18px;
+}
+
+.volume-widget .icon {
+	color: rgb(129, 161, 193);
+}
+
+/* TASKBAR: applications visible in the active Komorebi workspace */
+.taskbar-widget .app-container {
+	background-color: rgba(76, 86, 106, 0.08);
+	border: none;
+	border-radius: 6px;
+	margin: 4px 1px;
+	padding: 0 3px;
+}
+.taskbar-widget .app-container.running:hover {
+	background-color: rgba(76, 86, 106, 0.16);
+}
+.taskbar-widget .app-container.foreground {
+	background-color: rgba(129, 161, 193, 0.28);
+}
+.taskbar-widget .app-container.flashing {
+	background-color: rgba(191, 97, 106, 0.32);
+}
+.taskbar-widget .app-container .app-icon {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* SYSTRAY
+   Keep the bar transparent and scope all visual changes to systray elements. */
+.systray {
+	background: transparent;
+	border: none;
+	margin: 0 3px;
+	padding: 0 6px;
+}
+.systray .widget-container,
+.systray .pinned-container,
+.systray .unpinned-container {
+	background: transparent;
+	border: none;
+}
+.systray .button {
+	background: transparent;
+	border: none;
+	border-radius: 5px;
+	margin: 0 1px;
+	padding: 2px;
+}
+.systray .button:hover,
+.systray .button.drag-over {
+	background-color: rgba(76, 86, 106, 0.16);
+}
+.systray .button.dragging {
+	background-color: rgba(129, 161, 193, 0.12);
+}
+.systray .pinned-container[forceshow=true],
+.systray .pinned-container.drop-target {
+	background-color: rgba(129, 161, 193, 0.14);
+	border-radius: 5px;
+}
+.systray .unpinned-visibility-btn {
+	background: transparent;
+	border: none;
+	border-radius: 5px;
+	color: rgb(76, 86, 106);
+	font-family: var(--font-family-icon);
+	font-size: 13px;
+	min-height: 20px;
+	max-height: 20px;
+	min-width: 18px;
+	max-width: 18px;
+	outline: none;
+	padding: 0;
+}
+.systray .unpinned-visibility-btn:hover,
+.systray .unpinned-visibility-btn:checked {
+	background-color: rgba(76, 86, 106, 0.16);
+}
+
+/* Systray overflow popup (used when show_in_popup is enabled). */
+.systray-popup {
+	background-color: rgba(46, 52, 64, 0.97);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 9px;
+	padding: 6px;
+}
+.systray-popup-container {
+	background: transparent;
+}
+.systray-popup .button {
+	background: transparent;
+	border: none;
+	border-radius: 6px;
+	margin: 2px;
+	padding: 9px;
+}
+.systray-popup .button:hover,
+.systray-popup .button.drag-over {
+	background-color: rgb(67, 76, 94);
+}
+
+/* NETWORK WIDGET AND WIFI MENU */
+.wifi-widget {
+	background: transparent;
+	border: none;
+	padding: 0 6px;
+	margin: 0 3px;
+}
+.wifi-widget .icon {
+	color: rgb(129, 161, 193);
+	font-family: var(--font-family-icon);
+	font-size: 15px;
+	margin: 0 2px;
+}
+.wifi-widget .label {
+	color: rgb(76, 86, 106);
+	font-size: 11px;
+	padding: 0 3px;
+}
+.wifi-widget .label.alt {
+	padding: 0 5px;
+}
+
+/* BATTERY WIDGET */
+.battery-widget {
+	background: transparent;
+	border: none;
+	padding: 0 6px;
+	margin: 0 3px;
+}
+.battery-widget .label {
+	color: rgb(76, 86, 106);
+	font-size: 11px;
+	padding: 0 2px;
+}
+.battery-widget .label.alt {
+	padding: 0 4px;
+}
+.battery-widget .icon {
+	color: rgb(129, 161, 193);
+	font-family: var(--font-family-icon);
+	font-size: 14px;
+	margin-right: 4px;
+}
+.battery-widget .label.status-critical,
+.battery-widget .icon.status-critical {
+	color: rgb(191, 97, 106);
+}
+.battery-widget .label.status-low,
+.battery-widget .icon.status-low {
+	color: rgb(208, 135, 112);
+}
+.battery-widget .label.status-medium,
+.battery-widget .icon.status-medium {
+	color: rgb(235, 203, 139);
+}
+.battery-widget .label.status-high,
+.battery-widget .icon.status-high {
+	color: rgb(163, 190, 140);
+}
+.battery-widget .label.status-full,
+.battery-widget .icon.status-full {
+	color: rgb(143, 188, 187);
+}
+.battery-widget .label.status-charging,
+.battery-widget .icon.status-charging {
+	color: rgb(136, 192, 208);
+}
+.battery-widget .icon.status-charging.blink {
+	color: rgba(136, 192, 208, 0.4);
+}
+.battery-widget .progress-container {
+	background: transparent;
+}
+
+.wifi-menu {
+	background-color: rgba(46, 52, 64, 0.98);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 9px;
+	color: rgb(229, 233, 240);
+	font-family: var(--font-family-text);
+	max-height: 420px;
+	min-height: 360px;
+	min-width: 360px;
+}
+.wifi-menu .progress-bar {
+	background: transparent;
+	border: none;
+	color: rgb(136, 192, 208);
+	max-height: 3px;
+}
+.wifi-menu .progress-bar::chunk {
+	background-color: rgb(136, 192, 208);
+}
+.wifi-menu .header {
+	background-color: rgb(59, 66, 82);
+	border-bottom: 1px solid rgb(76, 86, 106);
+	color: rgb(236, 239, 244);
+	font-size: 13px;
+	font-weight: 700;
+	padding: 11px 12px;
+}
+.wifi-menu .error-message {
+	background-color: rgb(191, 97, 106);
+	color: rgb(236, 239, 244);
+	font-size: 12px;
+	font-weight: 600;
+	padding: 10px 12px;
+}
+.wifi-menu .wifi-list {
+	background: transparent;
+	margin: 4px 3px 4px 0;
+}
+.wifi-menu .wifi-item {
+	background: transparent;
+	border: none;
+	border-radius: 6px;
+	margin: 2px 5px;
+	min-height: 38px;
+	padding: 4px 10px;
+}
+.wifi-menu .wifi-item:hover {
+	background-color: rgb(59, 66, 82);
+}
+.wifi-menu .wifi-item[active=true] {
+	background-color: rgb(67, 76, 94);
+	border-left: 3px solid rgb(136, 192, 208);
+	min-height: 72px;
+}
+.wifi-menu .wifi-item .icon {
+	color: rgb(129, 161, 193);
+	font-family: var(--font-family-icon);
+	font-size: 22px;
+	margin-right: 10px;
+}
+.wifi-menu .wifi-item[active=true] .icon {
+	color: rgb(136, 192, 208);
+}
+.wifi-menu .wifi-item .name {
+	color: rgb(236, 239, 244);
+	font-size: 12px;
+	font-weight: 600;
+	margin-right: 8px;
+}
+.wifi-menu .wifi-item .status {
+	color: rgb(163, 190, 140);
+	font-size: 11px;
+}
+.wifi-menu .wifi-item .strength {
+	color: rgb(143, 188, 187);
+	font-size: 11px;
+}
+.wifi-menu .wifi-item .password {
+	background-color: rgb(59, 66, 82);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 5px;
+	color: rgb(236, 239, 244);
+	font-size: 12px;
+	outline: none;
+	padding: 5px 8px;
+}
+.wifi-menu .wifi-item .password:focus {
+	border-color: rgb(129, 161, 193);
+}
+.wifi-menu .wifi-item .controls-container {
+	padding-top: 8px;
+}
+.wifi-menu .wifi-item .connect {
+	background-color: rgb(94, 129, 172);
+	border: none;
+	border-radius: 5px;
+	color: rgb(236, 239, 244);
+	font-size: 11px;
+	font-weight: 600;
+	padding: 5px 22px;
+}
+.wifi-menu .wifi-item .connect:hover {
+	background-color: rgb(129, 161, 193);
+	color: rgb(46, 52, 64);
+}
+.wifi-menu .footer {
+	background-color: rgb(59, 66, 82);
+	border-top: 1px solid rgb(76, 86, 106);
+	color: rgb(143, 188, 187);
+	font-size: 11px;
+	font-weight: 600;
+	padding: 9px 12px;
+}
+.wifi-menu .footer .settings-button,
+.wifi-menu .footer .refresh-icon {
+	background: transparent;
+	border: none;
+	border-radius: 5px;
+	color: rgb(216, 222, 233);
+	min-height: 26px;
+	min-width: 26px;
+	padding: 0 3px;
+}
+.wifi-menu .footer .refresh-icon {
+	font-family: var(--font-family-icon);
+}
+.wifi-menu .footer .settings-button:hover,
+.wifi-menu .footer .refresh-icon:hover {
+	background-color: rgb(76, 86, 106);
+	color: rgb(236, 239, 244);
+}
+
+/* MENUS AND POPUPS
+   These selectors target detached menus only and do not alter the bar. */
+.context-menu,
+.context-menu .menu-checkbox {
+	background-color: rgb(46, 52, 64);
+	border: none;
+	color: rgb(229, 233, 240);
+	font-family: var(--font-family-text);
+	font-size: 12px;
+	padding: 4px 0;
+}
+.context-menu {
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 8px;
+}
+.context-menu::item,
+.context-menu .menu-checkbox {
+	background-color: transparent;
+	border-radius: 5px;
+	margin: 2px 6px;
+	min-width: 120px;
+	padding: 6px 12px;
+}
+.context-menu::item:selected,
+.context-menu .menu-checkbox:hover {
+	background-color: rgb(67, 76, 94);
+	color: rgb(236, 239, 244);
+}
+.context-menu::item:disabled {
+	background-color: transparent;
+	color: rgb(76, 86, 106);
+}
+.context-menu::separator {
+	background-color: rgb(76, 86, 106);
+	height: 1px;
+	margin: 4px 8px;
+}
+.context-menu::right-arrow {
+	height: 8px;
+	padding-right: 20px;
+	width: 8px;
+}
+.context-menu .menu-checkbox .checkbox {
+	background: transparent;
+	border: none;
+	color: rgb(229, 233, 240);
+	padding: 7px 12px;
+}
+
+.home-menu,
+.clock-popup.calendar,
+.clock-popup.alarm,
+.clock-popup.timer,
+.audio-menu,
+.media-menu {
+	background-color: rgba(46, 52, 64, 0.97);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 9px;
+	color: rgb(229, 233, 240);
+}
+.home-menu .menu-item {
+	background: transparent;
+	color: rgb(229, 233, 240);
+	border-radius: 5px;
+	margin: 2px 6px;
+	padding: 7px 14px;
+}
+.home-menu .menu-item:hover {
+	background-color: rgb(67, 76, 94);
+	color: rgb(236, 239, 244);
+}
+.home-menu .separator {
+	background-color: rgb(76, 86, 106);
+	height: 1px;
+	margin: 4px 8px;
+}
+
+/* CLOCK POPUPS */
+.clock-popup.calendar {
+	min-width: 460px;
+	padding: 12px;
+}
+.clock-popup.calendar .calendar-layout {
+	background: transparent;
+}
+.clock-popup.calendar .calendar-table,
+.clock-popup.calendar .calendar-table::item {
+	background: transparent;
+	border: none;
+	color: rgb(216, 222, 233);
+	font-family: var(--font-family-text);
+	margin: 0;
+	outline: none;
+	padding: 0;
+}
+.clock-popup.calendar .calendar-table::item:hover {
+	background-color: rgb(67, 76, 94);
+	border-radius: 6px;
+}
+.clock-popup.calendar .calendar-table::item:selected {
+	background-color: rgb(129, 161, 193);
+	border-radius: 10px;
+	color: rgb(46, 52, 64);
+	font-weight: 700;
+}
+.clock-popup.calendar .day-label {
+	color: rgb(136, 192, 208);
+	font-size: 14px;
+	font-weight: 700;
+	margin-top: 14px;
+}
+.clock-popup.calendar .day-label,
+.clock-popup.calendar .month-label,
+.clock-popup.calendar .year-label,
+.clock-popup.calendar .date-label {
+	color: rgb(236, 239, 244);
+	font-family: var(--font-family-text);
+	min-width: 170px;
+	max-width: 170px;
+}
+.clock-popup.calendar .month-label {
+	color: rgb(216, 222, 233);
+	font-size: 14px;
+	font-weight: 600;
+	margin-top: 2px;
+}
+.clock-popup.calendar .year-label {
+	color: rgb(143, 188, 187);
+	font-size: 12px;
+	font-weight: 500;
+}
+.clock-popup.calendar .date-label {
+	color: rgb(236, 239, 244);
+	font-size: 64px;
+	font-weight: 800;
+	margin-top: -10px;
+}
+.clock-popup.calendar .week-label {
+	color: rgb(129, 161, 193);
+	font-size: 10px;
+	font-weight: 600;
+}
+.clock-popup.calendar .holiday-label {
+	color: rgb(208, 135, 112);
+	font-size: 11px;
+}
+.clock-popup.calendar .extended-container {
+	background: transparent;
+	border-left: 1px solid rgb(76, 86, 106);
+	padding-left: 14px;
+}
+.clock-popup.calendar .upcoming-events-header {
+	color: rgb(136, 192, 208);
+	font-size: 12px;
+	font-weight: 700;
+	margin: 4px 0 8px;
+}
+.clock-popup.calendar .upcoming-events-item {
+	color: rgb(216, 222, 233);
+	font-size: 11px;
+	padding: 3px 0;
+}
+.clock-popup.calendar .upcoming-events-item:hover {
+	color: rgb(236, 239, 244);
+}
+.clock-popup.timer .clock-popup-container,
+.clock-popup.alarm .clock-popup-container {
+	background: transparent;
+	padding: 16px;
+}
+.clock-popup.timer .clock-popup-footer,
+.clock-popup.alarm .clock-popup-footer {
+	background-color: rgb(59, 66, 82);
+	border-top: 1px solid rgb(76, 86, 106);
+	padding: 12px 16px;
+}
+.clock-popup .clock-label-timer {
+	color: rgb(143, 188, 187);
+	font-size: 12px;
+	font-weight: 600;
+}
+.clock-popup .clock-input-time {
+	background: transparent;
+	border: none;
+	color: rgb(236, 239, 244);
+	font-family: var(--font-family-text);
+	font-size: 44px;
+	font-weight: 600;
+}
+.clock-popup .clock-input-time.colon {
+	padding-bottom: 7px;
+}
+.clock-popup .alarm-input-title {
+	background-color: rgb(59, 66, 82);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 5px;
+	color: rgb(236, 239, 244);
+	font-size: 12px;
+	margin-top: 8px;
+	min-width: 300px;
+	outline: none;
+	padding: 6px 9px;
+}
+.clock-popup .alarm-input-title:focus {
+	border-color: rgb(129, 161, 193);
+}
+.clock-popup .button {
+	background-color: rgb(59, 66, 82);
+	border: none;
+	border-radius: 5px;
+	color: rgb(216, 222, 233);
+	font-size: 12px;
+	font-weight: 600;
+	margin: 3px;
+	min-height: 28px;
+	min-width: 64px;
+	padding: 3px 8px;
+}
+.clock-popup .button:hover {
+	background-color: rgb(76, 86, 106);
+	color: rgb(236, 239, 244);
+}
+.clock-popup .button.save,
+.clock-popup .button.start,
+.clock-popup .button.is-alarm-enabled,
+.clock-popup .button.day:checked,
+.clock-popup .button.quick-option:checked {
+	background-color: rgb(94, 129, 172);
+	color: rgb(236, 239, 244);
+}
+.clock-popup .button.save:hover,
+.clock-popup .button.start:hover,
+.clock-popup .button.is-alarm-enabled:hover {
+	background-color: rgb(129, 161, 193);
+	color: rgb(46, 52, 64);
+}
+.clock-popup .button.delete {
+	background-color: rgb(191, 97, 106);
+	color: rgb(236, 239, 244);
+}
+.clock-popup .button:disabled {
+	background-color: rgb(59, 66, 82);
+	color: rgb(76, 86, 106);
+}
+
+/* VOLUME POPUP */
+.audio-menu {
+	min-width: 320px;
+	padding: 12px;
+}
+.audio-menu .system-volume-container {
+	background-color: rgb(59, 66, 82);
+	border: 1px solid rgba(76, 86, 106, 0.8);
+	border-radius: 8px;
+	padding: 10px;
+}
+.audio-menu .system-volume-container .volume-slider {
+	background: transparent;
+	border: none;
+	height: 16px;
+}
+.audio-menu .system-volume-container .volume-slider::groove {
+	background-color: rgb(76, 86, 106);
+	border: none;
+	border-radius: 2px;
+	height: 4px;
+}
+.audio-menu .system-volume-container .volume-slider::sub-page {
+	background-color: rgb(136, 192, 208);
+	border-radius: 2px;
+}
+.audio-menu .system-volume-container .volume-slider::handle {
+	background-color: rgb(236, 239, 244);
+	border: 2px solid rgb(94, 129, 172);
+	border-radius: 6px;
+	height: 10px;
+	margin: -4px 0;
+	width: 10px;
+}
+.audio-menu .system-volume-container .volume-slider::handle:hover {
+	border-color: rgb(136, 192, 208);
+}
+.audio-menu .audio-container .device {
+	background: transparent;
+	border: none;
+	border-radius: 5px;
+	color: rgb(216, 222, 233);
+	font-size: 12px;
+	margin: 3px 0;
+	padding: 7px 9px;
+}
+.audio-menu .audio-container .device:hover,
+.audio-menu .audio-container .device.selected {
+	background-color: rgb(67, 76, 94);
+	color: rgb(236, 239, 244);
+}
+.audio-menu .audio-container .device.selected {
+	border-left: 3px solid rgb(136, 192, 208);
+}
+.audio-menu .toggle-apps {
+	background: transparent;
+	border: none;
+	border-radius: 5px;
+	color: rgb(216, 222, 233);
+	font-family: var(--font-family-icon);
+	font-size: 13px;
+	margin: 2px 0;
+	min-height: 26px;
+	min-width: 26px;
+	outline: none;
+	padding: 0;
+}
+.audio-menu .toggle-apps:hover,
+.audio-menu .toggle-apps.expanded {
+	background-color: rgb(67, 76, 94);
+}
+.audio-menu .apps-container {
+	background-color: rgb(59, 66, 82);
+	border: 1px solid rgba(76, 86, 106, 0.8);
+	border-radius: 7px;
+	margin-top: 12px;
+	padding: 8px;
+}
+.audio-menu .apps-container .app-volume {
+	background: transparent;
+	border-radius: 6px;
+	padding: 4px;
+}
+.audio-menu .apps-container .app-volume:hover {
+	background-color: rgb(67, 76, 94);
+}
+.audio-menu .apps-container .app-volume .app-label {
+	color: rgb(216, 222, 233);
+	font-size: 11px;
+}
+.audio-menu .apps-container .app-volume .app-icon-container {
+	background: transparent;
+	border-radius: 6px;
+	margin-right: 8px;
+	min-height: 36px;
+	max-height: 36px;
+	min-width: 36px;
+	max-width: 36px;
+}
+.audio-menu .apps-container .app-volume .app-icon-container:hover {
+	background-color: rgb(76, 86, 106);
+}
+.audio-menu .apps-container .app-volume .app-slider {
+	background: transparent;
+	border: none;
+	height: 14px;
+}
+.audio-menu .apps-container .app-volume .app-slider::groove {
+	background-color: rgb(76, 86, 106);
+	border-radius: 2px;
+	height: 4px;
+}
+.audio-menu .apps-container .app-volume .app-slider::sub-page {
+	background-color: rgb(136, 192, 208);
+	border-radius: 2px;
+}
+.audio-menu .apps-container .app-volume .app-slider::handle {
+	background-color: rgb(236, 239, 244);
+	border: 2px solid rgb(94, 129, 172);
+	border-radius: 6px;
+	height: 10px;
+	margin: -4px 0;
+	width: 10px;
+}
+
+.media-menu {
+	min-width: 440px;
+	max-width: 440px;
+	padding: 12px;
+}
+.media-menu .title,
+.media-menu .artist,
+.media-menu .source {
+	font-family: var(--font-family-text);
+	font-weight: 600;
+	margin-left: 10px;
+}
+.media-menu .title {
+	color: rgb(236, 239, 244);
+	font-size: 13px;
+}
+.media-menu .artist {
+	color: rgb(143, 188, 187);
+	font-size: 12px;
+	margin-top: 3px;
+}
+.media-menu .source {
+	background-color: rgb(94, 129, 172);
+	border-radius: 4px;
+	color: rgb(236, 239, 244);
+	font-size: 10px;
+	margin-top: 8px;
+	padding: 2px 6px;
+}
+.media-menu .thumbnail {
+	background-color: rgb(59, 66, 82);
+	border: 1px solid rgb(76, 86, 106);
+	border-radius: 8px;
+}
+.media-menu .btn {
+	background: transparent;
+	border: none;
+	border-radius: 18px;
+	color: rgb(216, 222, 233);
+	font-family: var(--font-family-icon);
+	font-size: 14px;
+	margin: 8px 3px 4px;
+	min-height: 36px;
+	max-height: 36px;
+	min-width: 36px;
+	max-width: 36px;
+}
+.media-menu .btn:hover {
+	background-color: rgb(76, 86, 106);
+	color: rgb(236, 239, 244);
+}
+.media-menu .btn.play {
+	background-color: rgb(94, 129, 172);
+	color: rgb(236, 239, 244);
+	font-size: 18px;
+}
+.media-menu .btn.play:hover {
+	background-color: rgb(129, 161, 193);
+	color: rgb(46, 52, 64);
+}
+.media-menu .btn:disabled,
+.media-menu .btn.disabled,
+.media-menu .btn.disabled:hover {
+	background: transparent;
+	color: rgb(76, 86, 106);
+}
+.media-menu .no-media {
+	color: rgb(143, 188, 187);
+	font-size: 12px;
+	padding: 24px;
+}
+.media-menu .media-timeline-container {
+	background: transparent;
+	margin-top: 8px;
+}
+.media-menu .playback-time {
+	color: rgb(143, 188, 187);
+	font-family: var(--font-family-text);
+	font-size: 11px;
+	min-width: 54px;
+}
+.media-menu .playback-time.current {
+	margin-right: 6px;
+}
+.media-menu .playback-time.total {
+	margin-left: 6px;
+}
+.media-menu .progress-slider {
+	background: transparent;
+	border: none;
+	height: 14px;
+	margin: 3px 2px;
+}
+.media-menu .progress-slider::groove {
+	background-color: rgb(76, 86, 106);
+	border: none;
+	border-radius: 2px;
+	height: 4px;
+}
+.media-menu .progress-slider::groove:hover {
+	background-color: rgb(76, 86, 106);
+	height: 6px;
+}
+.media-menu .progress-slider::sub-page {
+	background-color: rgb(136, 192, 208);
+	border-radius: 2px;
+}
+.media-menu .progress-slider::handle {
+	background-color: rgb(216, 222, 233);
+	border: 2px solid rgb(94, 129, 172);
+	border-radius: 6px;
+	height: 10px;
+	margin: -4px 0;
+	width: 10px;
+}
+.media-menu .progress-slider::handle:hover {
+	background-color: rgb(236, 239, 244);
+	border-color: rgb(136, 192, 208);
+}
+.media-menu .app-volume-container {
+	background-color: rgb(59, 66, 82);
+	border: 1px solid rgba(76, 86, 106, 0.8);
+	border-radius: 8px;
+	margin-left: 10px;
+	padding: 8px 7px;
+}
+.media-menu .app-volume-container .volume-slider {
+	background: transparent;
+	border: none;
+	min-width: 16px;
+}
+.media-menu .app-volume-container .volume-slider::groove {
+	background-color: rgb(76, 86, 106);
+	border-radius: 2px;
+	width: 4px;
+}
+.media-menu .app-volume-container .volume-slider::sub-page {
+	background-color: rgb(136, 192, 208);
+	border-radius: 2px;
+}
+.media-menu .app-volume-container .volume-slider::add-page {
+	background-color: rgb(76, 86, 106);
+	border-radius: 2px;
+}
+.media-menu .app-volume-container .volume-slider::handle {
+	background-color: rgb(216, 222, 233);
+	border: 2px solid rgb(94, 129, 172);
+	border-radius: 6px;
+	height: 10px;
+	margin: 0 -4px;
+	width: 10px;
+}
+.media-menu .app-volume-container .volume-slider::handle:hover {
+	background-color: rgb(236, 239, 244);
+	border-color: rgb(136, 192, 208);
+}
+.media-menu .app-volume-container .mute-button,
+.media-menu .app-volume-container .unmute-button {
+	color: rgb(216, 222, 233);
+	font-family: var(--font-family-icon);
+	font-size: 15px;
+	margin-top: 5px;
+}
+.media-menu .app-volume-container .unmute-button {
+	color: rgb(143, 188, 187);
+}
+
+/* NEW MEDIA WIDGET */
+.media-widget {
+	padding: 0 6px;
+	margin: 0 3px;
+    border-radius: 0;
+}
+.media-widget .label {
+	color: rgb(46, 52, 64);
+	padding: 0 4px;
+	font-size: 11px;
+}
+.media-widget .btn {
+	font-family: var(--font-family-icon);
+	color: rgb(76, 86, 106);
+	padding: 0 3px;
+	margin: 4px 0;
+}
+.media-widget .btn:hover {
+	color: rgb(46, 52, 64);
+}
+.media-widget .btn.play {
+	font-size: 16px;
+}
+.media-widget .btn.disabled:hover,
+.media-widget .btn.disabled {
+	color: rgb(76, 86, 106);
+	font-size: 12px;
+}
+
+/* SYSTEM WIDGET */
+/* Grey Sys Widget: Remove colour attribute */
+.system-widget .label {
+	font-size: 24px;
+	color: rgb(94, 129, 172);
+}
+
+/* DARK THEME BELOW */
+
+*.dark .label {
+	color: rgb(236, 239, 244);
+}
+
+.yasb-bar.dark {
+    background-color: rgb(46, 52, 64);
+}
+
+*.dark .komorebi-workspaces .ws-btn {
+    color: rgb(76, 86, 106);
+}
+*.dark .komorebi-workspaces .ws-btn:hover {
+    color: rgb(129, 161, 193);
+}
+*.dark .komorebi-workspaces .ws-btn.populated {
+	color: rgb(76, 86, 106);
+}
+*.dark .komorebi-workspaces .ws-btn.active {
+    color: rgb(129, 161, 193);
+}
+
+/* Blue Power Button: rgb(94, 129, 172); */
+*.dark .power-menu-widget .label {
+	color: rgb(191, 97, 106);
+}
+
+/* NEW MEDIA WIDGET */
+*.dark .media-widget .label {
+	color: rgb(216, 222, 233);
+}
+*.dark .media-widget .btn {
+	color: rgb(216, 222, 233);
+}
+*.dark .media-widget .btn:hover {
+	color: rgb(236, 239, 244);
+}
+*.dark .media-widget .btn.disabled:hover,
+*.dark .media-widget .btn.disabled {
+	color: rgb(216, 222, 233);
+}
+
+/* SYSTEM WIDGET */
+/* Grey Sys Widget: Remove colour attribute */
+*.dark .system-widget .label {
+	font-size: 24px;
+	color: rgb(94, 129, 172);
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.41/schema.json",
+  "app_specific_configuration_path": "$env:KOMOREBI_CONFIG_HOME/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "display_index_preferences": {
+    "0": "7PVFB34",
+    "1": "000000000001"
+  },
+  "default_workspace_padding": 2,
+  "default_container_padding": 2,
+  "border": true,
+  "border_width": 5,
+  "border_offset": -1,
+  "theme": {
+    "palette": "Base16",
+    "name": "Nord",
+    "unfocused_border": "Base03",
+    "bar_accent": "Base0D"
+  },
+  "monitors": [
+    {
+      "workspaces": [
+        {
+          "name": "1",
+          "layout": "Columns"
+        },
+        {
+          "name": "2",
+          "layout": "Columns"
+        },
+        {
+          "name": "3",
+          "layout": "Columns"
+        },
+        {
+          "name": "4",
+          "layout": "Columns"
+        },
+        {
+          "name": "5",
+          "layout": "Columns"
+        },
+        {
+          "name": "6",
+          "layout": "Columns"
+        },
+        {
+          "name": "7",
+          "layout": "Columns"
+        },
+        {
+          "name": "8",
+          "layout": "Columns"
+        },
+        {
+          "name": "9",
+          "layout": "Columns"
+        }
+      ]
+    },
+    {
+      "workspaces": [
+        {
+          "name": "0",
+          "layout": "Scrolling",
+          "layout_options": {
+            "scrolling": {
+              "columns": 1,
+              "center_focused_column": true
+            }
+          },
+          "workspace_padding": 2,
+          "container_padding": 2,
+          "workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "AppleMusic.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Discord.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "LINE.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "thunderbird.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

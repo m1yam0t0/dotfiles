@@ -1,0 +1,8 @@
+[user]
+    name = {{ onepasswordRead "op://personal/gitconfig/name" | quote }}
+    email = {{ onepasswordRead "op://personal/gitconfig/email" | quote }}
+    signingkey = ~/.ssh/id_ed25519_git_signing
+[commit]
+    gpgsign = true
+[gpg]
+    format = ssh

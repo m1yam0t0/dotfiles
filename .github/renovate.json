@@ -3,8 +3,6 @@
   "extends": [
     "config:recommended",
     ":automergeAll",
-    ":prHourlyLimitNone",
-    "github>aquaproj/aqua-renovate-config#2.13.0",
-    "github>aquaproj/aqua-renovate-config:file#2.13.0(dot_config/aquaproj-aqua/imports/.*\\.yaml)"
+    ":prHourlyLimitNone"
   ]
 }
