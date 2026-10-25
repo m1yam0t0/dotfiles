@@ -1,9 +1,4 @@
 {{- if ne .chezmoi.os "windows" -}}
-[".config/dircolors"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/nordtheme/dircolors/develop/src/dir_colors"
-    refreshPeriod = "168h"
-
 [".local/share/nvim/lazy/lazy.nvim"]
     type = "git-repo"
     url = "https://github.com/folke/lazy.nvim.git"
