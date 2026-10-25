@@ -8,6 +8,8 @@
 .tig_history
 .config/aquaproj-aqua
 .config/wezterm
+.ssh/id_ed25519_sk
+.ssh/id_ed25519_sk.pub
 .local/share/zsh/plugins/powerlevel10k
 .local/share/zsh/plugins/zsh-syntax-highlighting
 .local/share/zsh/plugins/zsh-autosuggestions
