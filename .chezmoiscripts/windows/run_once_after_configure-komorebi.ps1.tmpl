@@ -1,4 +1,21 @@
 {{ if not .headless -}}
+$ErrorActionPreference = 'Stop'
+
 $komorebiConfigHome = Join-Path $env:USERPROFILE '.config\komorebi'
 [Environment]::SetEnvironmentVariable('KOMOREBI_CONFIG_HOME', $komorebiConfigHome, 'User')
+$env:KOMOREBI_CONFIG_HOME = $komorebiConfigHome
+
+# Include PATH entries added by the package installation scripts.
+$env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' +
+    [Environment]::GetEnvironmentVariable('Path', 'User') + ';' + $env:Path
+
+komorebic enable-autostart --whkd
+if ($LASTEXITCODE -ne 0) {
+    throw 'Failed to enable komorebi and whkd autostart.'
+}
+
+yasbc enable-autostart
+if ($LASTEXITCODE -ne 0) {
+    throw 'Failed to enable YASB autostart.'
+}
 {{ end -}}
