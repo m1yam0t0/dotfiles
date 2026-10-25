@@ -38,9 +38,5 @@
     syntax-theme = Nord
 [ghq]
     root = ~/src
-{{ if .private -}}
-{{ onepasswordRead "op://personal/gitconfig/gitconfig_local" }}
-{{ else -}}
 [include]
     path = ~/.gitconfig.local
-{{ end -}}

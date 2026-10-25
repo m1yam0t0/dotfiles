@@ -36,6 +36,8 @@ Documents/**
 .ssh/id_ed25519_sk
 .ssh/id_ed25519
 .ssh/id_ed25519.pub
+.ssh/id_ed25519_git_signing
+.ssh/id_ed25519_git_signing.pub
 {{ end }}
 
 {{ if not .wsl }}
@@ -47,6 +49,7 @@ Documents/**
 {{ end }}
 
 {{ if not .private }}
+.gitconfig.local
 .config/mise/**
 .config/sops/**
 .mc/**
