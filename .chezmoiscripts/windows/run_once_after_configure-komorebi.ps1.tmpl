@@ -1,0 +1,4 @@
+{{ if not .headless -}}
+$komorebiConfigHome = Join-Path $env:USERPROFILE '.config\komorebi'
+[Environment]::SetEnvironmentVariable('KOMOREBI_CONFIG_HOME', $komorebiConfigHome, 'User')
+{{ end -}}
