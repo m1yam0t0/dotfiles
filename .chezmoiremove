@@ -7,3 +7,6 @@
 .ssh/id_rsa*
 .tig_history
 .config/aquaproj-aqua
+.local/share/zsh/plugins/powerlevel10k
+.local/share/zsh/plugins/zsh-syntax-highlighting
+.local/share/zsh/plugins/zsh-autosuggestions
