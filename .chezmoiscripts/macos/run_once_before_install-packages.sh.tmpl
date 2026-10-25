@@ -20,8 +20,6 @@ fi
 # install packages via homebrew
 brew bundle --file=/dev/stdin <<EOF
 brew "coreutils"
-brew "tig"
-brew "tmux"
 brew "zsh"
 {{ if not .headless }}
 cask "1password"

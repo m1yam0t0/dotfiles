@@ -14,6 +14,4 @@ sudo apt upgrade -y
 sudo apt install -y \
 	ca-certificates \
 	locales \
-	tig \
-	tmux \
 	zsh
