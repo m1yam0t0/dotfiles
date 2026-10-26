@@ -31,6 +31,8 @@ jobs:
           CHEZMOI_TEST_COMMAND="${HOME}/.local/bin/chezmoi" bash .tests/test-bootstrap-onepassword.sh
           bash .bootstrap-onepassword.sh
           "${HOME}/.local/state/nix/profiles/onepassword-bootstrap/bin/op" --version
+      - name: Test package updates with a fresh PATH
+        run: bash .tests/test-update-packages.sh
       - name: Apply checked-out dotfiles
         run: '"${HOME}/.local/bin/chezmoi" init --source "${GITHUB_WORKSPACE}" --apply'
       - name: Remove chezmoi binary
