@@ -35,7 +35,6 @@
     {
       packages = lib.genAttrs systems (system: {
         home-manager = home-manager.packages.${system}.home-manager;
-        onepassword-cli = (mkPkgs system)._1password-cli;
       });
 
       homeConfigurations = builtins.listToAttrs (map (system: {

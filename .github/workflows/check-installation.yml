@@ -26,11 +26,10 @@ jobs:
       - uses: actions/checkout@v7
       - name: Install chezmoi
         run: sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- -b "${HOME}/.local/bin"
-      - name: Test 1Password bootstrap
+      - name: Test initial setup
         run: |
-          CHEZMOI_TEST_COMMAND="${HOME}/.local/bin/chezmoi" bash .tests/test-bootstrap-onepassword.sh
-          bash .bootstrap-onepassword.sh
-          "${HOME}/.local/state/nix/profiles/onepassword-bootstrap/bin/op" --version
+          bash .tests/test-install.sh
+          bash .tests/test-install-downloads.sh
       - name: Test package updates with a fresh PATH
         run: bash .tests/test-update-packages.sh
       - name: Apply checked-out dotfiles

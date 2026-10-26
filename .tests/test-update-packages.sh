@@ -29,12 +29,6 @@ if [ "${name}" = gh ]; then
 			exit 1
 		fi
 		;;
-	'auth login')
-		if [ "${UPDATE_TEST_FAIL_LOGIN:-0}" = 1 ]; then
-			exit 43
-		fi
-		: >"${UPDATE_TEST_LOG}.authenticated"
-		;;
 	'extension upgrade')
 		if [ "${UPDATE_TEST_FAIL_GH:-0}" = 1 ]; then
 			exit 42
@@ -60,27 +54,14 @@ PATH="${test_dir}/empty-path" "${bash_command}" "${script}"
 test "$(cat "${UPDATE_TEST_LOG}")" = \
 	$'gh auth status --hostname github.com --active\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
 
-# First-time login runs before updates, and later invocations reuse it.
+# Authentication is completed by .install.sh before chezmoi starts.
 export UPDATE_TEST_NEEDS_LOGIN=1
-: >"${UPDATE_TEST_LOG}"
-PATH="${test_dir}/empty-path" "${bash_command}" "${script}"
-test "$(cat "${UPDATE_TEST_LOG}")" = \
-	$'gh auth status --hostname github.com --active\ngh auth login --hostname github.com --git-protocol https --web\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
-: >"${UPDATE_TEST_LOG}"
-PATH="${test_dir}/empty-path" "${bash_command}" "${script}"
-test "$(cat "${UPDATE_TEST_LOG}")" = \
-	$'gh auth status --hostname github.com --active\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
-
-# A canceled login must stop before updating any plugins.
-rm "${UPDATE_TEST_LOG}.authenticated"
-export UPDATE_TEST_FAIL_LOGIN=1
 : >"${UPDATE_TEST_LOG}"
 status=0
 PATH="${test_dir}/empty-path" "${bash_command}" "${script}" || status=$?
-test "${status}" = 43
-test "$(cat "${UPDATE_TEST_LOG}")" = \
-	$'gh auth status --hostname github.com --active\ngh auth login --hostname github.com --git-protocol https --web'
-unset UPDATE_TEST_FAIL_LOGIN UPDATE_TEST_NEEDS_LOGIN
+test "${status}" = 1
+test "$(cat "${UPDATE_TEST_LOG}")" = 'gh auth status --hostname github.com --active'
+unset UPDATE_TEST_NEEDS_LOGIN
 
 # Do not hide a failed update by continuing to later tools.
 : >"${UPDATE_TEST_LOG}"

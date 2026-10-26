@@ -36,13 +36,3 @@
     wsl = {{ $wsl }}
     github_actions = {{ $github_actions }}
     private = {{ $private }}
-
-{{ if and $private (or (eq .chezmoi.os "darwin") (eq $osBase "debian")) }}
-# Secrets are rendered before Home Manager installs the regular op binary.
-[onepassword]
-    command = {{ joinPath .chezmoi.homeDir ".local/state/nix/profiles/onepassword-bootstrap/bin/op" | quote }}
-
-[hooks.read-source-state.pre]
-    command = "bash"
-    args = [{{ joinPath .chezmoi.sourceDir ".bootstrap-onepassword.sh" | quote }}, "--setup-account"]
-{{ end }}

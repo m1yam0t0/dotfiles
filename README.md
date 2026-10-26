@@ -9,28 +9,33 @@ m1yam0t0's dotfiles. managed with [chezmoi](https://github.com/twpayne/chezmoi).
 ### MacOS, Ubuntu
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init m1yam0t0 --apply
-rm -f ${HOME}/.local/bin/chezmoi
+bash -c "$(curl -fsLS https://raw.githubusercontent.com/m1yam0t0/dotfiles/main/.install.sh)" --
 ```
 
-On private machines, a source-state hook installs Nix and a bootstrap 1Password
-CLI before chezmoi renders templates that read secrets. If no 1Password account
-is configured, the hook starts `op account add` and prompts for the account
-details. chezmoi then prompts for sign-in when reading secrets. Home Manager
-manages the regular CLI installation afterward.
+The installer downloads missing `chezmoi`, `op`, and `gh` binaries, configures
+1Password and GitHub authentication, then runs `chezmoi init --apply`. Enter
+your 1Password account details and follow GitHub's browser authentication when
+prompted. Existing installations and authenticated accounts are reused.
 
-Before updating GitHub CLI extensions, setup checks the active account on
-github.com and starts `gh auth login --web` if needed. Follow the displayed URL
-and device code to authorize it. Both initial setups run within the same
-`chezmoi init --apply` invocation; configured accounts are reused.
+The 1Password session is passed to chezmoi through the process environment.
+Initial setup binaries are stored in
+`${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/bootstrap/bin`, which is added
+only to the installer's PATH. Home Manager manages the regular packages after
+the initial setup. ZIP files are extracted with `unzip` or Python 3. On Ubuntu,
+the installer installs `unzip` with sudo if neither extractor is available.
 
-If an earlier installation stopped with `op: executable file not found`, update
-the source checkout to include this fix, then regenerate the chezmoi config and
-resume the installation:
+To install from a branch, download the script from the same branch and pass
+`--branch` to chezmoi:
 
 ```sh
-~/.local/bin/chezmoi init --apply
+bash -c "$(curl -fsLS https://raw.githubusercontent.com/m1yam0t0/dotfiles/refs/heads/m1yam0t0/fix-linux-installation/.install.sh)" -- \
+  --branch m1yam0t0/fix-linux-installation
 ```
+
+From an existing source checkout, run `bash .install.sh --branch <branch>`.
+Maintainers can use `bash .install.sh --download-only` to check binary downloads
+without authenticating or applying dotfiles. The shell installer supports
+Linux and macOS on amd64 and arm64. The Windows PowerShell setup is separate.
 
 ### Windows
 
