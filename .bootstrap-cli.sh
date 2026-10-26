@@ -48,10 +48,14 @@ extract_zip() {
 	fi
 }
 
-install_chezmoi() {
-	if command -v chezmoi >/dev/null 2>&1; then return; fi
-	curl -fsSL https://get.chezmoi.io -o "${workdir}/chezmoi-installer"
-	sh "${workdir}/chezmoi-installer" -b "${bootstrap_bin}"
+record_bootstrap_binary() {
+	local digest
+	if command -v sha256sum >/dev/null 2>&1; then
+		digest="$(sha256sum <"${bootstrap_bin}/$1")"
+	else
+		digest="$(shasum -a 256 <"${bootstrap_bin}/$1")"
+	fi
+	printf '%s %s\n' "${digest%% *}" "$1" >>"${cleanup_manifest}"
 }
 
 install_op() {
@@ -69,6 +73,7 @@ install_op() {
 	verify_sha256 "${workdir}/${archive}" "${checksum}"
 	extract_zip "${workdir}/${archive}" "${workdir}/op"
 	install -m 755 "${workdir}/op/op" "${bootstrap_bin}/op"
+	record_bootstrap_binary op
 }
 
 install_gh() {
@@ -96,20 +101,17 @@ install_gh() {
 		extract_zip "${workdir}/${archive}" "${workdir}"
 	fi
 	install -m 755 "${workdir}/${package}/bin/gh" "${bootstrap_bin}/gh"
+	record_bootstrap_binary gh
 }
 
 authenticate() {
-	local accounts session
-	if ! op whoami >/dev/null 2>&1; then
+	local accounts
+	if [ "${mode}" = --setup-private ]; then
 		accounts="$(op account list --format=json)"
 		if [[ "${accounts}" =~ ^[[:space:]]*\[[[:space:]]*\][[:space:]]*$ ]]; then
 			op account add
 		fi
-		session="$(op signin --raw)"
-		if [ -n "${session}" ]; then
-			export OP_SESSION="${session}"
-		fi
-		op whoami >/dev/null
+		# chezmoi signs in itself so its process retains the session token.
 	fi
 	if ! gh auth status --hostname github.com --active >/dev/null 2>&1; then
 		gh auth login --hostname github.com --git-protocol https --web
@@ -119,29 +121,31 @@ authenticate() {
 main() (
 	set -euo pipefail
 	umask 077
-	local os arch bootstrap_bin workdir download_only=false
-	if [ "${1:-}" = --download-only ]; then
-		download_only=true
-		shift
-	fi
+	local os arch bootstrap_bin cleanup_manifest workdir wrapper_source mode="${1:---setup}"
+	case "${mode}" in
+	--setup|--setup-private|--download-only) ;;
+	*) echo "Unknown bootstrap mode: ${mode}" >&2; return 1 ;;
+	esac
 	detect_platform
-	bootstrap_bin="${XDG_STATE_HOME:-${HOME}/.local/state}/dotfiles/bootstrap/bin"
-	mkdir -p "${bootstrap_bin}"
-	# Prefer existing installations; expose downloaded binaries to child processes.
-	export PATH="${PATH}:${bootstrap_bin}"
+	bootstrap_bin="${HOME}/.local/bin"
+	cleanup_manifest="${XDG_STATE_HOME:-${HOME}/.local/state}/dotfiles/bootstrap/cleanup"
+	mkdir -p "${bootstrap_bin}" "$(dirname "${cleanup_manifest}")"
+	wrapper_source="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.bootstrap-op.sh"
+	install -m 755 "${wrapper_source}" "$(dirname "${cleanup_manifest}")/op"
+	export PATH="${HOME}/.nix-profile/bin:${bootstrap_bin}:${PATH}"
+	if [ "${CHEZMOI_COMMAND:-}" = init ] && [ "${DOTFILES_CHEZMOI_EXECUTABLE:-}" = "${bootstrap_bin}/chezmoi" ] && [ -f "${bootstrap_bin}/chezmoi" ]; then
+		record_bootstrap_binary chezmoi
+	fi
 	workdir="$(mktemp -d)"
 	trap 'rm -rf "${workdir}"' EXIT
-	install_chezmoi
 	install_op
 	install_gh
-	if "${download_only}"; then
-		chezmoi --version
+	if [ "${mode}" = --download-only ]; then
 		op --version
 		gh --version
 		return
 	fi
 	authenticate
-	chezmoi init m1yam0t0 --apply "$@"
 )
 
 if [[ "${BASH_SOURCE[0]:-$0}" == "$0" ]]; then

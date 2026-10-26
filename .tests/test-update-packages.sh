@@ -54,7 +54,7 @@ PATH="${test_dir}/empty-path" "${bash_command}" "${script}"
 test "$(cat "${UPDATE_TEST_LOG}")" = \
 	$'gh auth status --hostname github.com --active\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
 
-# Authentication is completed by .install.sh before chezmoi starts.
+# Authentication is completed by the source-state hook before plugin updates.
 export UPDATE_TEST_NEEDS_LOGIN=1
 : >"${UPDATE_TEST_LOG}"
 status=0

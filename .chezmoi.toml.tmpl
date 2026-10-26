@@ -36,3 +36,17 @@
     wsl = {{ $wsl }}
     github_actions = {{ $github_actions }}
     private = {{ $private }}
+
+{{ if or (eq .chezmoi.os "darwin") (eq $osBase "debian") }}
+[env]
+    DOTFILES_CHEZMOI_EXECUTABLE = {{ .chezmoi.executable | quote }}
+
+[hooks.read-source-state.pre]
+    command = "bash"
+    args = [{{ joinPath .chezmoi.sourceDir ".bootstrap-cli.sh" | quote }}, {{ if $github_actions }}"--download-only"{{ else if $private }}"--setup-private"{{ else }}"--setup"{{ end }}]
+
+{{ if $private }}
+[onepassword]
+    command = {{ joinPath (env "XDG_STATE_HOME" | default (joinPath .chezmoi.homeDir ".local/state")) "dotfiles/bootstrap/op" | quote }}
+{{ end }}
+{{ end }}

@@ -17,7 +17,7 @@ source "${HOME}/.zshenv"
 
 # GitHub CLI
 if ! gh auth status --hostname github.com --active >/dev/null 2>&1; then
-	echo 'GitHub authentication is required. Run the dotfiles .install.sh first.' >&2
+	echo 'GitHub authentication is required. Run chezmoi init --apply to configure it.' >&2
 	exit 1
 fi
 echo "Update gh extensions..."
