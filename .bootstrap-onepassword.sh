@@ -7,7 +7,7 @@ if [ -x "${bootstrap_profile}/bin/op" ]; then
 	exit 0
 fi
 
-source_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 bash "${source_dir}/.chezmoiscripts/run_before_install-nix.sh"
 
 # The installer runs in a child shell, so load Nix again in this process.

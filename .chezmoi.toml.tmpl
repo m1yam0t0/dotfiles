@@ -44,5 +44,5 @@
 
 [hooks.read-source-state.pre]
     command = "bash"
-    args = [{{ joinPath .chezmoi.sourceDir ".chezmoiscripts/bootstrap-onepassword.sh" | quote }}]
+    args = [{{ joinPath .chezmoi.sourceDir ".bootstrap-onepassword.sh" | quote }}]
 {{ end }}

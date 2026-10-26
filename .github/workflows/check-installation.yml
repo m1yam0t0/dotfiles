@@ -28,8 +28,8 @@ jobs:
         run: sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- -b "${HOME}/.local/bin"
       - name: Test 1Password bootstrap
         run: |
-          bash .tests/test-bootstrap-onepassword.sh
-          bash .chezmoiscripts/bootstrap-onepassword.sh
+          CHEZMOI_TEST_COMMAND="${HOME}/.local/bin/chezmoi" bash .tests/test-bootstrap-onepassword.sh
+          bash .bootstrap-onepassword.sh
           "${HOME}/.local/state/nix/profiles/onepassword-bootstrap/bin/op" --version
       - name: Apply checked-out dotfiles
         run: '"${HOME}/.local/bin/chezmoi" init --source "${GITHUB_WORKSPACE}" --apply'
