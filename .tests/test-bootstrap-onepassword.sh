@@ -55,6 +55,42 @@ test "$(cat "${BOOTSTRAP_TEST_LOG}")" = $'installer\nnix'
 bash "${hook}"
 test "$(cat "${BOOTSTRAP_TEST_LOG}")" = $'installer\nnix'
 
+# The setup hook registers an account only when none are configured.
+cat >"${op}" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+printf '%s\n' "$*" >>"${BOOTSTRAP_TEST_LOG}.accounts"
+case "$*" in
+'account list --format=json')
+	if [ -e "${BOOTSTRAP_TEST_LOG}.registered" ]; then
+		printf '[{"account_uuid":"test-account"}]\n'
+	else
+		printf '[\n  \n]\n'
+	fi
+	;;
+'account add')
+	if [ "${BOOTSTRAP_TEST_FAIL_ACCOUNT:-0}" = 1 ]; then
+		exit 43
+	fi
+	: >"${BOOTSTRAP_TEST_LOG}.registered"
+	;;
+*) exit 44 ;;
+esac
+EOF
+bash "${hook}" --setup-account
+test "$(cat "${BOOTSTRAP_TEST_LOG}.accounts")" = $'account list --format=json\naccount add'
+: >"${BOOTSTRAP_TEST_LOG}.accounts"
+bash "${hook}" --setup-account
+test "$(cat "${BOOTSTRAP_TEST_LOG}.accounts")" = 'account list --format=json'
+
+# Do not continue after a canceled account registration.
+rm "${BOOTSTRAP_TEST_LOG}.registered"
+export BOOTSTRAP_TEST_FAIL_ACCOUNT=1
+status=0
+bash "${hook}" --setup-account || status=$?
+test "${status}" = 43
+test ! -e "${BOOTSTRAP_TEST_LOG}.registered"
+
 rm "${op}"
 export BOOTSTRAP_TEST_FAIL=1
 status=0

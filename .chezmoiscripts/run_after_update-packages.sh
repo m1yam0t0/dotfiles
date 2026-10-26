@@ -16,6 +16,10 @@ export PATH="${HOME}/.nix-profile/bin:${PATH}"
 source "${HOME}/.zshenv"
 
 # GitHub CLI
+if ! gh auth status --hostname github.com --active >/dev/null 2>&1; then
+	echo "Sign in to GitHub to continue..."
+	gh auth login --hostname github.com --git-protocol https --web
+fi
 echo "Update gh extensions..."
 gh extension upgrade --all
 
