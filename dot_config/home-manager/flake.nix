@@ -23,17 +23,19 @@
       unfreePackageNames = [
         "1password-cli"
       ];
+      mkPkgs = system: import nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackageNames;
+      };
       mkHome = system: home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackageNames;
-        };
+        pkgs = mkPkgs system;
         modules = [ ./home.nix ];
       };
     in
     {
       packages = lib.genAttrs systems (system: {
         home-manager = home-manager.packages.${system}.home-manager;
+        onepassword-cli = (mkPkgs system)._1password-cli;
       });
 
       homeConfigurations = builtins.listToAttrs (map (system: {
