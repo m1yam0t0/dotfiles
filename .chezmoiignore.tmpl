@@ -1,6 +1,11 @@
 LICENSE
 README.md
 
+{{ if and (ne .chezmoi.os "darwin") (ne .osbase "debian") }}
+.chezmoiscripts/install-nix.sh
+.chezmoiscripts/apply-nix-home-manager.sh
+{{ end }}
+
 {{ if ne .chezmoi.os "darwin" }}
 .chezmoiscripts/macos/**
 .config/karabiner/**
@@ -32,8 +37,6 @@ Documents/**
 
 {{ if .headless }}
 .config/karabiner/**
-.config/wezterm/**
-.ssh/id_ed25519_sk
 .ssh/id_ed25519
 .ssh/id_ed25519.pub
 .ssh/id_ed25519_git_signing
@@ -42,16 +45,24 @@ Documents/**
 
 {{ if not .wsl }}
 .chezmoiscripts/debian/wsl/**
+.local/bin/xdg-open
 {{ end }}
 
 {{ if .github_actions }}
 .chezmoiscripts/windows/install-wsl.ps1
+.chezmoiscripts/chsh.sh
+.chezmoiscripts/macos/set-preferences.sh
+.chezmoiscripts/update-packages.sh
+{{ end }}
+
+{{ if .private }}
+.chezmoiscripts/ensure-local-nix.sh
 {{ end }}
 
 {{ if not .private }}
 .gitconfig.local
+.config/home-manager/packages/local.nix
 .config/mise/**
 .config/sops/**
-.mc/**
 .ssh/**
 {{ end }}

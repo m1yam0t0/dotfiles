@@ -3,11 +3,7 @@
 #-----------------------------------------------------------
 # terminal color
 export TERM='xterm-256color'
-{{- if eq .chezmoi.os "darwin" }}
-eval $(gdircolors "$XDG_CONFIG_HOME"/dircolors)
-{{- else }}
-eval $(dircolors "$XDG_CONFIG_HOME"/dircolors)
-{{- end }}
+source "${ZDOTDIR}/ls-colors.zsh"
 
 setopt no_beep
 

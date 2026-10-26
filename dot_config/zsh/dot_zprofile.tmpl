@@ -1,6 +1,8 @@
 {{ if eq .chezmoi.os "darwin" -}}
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
+# Prefer CLI tools managed by Home Manager over Homebrew and system tools.
+export PATH="${HOME}/.nix-profile/bin:${PATH}"
 {{ end -}}
 
 {{- if .wsl -}}

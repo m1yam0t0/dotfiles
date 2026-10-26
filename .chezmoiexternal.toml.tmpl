@@ -1,27 +1,4 @@
 {{- if ne .chezmoi.os "windows" -}}
-[".config/dircolors"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/nordtheme/dircolors/develop/src/dir_colors"
-    refreshPeriod = "168h"
-
-[".local/share/zsh/plugins/powerlevel10k"]
-    type = "git-repo"
-    url = "https://github.com/romkatv/powerlevel10k.git"
-    refreshPeriod = "168h"
-    clone.args = ["--depth", "1"]
-
-[".local/share/zsh/plugins/zsh-syntax-highlighting"]
-    type = "git-repo"
-    url = "https://github.com/zsh-users/zsh-syntax-highlighting.git"
-    refreshPeriod = "168h"
-    clone.args = ["--depth", "1"]
-
-[".local/share/zsh/plugins/zsh-autosuggestions"]
-    type = "git-repo"
-    url = "https://github.com/zsh-users/zsh-autosuggestions.git"
-    refreshPeriod = "168h"
-    clone.args = ["--depth", "1"]
-
 [".local/share/nvim/lazy/lazy.nvim"]
     type = "git-repo"
     url = "https://github.com/folke/lazy.nvim.git"
@@ -32,14 +9,6 @@
 [".local/bin/wsl2-ssh-agent"]
     type = "file"
     url = "https://github.com/mame/wsl2-ssh-agent/releases/latest/download/wsl2-ssh-agent"
-    executable = true
-    refreshPeriod = "168h"
-{{- end }}
-
-{{ if .private -}}
-[".local/bin/mc"]
-    type = "file"
-    url = "https://dl.min.io/client/mc/release/{{ .chezmoi.os }}-{{ .chezmoi.arch }}/mc"
     executable = true
     refreshPeriod = "168h"
 {{- end }}

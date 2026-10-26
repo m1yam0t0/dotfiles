@@ -1,0 +1,2 @@
+#!/bin/sh
+/mnt/c/Windows/System32/rundll32.exe url.dll,FileProtocolHandler "$1"
