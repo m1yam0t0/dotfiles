@@ -71,6 +71,12 @@ iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b $HOME/.local/bin -- init m1yam0t0
 rm $HOME/.local/bin/chezmoi.exe
 ```
 
+After applying the dotfiles, PowerShell can manage GitHub CLI extensions with
+`gh-ext install` and `gh-ext upgrade` (`gh-ext.ps1 install` also works).
+Both commands use `~/.config/gh/extension-list`, or
+`$env:XDG_CONFIG_HOME/gh/extension-list` when `XDG_CONFIG_HOME` is set.
+`upgrade` also saves the installed extension repositories back to that list.
+
 ## GitHub Actions dependencies
 
 Workflow action dependencies are pinned in `.github/workflows/actions.lock`.

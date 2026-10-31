@@ -29,6 +29,12 @@ jobs:
       - name: Test WSL installation detection
         shell: pwsh
         run: ./scripts/test-install-wsl.ps1
+      - name: Test GitHub CLI extension management (PowerShell)
+        shell: pwsh
+        run: ./scripts/test-gh-ext.ps1
+      - name: Test GitHub CLI extension management (Windows PowerShell)
+        shell: powershell
+        run: ./scripts/test-gh-ext.ps1
       - name: Run PSScriptAnalyzer
         uses: microsoft/psscriptanalyzer-action@v1.1
         with:
