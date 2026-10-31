@@ -7,16 +7,20 @@ trap 'rm -rf "${test_dir}"' EXIT
 chezmoi_command="${CHEZMOI_TEST_COMMAND:-$(command -v chezmoi)}"
 fixture_home="${test_dir}/home"
 fixture_source="${test_dir}/source with spaces"
-mkdir -p "${fixture_home}/.local/bin" "${fixture_source}/.chezmoiscripts" "${test_dir}/tools"
+fixture_home_source="${fixture_source}/home"
+mkdir -p "${fixture_home}/.local/bin" "${fixture_home_source}/.chezmoiscripts" \
+	"${fixture_source}/scripts" "${test_dir}/tools"
 cp "${chezmoi_command}" "${fixture_home}/.local/bin/chezmoi"
-cp "${source_dir}/.chezmoi.toml.tmpl" "${fixture_source}/"
-cp "${source_dir}/.chezmoiscripts/run_after_zz_cleanup-bootstrap.sh" "${fixture_source}/.chezmoiscripts/"
-printf '{{ onepasswordRead "op://test/item/field" }}\n' >"${fixture_source}/dot_secret.tmpl"
+cp "${source_dir}/.chezmoiroot" "${fixture_source}/"
+cp "${source_dir}/home/.chezmoi.toml.tmpl" "${fixture_home_source}/"
+cp "${source_dir}/home/.chezmoiscripts/run_after_zz_cleanup-bootstrap.sh" "${fixture_home_source}/.chezmoiscripts/"
+printf '{{ onepasswordRead "op://test/item/field" }}\n' >"${fixture_home_source}/dot_secret.tmpl"
+printf 'Repository-only documentation.\n' >"${fixture_source}/README.md"
 
-cat >"${fixture_source}/.bootstrap-cli.sh" <<'EOF'
+cat >"${fixture_source}/scripts/bootstrap-cli.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
-# shellcheck source=.bootstrap-cli.sh
+# shellcheck source=scripts/bootstrap-cli.sh
 source "${BOOTSTRAP_TEST_LIBRARY}"
 install_op() {
 	if [ -x "${HOME}/.nix-profile/bin/op" ]; then return; fi
@@ -59,14 +63,14 @@ case "$*" in
 *) exit 45 ;;
 esac
 EOF
-cat >"${fixture_source}/.chezmoiscripts/run_before_verify-bootstrap.sh" <<'EOF'
+cat >"${fixture_home_source}/.chezmoiscripts/run_before_verify-bootstrap.sh" <<'EOF'
 #!/bin/sh
 set -eu
 test -e "${HOME}/account-registered"
 test -e "${HOME}/github-authenticated"
 echo before >>"${BOOTSTRAP_TEST_LOG}"
 EOF
-cat >"${fixture_source}/.chezmoiscripts/run_after_apply-nix-home-manager.sh" <<'EOF'
+cat >"${fixture_home_source}/.chezmoiscripts/run_after_apply-nix-home-manager.sh" <<'EOF'
 #!/bin/sh
 set -eu
 if [ -x "${HOME}/.nix-profile/bin/chezmoi" ]; then exit 0; fi
@@ -76,7 +80,7 @@ for tool in chezmoi op gh; do
 	chmod +x "${HOME}/.nix-profile/bin/${tool}"
 done
 EOF
-cat >"${fixture_source}/.chezmoiscripts/run_after_update-packages.sh" <<'EOF'
+cat >"${fixture_home_source}/.chezmoiscripts/run_after_update-packages.sh" <<'EOF'
 #!/bin/sh
 set -eu
 echo update >>"${BOOTSTRAP_TEST_LOG}"
@@ -87,13 +91,16 @@ run_chezmoi() {
 		-u OP_CONNECT_HOST -u OP_CONNECT_TOKEN -u GH_TOKEN -u GITHUB_TOKEN \
 		HOME="${fixture_home}" XDG_CONFIG_HOME="${fixture_home}/.config" \
 		XDG_STATE_HOME="${fixture_home}/.local/state" PATH=/usr/bin:/bin:/usr/sbin:/sbin \
-		BOOTSTRAP_TEST_LIBRARY="${source_dir}/.bootstrap-cli.sh" \
+		BOOTSTRAP_TEST_LIBRARY="${source_dir}/scripts/bootstrap-cli.sh" \
 		BOOTSTRAP_TEST_TOOLS="${test_dir}/tools" BOOTSTRAP_TEST_LOG="${test_dir}/calls" \
 		"$1" --config "${test_dir}/config.toml" --persistent-state "${test_dir}/state.boltdb" \
 		--source "${fixture_source}" --override-data '{"chezmoi":{"username":"m1yam0t0"}}' "${@:2}"
 }
 run_chezmoi "${fixture_home}/.local/bin/chezmoi" init --apply
 test "$(cat "${fixture_home}/.secret")" = mock-secret
+test ! -e "${fixture_home}/scripts"
+test ! -e "${fixture_home}/home"
+test ! -e "${fixture_home}/README.md"
 for tool in chezmoi op gh; do
 	test ! -e "${fixture_home}/.local/bin/${tool}"
 	test -x "${fixture_home}/.nix-profile/bin/${tool}"
@@ -106,6 +113,7 @@ calls="$(cat "${test_dir}/calls")"
 
 # The generated configuration must still work after the binaries are removed.
 run_chezmoi "${fixture_home}/.nix-profile/bin/chezmoi" apply
+test "$(run_chezmoi "${fixture_home}/.nix-profile/bin/chezmoi" managed --include files)" = .secret
 for tool in chezmoi op gh; do
 	test ! -e "${fixture_home}/.local/bin/${tool}"
 done
@@ -120,7 +128,7 @@ manifest="${fixture_home}/.local/state/dotfiles/bootstrap/cleanup"
 printf changed >"${fixture_home}/.local/bin/op"
 printf 'different-checksum op\n' >"${manifest}"
 env HOME="${fixture_home}" XDG_STATE_HOME="${fixture_home}/.local/state" \
-	bash "${source_dir}/.chezmoiscripts/run_after_zz_cleanup-bootstrap.sh"
+	bash "${source_dir}/home/.chezmoiscripts/run_after_zz_cleanup-bootstrap.sh"
 test "$(cat "${fixture_home}/.local/bin/op")" = changed
 
 # An incomplete Home Manager activation must leave bootstrap files intact.
@@ -128,7 +136,7 @@ rm "${fixture_home}/.nix-profile/bin/gh"
 printf 'different-checksum op\n' >"${manifest}"
 status=0
 env HOME="${fixture_home}" XDG_STATE_HOME="${fixture_home}/.local/state" \
-	bash "${source_dir}/.chezmoiscripts/run_after_zz_cleanup-bootstrap.sh" || status=$?
+	bash "${source_dir}/home/.chezmoiscripts/run_after_zz_cleanup-bootstrap.sh" || status=$?
 test "${status}" = 1
 test -f "${fixture_home}/.local/bin/op"
 test -f "${manifest}"

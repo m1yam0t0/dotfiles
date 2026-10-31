@@ -130,7 +130,7 @@ main() (
 	bootstrap_bin="${HOME}/.local/bin"
 	cleanup_manifest="${XDG_STATE_HOME:-${HOME}/.local/state}/dotfiles/bootstrap/cleanup"
 	mkdir -p "${bootstrap_bin}" "$(dirname "${cleanup_manifest}")"
-	wrapper_source="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.bootstrap-op.sh"
+	wrapper_source="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/bootstrap-op.sh"
 	install -m 755 "${wrapper_source}" "$(dirname "${cleanup_manifest}")/op"
 	export PATH="${HOME}/.nix-profile/bin:${bootstrap_bin}:${PATH}"
 	if [ "${CHEZMOI_COMMAND:-}" = init ] && [ "${DOTFILES_CHEZMOI_EXECUTABLE:-}" = "${bootstrap_bin}/chezmoi" ] && [ -f "${bootstrap_bin}/chezmoi" ]; then

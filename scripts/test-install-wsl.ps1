@@ -1,5 +1,5 @@
 $ErrorActionPreference = 'Stop'
-$installerPath = Join-Path $PSScriptRoot '../.chezmoiscripts/windows/run_once_install-wsl.ps1'
+$installerPath = Join-Path $PSScriptRoot '../home/.chezmoiscripts/windows/run_once_install-wsl.ps1'
 $previousExitCode = $global:LASTEXITCODE
 
 # Shadow the native command so tests never update, install, or modify real WSL.

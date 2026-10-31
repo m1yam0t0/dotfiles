@@ -14,22 +14,22 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Check initial setup scripts
-        run: shellcheck -x .bootstrap-cli.sh .bootstrap-op.sh .tests/test-bootstrap-*.sh .tests/test-update-packages.sh
+        run: shellcheck -x scripts/bootstrap-cli.sh scripts/bootstrap-op.sh scripts/test-bootstrap-*.sh scripts/test-update-packages.sh
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
         with:
-          scandir: .chezmoiscripts
-          ignore_paths: .chezmoiscripts/windows
+          scandir: home/.chezmoiscripts
+          ignore_paths: home/.chezmoiscripts/windows
   PSSrcriptAnalyzer:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
       - name: Test WSL installation detection
         shell: pwsh
-        run: ./.tests/test-install-wsl.ps1
+        run: ./scripts/test-install-wsl.ps1
       - name: Run PSScriptAnalyzer
         uses: microsoft/psscriptanalyzer-action@v1.1
         with:
-          path: .chezmoiscripts/windows
+          path: home/.chezmoiscripts/windows
           recurse: true
           output: results.sarif

@@ -28,11 +28,11 @@ jobs:
         run: sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- -b "${HOME}/.local/bin"
       - name: Test initial setup
         run: |
-          bash .tests/test-bootstrap-cli.sh
-          bash .tests/test-bootstrap-downloads.sh
-          CHEZMOI_TEST_COMMAND="${HOME}/.local/bin/chezmoi" bash .tests/test-bootstrap-lifecycle.sh
+          bash scripts/test-bootstrap-cli.sh
+          bash scripts/test-bootstrap-downloads.sh
+          CHEZMOI_TEST_COMMAND="${HOME}/.local/bin/chezmoi" bash scripts/test-bootstrap-lifecycle.sh
       - name: Test package updates with a fresh PATH
-        run: bash .tests/test-update-packages.sh
+        run: bash scripts/test-update-packages.sh
       - name: Apply checked-out dotfiles
         run: '"${HOME}/.local/bin/chezmoi" init --source "${GITHUB_WORKSPACE}" --apply'
       - name: Remove chezmoi binary

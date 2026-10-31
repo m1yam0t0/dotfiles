@@ -4,8 +4,8 @@ set -euo pipefail
 source_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 test_dir="$(mktemp -d)"
 trap 'rm -rf "${test_dir}"' EXIT
-# shellcheck source=.bootstrap-cli.sh
-source "${source_dir}/.bootstrap-cli.sh"
+# shellcheck source=scripts/bootstrap-cli.sh
+source "${source_dir}/scripts/bootstrap-cli.sh"
 export HOME="${test_dir}/home"
 export XDG_STATE_HOME="${test_dir}/state"
 unset DOTFILES_CHEZMOI_EXECUTABLE

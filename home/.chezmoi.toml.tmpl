@@ -43,7 +43,7 @@
 
 [hooks.read-source-state.pre]
     command = "bash"
-    args = [{{ joinPath .chezmoi.sourceDir ".bootstrap-cli.sh" | quote }}, {{ if $github_actions }}"--download-only"{{ else if $private }}"--setup-private"{{ else }}"--setup"{{ end }}]
+    args = [{{ joinPath .chezmoi.workingTree "scripts/bootstrap-cli.sh" | quote }}, {{ if $github_actions }}"--download-only"{{ else if $private }}"--setup-private"{{ else }}"--setup"{{ end }}]
 
 {{ if $private }}
 [onepassword]

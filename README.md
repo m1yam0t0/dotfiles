@@ -4,6 +4,22 @@
 
 m1yam0t0's dotfiles. managed with [chezmoi](https://github.com/twpayne/chezmoi).
 
+## Repository layout
+
+`.chezmoiroot` selects `home/` as the source state. Only entries in that
+directory define files to place in the home directory.
+
+```text
+home/                 # dotfiles, chezmoi configuration, and .chezmoiscripts
+scripts/              # bootstrap helpers and test scripts
+.github/              # CI and repository configuration
+.chezmoiroot          # contains: home
+```
+
+The bootstrap hook uses the repository's working-tree path to call
+`scripts/bootstrap-cli.sh`. Files under `scripts/`, CI configuration, and
+repository documentation are outside the source state and are not applied.
+
 ## Install
 
 ### MacOS, Ubuntu
@@ -19,7 +35,7 @@ same directory before secret templates are evaluated. The hook registers a
 handles 1Password sign-in when reading secrets, so the session stays in the
 process that needs it. Existing installations and configured accounts are reused.
 
-The regular `.chezmoiscripts` then install Nix, activate Home Manager, and
+The regular `home/.chezmoiscripts` then install Nix, activate Home Manager, and
 update plugins. The final `run_after_zz_cleanup-bootstrap.sh` removes the
 initial `chezmoi`, `op`, and `gh` binaries after verifying that Home Manager
 installed all three replacements. It removes only recorded bootstrap binaries
@@ -40,8 +56,12 @@ sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- -b "$HOME/.local/bin" \
 
 To resume an interrupted setup, use `~/.local/bin/chezmoi init --apply`.
 After successful cleanup, use Home Manager's `chezmoi` for subsequent applies.
-Maintainers can use `bash .bootstrap-cli.sh --download-only` to test downloads
+Maintainers can use `bash scripts/bootstrap-cli.sh --download-only` to test downloads
 without configuring accounts.
+
+After updating an existing checkout from the previous flat layout, run
+`chezmoi init --apply` once to regenerate the hook paths in the configuration.
+Subsequent updates can use `chezmoi apply` normally.
 
 ### Windows
 

@@ -5,7 +5,7 @@ source_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 test_dir="$(mktemp -d)"
 trap 'rm -rf "${test_dir}"' EXIT
 bash_command="$(command -v bash)"
-script="${source_dir}/.chezmoiscripts/run_after_update-packages.sh"
+script="${source_dir}/home/.chezmoiscripts/run_after_update-packages.sh"
 export HOME="${test_dir}/home"
 export UPDATE_TEST_LOG="${test_dir}/calls"
 profile_bin="${HOME}/.nix-profile/bin"

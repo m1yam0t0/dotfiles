@@ -4,8 +4,8 @@ set -euo pipefail
 source_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 test_dir="$(mktemp -d)"
 trap 'rm -rf "${test_dir}"' EXIT
-# shellcheck source=.bootstrap-cli.sh
-source "${source_dir}/.bootstrap-cli.sh"
+# shellcheck source=scripts/bootstrap-cli.sh
+source "${source_dir}/scripts/bootstrap-cli.sh"
 export HOME="${test_dir}/home"
 export XDG_STATE_HOME="${test_dir}/state"
 export BOOTSTRAP_TEST_LOG="${test_dir}/calls"
@@ -58,6 +58,8 @@ test "$(cat "${BOOTSTRAP_TEST_LOG}")" = \
 	$'download-op\ndownload-gh\nop --version\ngh --version'
 
 export -f detect_platform install_op install_gh authenticate op gh main
+# Exported functions lose their source filename; keep the wrapper beside them.
+cd "${source_dir}/scripts"
 export BOOTSTRAP_TEST_OP_FAILURE=42
 : >"${BOOTSTRAP_TEST_LOG}"
 status=0
