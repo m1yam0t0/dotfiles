@@ -13,13 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
-      - name: Check initial setup scripts
-        run: shellcheck -x scripts/bootstrap-cli.sh scripts/bootstrap-op.sh scripts/test-bootstrap-*.sh scripts/test-update-packages.sh home/dot_local/bin/executable_gh-ext
-      - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@2.0.0
+      - name: Install ShellCheck with aqua
+        uses: aquaproj/aqua-installer@v4.1.1
         with:
-          scandir: home/.chezmoiscripts
-          ignore_paths: home/.chezmoiscripts/windows
+          aqua_version: v2.65.2
+          aqua_opts: ""
+      - name: Check initial setup scripts
+        run: aqua exec -- shellcheck -x scripts/bootstrap-cli.sh scripts/bootstrap-op.sh scripts/test-bootstrap-*.sh scripts/test-update-packages.sh home/dot_local/bin/executable_gh-ext
+      - name: Run ShellCheck
+        run: find home/.chezmoiscripts -type f -name '*.sh' ! -path '*/windows/*' -print0 | xargs -0 -r aqua exec -- shellcheck
   PSSrcriptAnalyzer:
     runs-on: windows-latest
     steps:
