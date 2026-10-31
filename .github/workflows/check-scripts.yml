@@ -16,7 +16,7 @@ jobs:
       - name: Check initial setup scripts
         run: shellcheck -x scripts/bootstrap-cli.sh scripts/bootstrap-op.sh scripts/test-bootstrap-*.sh scripts/test-update-packages.sh home/dot_local/bin/executable_gh-ext
       - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
+        uses: ludeeus/action-shellcheck@2.0.0
         with:
           scandir: home/.chezmoiscripts
           ignore_paths: home/.chezmoiscripts/windows
