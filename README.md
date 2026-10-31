@@ -70,3 +70,19 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b $HOME/.local/bin -- init m1yam0t0 --apply"
 rm $HOME/.local/bin/chezmoi.exe
 ```
+
+## GitHub Actions dependencies
+
+Workflow action dependencies are pinned in `.github/workflows/actions.lock`.
+After adding a workflow or changing a `uses:` reference, regenerate and verify
+the lockfile, then commit it together with the workflow changes:
+
+```sh
+gh actions-lock
+gh actions-lock --verify
+```
+
+To advance existing locked references to their current upstream commits, use
+`gh actions-lock --relock` and review the resulting diff. The verify-lockfile
+workflow checks dependencies on pull requests targeting `main` and pushes to
+`main` without modifying the lockfile.
