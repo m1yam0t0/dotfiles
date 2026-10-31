@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-gh_config_dir=${XDG_CONFIG_HOME}/gh
+gh_config_dir="${XDG_CONFIG_HOME:-${HOME}/.config}/gh"
 
 usage(){
     cat <<EOF
@@ -17,8 +18,9 @@ EOF
 
 # Install GitHub CLI extensions from $gh_config_dir/extension-list
 install_gh_extensions(){
-    while read -r extension; do
-        gh extension install "$extension"
+    while read -r extension || [[ -n $extension ]]; do
+        [[ -z $extension || $extension == \#* ]] && continue
+        gh extension install --force "$extension"
     done < "${gh_config_dir}/extension-list"
 }
 
@@ -36,7 +38,7 @@ update_gh_extension_list(){
     gh extension list | tail -n +1 | awk '{print $3}' > "${gh_config_dir}/extension-list"
 }
 
-case $1 in
+case ${1:-} in
     install)
         check_gh_extension_list
         install_gh_extensions

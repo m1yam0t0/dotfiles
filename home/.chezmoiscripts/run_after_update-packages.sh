@@ -21,6 +21,7 @@ if ! gh auth status --hostname github.com --active >/dev/null 2>&1; then
 	exit 1
 fi
 echo "Update gh extensions..."
+"${HOME}/.local/bin/gh-ext" install
 gh extension upgrade --all
 
 # kubectl plugins
