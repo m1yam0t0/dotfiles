@@ -24,6 +24,7 @@
 {{- if (env "GITHUB_ACTION") -}}
 {{-   $headless = true -}}
 {{-   $github_actions = true -}}
+{{-   $private = false -}}
 {{- end -}}
 
 {{- if or (env "SSH_CLIENT") (env "SSH_CONNECTION") -}}

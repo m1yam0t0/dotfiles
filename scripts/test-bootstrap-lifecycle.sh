@@ -14,7 +14,9 @@ cp "${chezmoi_command}" "${fixture_home}/.local/bin/chezmoi"
 cp "${source_dir}/.chezmoiroot" "${fixture_source}/"
 cp "${source_dir}/home/.chezmoi.toml.tmpl" "${fixture_home_source}/"
 cp "${source_dir}/home/.chezmoiscripts/run_after_zz_cleanup-bootstrap.sh" "${fixture_home_source}/.chezmoiscripts/"
-printf '{{ onepasswordRead "op://test/item/field" }}\n' >"${fixture_home_source}/dot_secret.tmpl"
+# Exercise the real CI configuration without accounts or secrets. Private
+# authentication is tested with mocks in test-bootstrap-cli.sh.
+printf '{{ .github_actions }}\n' >"${fixture_home_source}/dot_ci.tmpl"
 printf 'Repository-only documentation.\n' >"${fixture_source}/README.md"
 
 cat >"${fixture_source}/scripts/bootstrap-cli.sh" <<'EOF'
@@ -45,6 +47,7 @@ if [ "${1:-}" = --session ]; then
 fi
 printf 'op %s\n' "$*" >>"${BOOTSTRAP_TEST_LOG}"
 case "$*" in
+--version) echo mock-op ;;
 'account list --format=json')
 	if [ -e "${HOME}/account-registered" ]; then echo '[{"account_uuid":"test"}]'; else echo '[]'; fi ;;
 'account add') : >"${HOME}/account-registered" ;;
@@ -58,6 +61,7 @@ cat >"${test_dir}/tools/gh" <<'EOF'
 set -eu
 printf 'gh %s\n' "$*" >>"${BOOTSTRAP_TEST_LOG}"
 case "$*" in
+--version) echo mock-gh ;;
 'auth status --hostname github.com --active') test -e "${HOME}/github-authenticated" ;;
 'auth login --hostname github.com --git-protocol https --web') : >"${HOME}/github-authenticated" ;;
 *) exit 45 ;;
@@ -66,8 +70,8 @@ EOF
 cat >"${fixture_home_source}/.chezmoiscripts/run_before_verify-bootstrap.sh" <<'EOF'
 #!/bin/sh
 set -eu
-test -e "${HOME}/account-registered"
-test -e "${HOME}/github-authenticated"
+test ! -e "${HOME}/account-registered"
+test ! -e "${HOME}/github-authenticated"
 echo before >>"${BOOTSTRAP_TEST_LOG}"
 EOF
 cat >"${fixture_home_source}/.chezmoiscripts/run_after_apply-nix-home-manager.sh" <<'EOF'
@@ -87,17 +91,18 @@ echo update >>"${BOOTSTRAP_TEST_LOG}"
 EOF
 
 run_chezmoi() {
-	env -u GITHUB_ACTION -u GITHUB_ACTIONS -u OP_SESSION -u OP_SERVICE_ACCOUNT_TOKEN \
+	env -u OP_SESSION -u OP_SERVICE_ACCOUNT_TOKEN \
 		-u OP_CONNECT_HOST -u OP_CONNECT_TOKEN -u GH_TOKEN -u GITHUB_TOKEN \
 		HOME="${fixture_home}" XDG_CONFIG_HOME="${fixture_home}/.config" \
+		GITHUB_ACTION=bootstrap-test GITHUB_ACTIONS=true \
 		XDG_STATE_HOME="${fixture_home}/.local/state" PATH=/usr/bin:/bin:/usr/sbin:/sbin \
 		BOOTSTRAP_TEST_LIBRARY="${source_dir}/scripts/bootstrap-cli.sh" \
 		BOOTSTRAP_TEST_TOOLS="${test_dir}/tools" BOOTSTRAP_TEST_LOG="${test_dir}/calls" \
 		"$1" --config "${test_dir}/config.toml" --persistent-state "${test_dir}/state.boltdb" \
-		--source "${fixture_source}" --override-data '{"chezmoi":{"username":"m1yam0t0"}}' "${@:2}"
+		--source "${fixture_source}" "${@:2}"
 }
 run_chezmoi "${fixture_home}/.local/bin/chezmoi" init --apply
-test "$(cat "${fixture_home}/.secret")" = mock-secret
+test "$(cat "${fixture_home}/.ci")" = true
 test ! -e "${fixture_home}/scripts"
 test ! -e "${fixture_home}/home"
 test ! -e "${fixture_home}/README.md"
@@ -108,12 +113,13 @@ done
 test ! -e "${fixture_home}/.local/state/dotfiles/bootstrap/cleanup"
 test -x "${fixture_home}/.local/state/dotfiles/bootstrap/op"
 calls="$(cat "${test_dir}/calls")"
-[[ "${calls}" == *'op account add'*'gh auth login'*before*update* ]]
-[[ "${calls}" == *'op account add'*'op read'*update* ]]
+[[ "${calls}" == *'op --version'*'gh --version'*before*update* ]]
+[[ "${calls}" != *'op account'* && "${calls}" != *'op signin'* && "${calls}" != *'op read'* ]]
+[[ "${calls}" != *'gh auth'* ]]
 
 # The generated configuration must still work after the binaries are removed.
 run_chezmoi "${fixture_home}/.nix-profile/bin/chezmoi" apply
-test "$(run_chezmoi "${fixture_home}/.nix-profile/bin/chezmoi" managed --include files)" = .secret
+test "$(run_chezmoi "${fixture_home}/.nix-profile/bin/chezmoi" managed --include files)" = .ci
 for tool in chezmoi op gh; do
 	test ! -e "${fixture_home}/.local/bin/${tool}"
 done

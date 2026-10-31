@@ -58,8 +58,10 @@ test "$(cat "${BOOTSTRAP_TEST_LOG}")" = \
 	$'download-op\ndownload-gh\nop --version\ngh --version'
 
 export -f detect_platform install_op install_gh authenticate op gh main
-# Exported functions lose their source filename; keep the wrapper beside them.
-cd "${source_dir}/scripts"
+# Exported functions lose their source filename. Pass the captured path even
+# when the child shell starts outside the repository.
+export bootstrap_script_dir
+cd "${test_dir}"
 export BOOTSTRAP_TEST_OP_FAILURE=42
 : >"${BOOTSTRAP_TEST_LOG}"
 status=0

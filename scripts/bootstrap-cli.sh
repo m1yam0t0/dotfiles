@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+bootstrap_script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 detect_platform() {
 	case "$(uname -s)" in
 	Linux) os=linux ;;
@@ -121,7 +123,9 @@ authenticate() {
 main() (
 	set -euo pipefail
 	umask 077
-	local os arch bootstrap_bin cleanup_manifest workdir wrapper_source mode="${1:---setup}"
+	# This function already runs in a subshell. Keep variables in its scope so
+	# Bash 3.2 can still access workdir when the EXIT trap runs.
+	mode="${1:---setup}"
 	case "${mode}" in
 	--setup|--setup-private|--download-only) ;;
 	*) echo "Unknown bootstrap mode: ${mode}" >&2; return 1 ;;
@@ -130,7 +134,7 @@ main() (
 	bootstrap_bin="${HOME}/.local/bin"
 	cleanup_manifest="${XDG_STATE_HOME:-${HOME}/.local/state}/dotfiles/bootstrap/cleanup"
 	mkdir -p "${bootstrap_bin}" "$(dirname "${cleanup_manifest}")"
-	wrapper_source="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/bootstrap-op.sh"
+	wrapper_source="${bootstrap_script_dir}/bootstrap-op.sh"
 	install -m 755 "${wrapper_source}" "$(dirname "${cleanup_manifest}")/op"
 	export PATH="${HOME}/.nix-profile/bin:${bootstrap_bin}:${PATH}"
 	if [ "${CHEZMOI_COMMAND:-}" = init ] && [ "${DOTFILES_CHEZMOI_EXECUTABLE:-}" = "${bootstrap_bin}/chezmoi" ] && [ -f "${bootstrap_bin}/chezmoi" ]; then
@@ -141,8 +145,8 @@ main() (
 	install_op
 	install_gh
 	if [ "${mode}" = --download-only ]; then
-		op --version
-		gh --version
+		op --version >&2
+		gh --version >&2
 		return
 	fi
 	authenticate
