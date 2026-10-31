@@ -23,11 +23,12 @@
       unfreePackageNames = [
         "1password-cli"
       ];
+      mkPkgs = system: import nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackageNames;
+      };
       mkHome = system: home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackageNames;
-        };
+        pkgs = mkPkgs system;
         modules = [ ./home.nix ];
       };
     in

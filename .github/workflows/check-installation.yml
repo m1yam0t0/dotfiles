@@ -23,9 +23,16 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
       - name: Install chezmoi
         run: sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- -b "${HOME}/.local/bin"
+      - name: Test initial setup
+        run: |
+          bash scripts/test-bootstrap-cli.sh
+          bash scripts/test-bootstrap-downloads.sh
+          CHEZMOI_TEST_COMMAND="${HOME}/.local/bin/chezmoi" bash scripts/test-bootstrap-lifecycle.sh
+      - name: Test package updates with a fresh PATH
+        run: bash scripts/test-update-packages.sh
       - name: Apply checked-out dotfiles
         run: '"${HOME}/.local/bin/chezmoi" init --source "${GITHUB_WORKSPACE}" --apply'
       - name: Remove chezmoi binary
@@ -54,7 +61,7 @@ jobs:
   install-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
       - name: Set ExecutionPolicy
         run: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
       - name: Install chezmoi

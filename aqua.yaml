@@ -1,0 +1,10 @@
+checksum:
+  enabled: true
+  require_checksum: true
+  supported_envs:
+    - linux/amd64
+registries:
+  - type: standard
+    ref: v4.579.0
+packages:
+  - name: koalaman/shellcheck@v0.11.0

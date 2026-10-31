@@ -1,9 +1,7 @@
-LICENSE
-README.md
-
 {{ if and (ne .chezmoi.os "darwin") (ne .osbase "debian") }}
 .chezmoiscripts/install-nix.sh
 .chezmoiscripts/apply-nix-home-manager.sh
+.chezmoiscripts/zz_cleanup-bootstrap.sh
 {{ end }}
 
 {{ if ne .chezmoi.os "darwin" }}

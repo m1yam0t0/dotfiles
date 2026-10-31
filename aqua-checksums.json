@@ -1,0 +1,14 @@
+{
+  "checksums": [
+    {
+      "id": "github_release/github.com/koalaman/shellcheck/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz",
+      "checksum": "8C3BE12B05D5C177A04C29E3C78CE89AC86F1595681CAB149B65B97C4E227198",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.579.0/registry.yaml",
+      "checksum": "65F9E557DA96D35358579B7D4E165889D4FBE9194F597E77AAE3FA59CCCB4BD31C9E5D32546561B87F906D9BCE5FE44EF01CAD00A03F8456D82BEC1DFE4F7C97",
+      "algorithm": "sha512"
+    }
+  ]
+}
