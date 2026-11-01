@@ -18,9 +18,21 @@ EOF
 
 # Install GitHub CLI extensions from $gh_config_dir/extension-list
 install_gh_extensions(){
+    local installed_extensions extension repository installed
+    installed_extensions="$(gh extension list)"
     while read -r extension || [[ -n $extension ]]; do
         [[ -z $extension || $extension == \#* ]] && continue
-        gh extension install --force "$extension"
+        installed=false
+        while read -r _command _name repository _version; do
+            if [[ $repository == "$extension" ]]; then
+                installed=true
+                break
+            fi
+        done <<< "$installed_extensions"
+        # Existing extensions are updated separately by `upgrade`.
+        if [[ $installed == false ]]; then
+            gh extension install "$extension"
+        fi
     done < "${gh_config_dir}/extension-list"
 }
 

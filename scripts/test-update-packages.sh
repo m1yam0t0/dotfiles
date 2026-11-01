@@ -29,6 +29,12 @@ name="${0##*/}"
 printf '%s %s\n' "${name}" "$*" >>"${UPDATE_TEST_LOG}"
 if [ "${name}" = gh ]; then
 	case "$1 $2" in
+	'extension list')
+		if [ "${UPDATE_TEST_FAIL_LIST:-0}" = 1 ]; then
+			exit 44
+		fi
+		printf '%s' "${UPDATE_TEST_INSTALLED:-}"
+		;;
 	'auth status')
 		if [ "${UPDATE_TEST_NEEDS_LOGIN:-0}" = 1 ] && [ ! -e "${UPDATE_TEST_LOG}.authenticated" ]; then
 			exit 1
@@ -55,14 +61,37 @@ done
 # Only Home Manager's profile contains the tools; the parent PATH is empty.
 PATH="${test_dir}/empty-path" "${bash_command}" "${script}"
 test "$(cat "${UPDATE_TEST_LOG}")" = \
-	$'gh auth status --hostname github.com --active\ngh extension install --force seachicken/gh-poi\ngh extension install --force github/gh-actions-lock\ngh extension upgrade --all\nkrew install\nkrew upgrade\nnvim --headless +Lazy! sync +qa'
+	$'gh auth status --hostname github.com --active\ngh extension list\ngh extension install seachicken/gh-poi\ngh extension install github/gh-actions-lock\ngh extension upgrade --all\nkrew install\nkrew upgrade\nnvim --headless +Lazy! sync +qa'
 
 # Non-private machines do not install krew.
 rm "${profile_bin}/krew"
 : >"${UPDATE_TEST_LOG}"
 PATH="${test_dir}/empty-path" "${bash_command}" "${script}"
 test "$(cat "${UPDATE_TEST_LOG}")" = \
-	$'gh auth status --hostname github.com --active\ngh extension install --force seachicken/gh-poi\ngh extension install --force github/gh-actions-lock\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
+	$'gh auth status --hostname github.com --active\ngh extension list\ngh extension install seachicken/gh-poi\ngh extension install github/gh-actions-lock\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
+
+# Existing extensions must not go through install --force's individual upgrade.
+export UPDATE_TEST_INSTALLED=$'gh poi\tseachicken/gh-poi\tv0.18.6\n'
+: >"${UPDATE_TEST_LOG}"
+PATH="${test_dir}/empty-path" "${bash_command}" "${script}"
+test "$(cat "${UPDATE_TEST_LOG}")" = \
+	$'gh auth status --hostname github.com --active\ngh extension list\ngh extension install github/gh-actions-lock\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
+
+export UPDATE_TEST_INSTALLED=$'gh poi\tseachicken/gh-poi\tv0.18.6\ngh actions-lock\tgithub/gh-actions-lock\tv0.4.0'
+: >"${UPDATE_TEST_LOG}"
+PATH="${test_dir}/empty-path" "${bash_command}" "${script}"
+test "$(cat "${UPDATE_TEST_LOG}")" = \
+	$'gh auth status --hostname github.com --active\ngh extension list\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
+unset UPDATE_TEST_INSTALLED
+
+# A failed list must stop before installing or upgrading anything.
+export UPDATE_TEST_FAIL_LIST=1
+: >"${UPDATE_TEST_LOG}"
+status=0
+PATH="${test_dir}/empty-path" "${bash_command}" "${script}" || status=$?
+test "${status}" = 44
+test "$(cat "${UPDATE_TEST_LOG}")" = $'gh auth status --hostname github.com --active\ngh extension list'
+unset UPDATE_TEST_FAIL_LIST
 
 # Authentication is completed by the source-state hook before plugin updates.
 export UPDATE_TEST_NEEDS_LOGIN=1
@@ -79,7 +108,7 @@ export UPDATE_TEST_FAIL_INSTALL=1
 status=0
 PATH="${test_dir}/empty-path" "${bash_command}" "${script}" || status=$?
 test "${status}" = 43
-test "$(cat "${UPDATE_TEST_LOG}")" = $'gh auth status --hostname github.com --active\ngh extension install --force seachicken/gh-poi'
+test "$(cat "${UPDATE_TEST_LOG}")" = $'gh auth status --hostname github.com --active\ngh extension list\ngh extension install seachicken/gh-poi'
 unset UPDATE_TEST_FAIL_INSTALL
 
 # Do not hide a failed update by continuing to later tools.
@@ -88,5 +117,5 @@ export UPDATE_TEST_FAIL_GH=1
 status=0
 PATH="${test_dir}/empty-path" "${bash_command}" "${script}" || status=$?
 test "${status}" = 42
-test "$(cat "${UPDATE_TEST_LOG}")" = $'gh auth status --hostname github.com --active\ngh extension install --force seachicken/gh-poi\ngh extension install --force github/gh-actions-lock\ngh extension upgrade --all'
+test "$(cat "${UPDATE_TEST_LOG}")" = $'gh auth status --hostname github.com --active\ngh extension list\ngh extension install seachicken/gh-poi\ngh extension install github/gh-actions-lock\ngh extension upgrade --all'
 echo 'Package update tests passed.'
