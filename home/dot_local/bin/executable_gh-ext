@@ -18,12 +18,17 @@ EOF
 
 # Install GitHub CLI extensions from $gh_config_dir/extension-list
 install_gh_extensions(){
-    local installed_extensions extension repository installed
+    local installed_extensions extension name repository installed
     installed_extensions="$(gh extension list)"
     while read -r extension || [[ -n $extension ]]; do
         [[ -z $extension || $extension == \#* ]] && continue
         installed=false
-        while read -r _command _name repository _version; do
+        while read -r _command name repository _version; do
+            if [[ $name == "${extension##*/gh-}" && -z $repository ]]; then
+                printf 'Extension %s has missing repository metadata. Repair it with: gh extension remove %s && gh extension install %s\n' \
+                    "$name" "$name" "$extension" >&2
+                return 1
+            fi
             if [[ $repository == "$extension" ]]; then
                 installed=true
                 break

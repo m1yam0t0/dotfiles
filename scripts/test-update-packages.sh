@@ -84,6 +84,16 @@ test "$(cat "${UPDATE_TEST_LOG}")" = \
 	$'gh auth status --hostname github.com --active\ngh extension list\ngh extension upgrade --all\nnvim --headless +Lazy! sync +qa'
 unset UPDATE_TEST_INSTALLED
 
+# An empty extension directory is listed by name with no repository or version.
+export UPDATE_TEST_INSTALLED=$'gh poi\t\t\n'
+: >"${UPDATE_TEST_LOG}"
+status=0
+PATH="${test_dir}/empty-path" "${bash_command}" "${script}" 2>"${test_dir}/error" || status=$?
+test "${status}" = 1
+test "$(cat "${UPDATE_TEST_LOG}")" = $'gh auth status --hostname github.com --active\ngh extension list'
+test "$(cat "${test_dir}/error")" = 'Extension poi has missing repository metadata. Repair it with: gh extension remove poi && gh extension install seachicken/gh-poi'
+unset UPDATE_TEST_INSTALLED
+
 # A failed list must stop before installing or upgrading anything.
 export UPDATE_TEST_FAIL_LIST=1
 : >"${UPDATE_TEST_LOG}"
