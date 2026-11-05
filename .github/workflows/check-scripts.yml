@@ -16,7 +16,7 @@ jobs:
       - name: Install ShellCheck with aqua
         uses: aquaproj/aqua-installer@v4.1.1
         with:
-          aqua_version: v2.66.0
+          aqua_version: v2.66.1
           aqua_opts: ""
       - name: Check initial setup scripts
         run: aqua exec -- shellcheck -x scripts/bootstrap-cli.sh scripts/bootstrap-op.sh scripts/test-bootstrap-*.sh scripts/test-update-packages.sh home/dot_local/bin/executable_gh-ext
