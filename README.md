@@ -71,7 +71,9 @@ iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b $HOME/.local/bin -- init m1yam0t0
 rm $HOME/.local/bin/chezmoi.exe
 ```
 
-After applying the dotfiles, PowerShell can manage GitHub CLI extensions with
+On macOS and Linux, GitHub CLI extensions are managed declaratively by Home Manager
+(`programs.gh.extensions` in `home/dot_config/home-manager/packages/gh.nix`).
+Windows has no Nix, so PowerShell manages them with
 `gh-ext install` and `gh-ext upgrade` (`gh-ext.ps1 install` also works).
 Both commands use `~/.config/gh/extension-list`, or
 `$env:XDG_CONFIG_HOME/gh/extension-list` when `XDG_CONFIG_HOME` is set.

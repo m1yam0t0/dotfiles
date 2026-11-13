@@ -75,12 +75,11 @@ try {
     New-Item -ItemType Directory -Path $testGhDirectory | Out-Null
     $env:XDG_CONFIG_HOME = $testRoot
     Copy-Item -LiteralPath $scriptPath -Destination (Join-Path $testRoot 'gh-ext.ps1')
-    Copy-Item -LiteralPath (Join-Path $PSScriptRoot '../home/dot_local/bin/executable_gh-ext') -Destination (Join-Path $testRoot 'gh-ext')
     $env:Path = $testRoot + [System.IO.Path]::PathSeparator + $env:Path
     if ((Get-Command gh-ext).Source -ne (Join-Path $testRoot 'gh-ext.ps1')) {
         throw 'gh-ext did not resolve to the PowerShell script.'
     }
-    Write-Output 'PASS: gh-ext resolves to PowerShell alongside the Bash script'
+    Write-Output 'PASS: gh-ext resolves to the PowerShell script'
     foreach ($case in $cases) {
         $originalList = "# comment`n`n owner/first `nowner/second"
         [System.IO.File]::WriteAllText($testList, $originalList)
@@ -128,7 +127,7 @@ try {
     $env:Path = $previousPath
     $global:LASTEXITCODE = $previousExitCode
     if (Test-Path -LiteralPath $testList) { Remove-Item -LiteralPath $testList }
-    foreach ($name in @('gh-ext', 'gh-ext.ps1')) {
+    foreach ($name in @('gh-ext.ps1')) {
         $testScript = Join-Path $testRoot $name
         if (Test-Path -LiteralPath $testScript) { Remove-Item -LiteralPath $testScript }
     }

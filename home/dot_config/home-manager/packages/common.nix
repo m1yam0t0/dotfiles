@@ -11,7 +11,6 @@
     fd
     fzf
     git
-    gh
     ghq
     jnv
     jq
