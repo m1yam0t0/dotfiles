@@ -6,7 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # activate mise
-eval "$(mise activate zsh)"
+# Use Home Manager's mise directly. aqua-proxy may shadow it in PATH and slows startup.
+eval "$(${HOME}/.nix-profile/bin/mise activate zsh)"
 
 # source *.zsh
 source ${ZDOTDIR}/plugins.zsh

@@ -11,7 +11,12 @@ export KREW_ROOT="${HOME}/.krew"
 export AQUA_ROOT_DIR="${XDG_DATA_HOME}/aquaproj-aqua"
 
 # PATH
-export PATH="${HOME}/.local/bin:${KREW_ROOT}/bin:${PATH}"
+# Remove duplicate entries added by nested shells. Re-prepending an entry moves
+# it to the front. This file is also sourced from bash scripts, so check zsh.
+if [ -n "${ZSH_VERSION:-}" ]; then
+	typeset -U path PATH
+fi
+export PATH="${HOME}/.local/bin:${AQUA_ROOT_DIR}/bin:${KREW_ROOT}/bin:${PATH}"
 
 # EDITOR
 export EDITOR=nvim
