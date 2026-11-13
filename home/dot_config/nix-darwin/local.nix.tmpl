@@ -1,0 +1,20 @@
+{ ... }:
+
+{
+{{- if not .headless }}
+  homebrew = {
+    brews = [
+      "mas"
+    ];
+
+    casks = [
+      "vivaldi"
+      "synology-drive"
+    ];
+
+    masApps = {
+      LINE = 539883307;
+    };
+  };
+{{- end }}
+}

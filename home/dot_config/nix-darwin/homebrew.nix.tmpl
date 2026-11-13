@@ -1,0 +1,38 @@
+{ ... }:
+
+{
+  # Homebrew itself is installed by .chezmoiscripts/macos/run_once_before_install-packages.sh.tmpl.
+  homebrew = {
+    enable = true;
+{{- if not .github_actions }}
+
+    # Uninstall packages that are not declared here or in local.nix.
+    # GitHub Actions runners have many preinstalled packages, so skip it there.
+    onActivation.cleanup = "uninstall";
+{{- end }}
+
+    brews = [
+      "zsh"
+    ];
+{{- if not .headless }}
+
+    taps = [
+      "nikitabobko/tap"
+      "stablyai/orca"
+    ];
+
+    casks = [
+      "1password"
+      "appcleaner"
+      "nikitabobko/tap/aerospace"
+      "google-japanese-ime"
+      "hhkb"
+      "karabiner-elements"
+      "logi-options+"
+      "obsidian"
+      "stablyai/orca/orca"
+      "raycast"
+    ];
+{{- end }}
+  };
+}
