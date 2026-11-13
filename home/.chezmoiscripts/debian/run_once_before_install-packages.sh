@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# NOTE: this is workaround. see below comment in issue.
-# https://github.com/actions/runner-images/issues/7192#issuecomment-1446766800
-# disable phased updates
-echo 'APT::Get::Always-Include-Phased-Updates "false";' | sudo tee /etc/apt/apt.conf.d/99-phased-updates
+# NOTE: this is workaround for GitHub Actions runners. see below issue.
+# https://github.com/actions/runner-images/issues/7192
+# grub-efi-amd64-signed fails to configure on runners (BIOS boot), so skip upgrading it.
+if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
+	sudo apt-mark hold grub-efi-amd64-signed
+fi
 
 # updgrade to latest packages
 sudo apt update
