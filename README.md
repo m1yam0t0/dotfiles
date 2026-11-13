@@ -36,7 +36,11 @@ handles 1Password sign-in when reading secrets, so the session stays in the
 process that needs it. Existing installations and configured accounts are reused.
 
 The regular `home/.chezmoiscripts` then install Nix, activate Home Manager, and
-update plugins. The final `run_after_zz_cleanup-bootstrap.sh` removes the
+update plugins. On macOS, they also activate nix-darwin from
+`~/.config/nix-darwin`, which manages Homebrew packages and system preferences.
+nix-darwin is re-activated with sudo only when its configuration changes. It
+does not manage Nix itself, `/etc/zshrc`, `/etc/bashrc`, or CA certificates,
+which stay under the control of the Nix installer. The final `run_after_zz_cleanup-bootstrap.sh` removes the
 initial `chezmoi`, `op`, and `gh` binaries after verifying that Home Manager
 installed all three replacements. It removes only recorded bootstrap binaries
 whose checksums are unchanged. On failure, bootstrap files remain for retrying.

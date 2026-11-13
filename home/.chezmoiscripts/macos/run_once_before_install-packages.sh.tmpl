@@ -17,27 +17,4 @@ else
 	echo "homebrew is already installed."
 fi
 
-# install packages via homebrew
-brew bundle --file=/dev/stdin <<EOF
-brew "zsh"
-{{ if not .headless }}
-tap "nikitabobko/tap"
-tap "stablyai/orca"
-cask "1password"
-cask "appcleaner"
-cask "nikitabobko/tap/aerospace"
-cask "google-japanese-ime"
-cask "hhkb"
-cask "karabiner-elements"
-cask "logi-options+"
-cask "obsidian"
-cask "stablyai/orca/orca"
-cask "raycast"
-cask "vivaldi"
-{{ if .private }}
-brew "mas"
-cask "synology-drive"
-mas "LINE", id: 539883307
-{{ end }}
-{{ end }}
-EOF
+# Homebrew packages are managed by nix-darwin (~/.config/nix-darwin/homebrew.nix).

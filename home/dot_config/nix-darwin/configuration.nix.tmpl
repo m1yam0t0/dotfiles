@@ -1,0 +1,35 @@
+{ ... }:
+
+{
+  imports = [
+    ./homebrew.nix
+    # Machine-specific Homebrew packages. On non-private machines this file is
+    # not managed by chezmoi and is created empty by ensure-local-nix.sh.
+    ./local.nix
+{{- if not .github_actions }}
+    ./preferences.nix
+{{- end }}
+  ];
+
+  system.primaryUser = {{ .chezmoi.username | quote }};
+
+  # Nix itself is installed by NixOS/nix-installer, which also manages
+  # /etc/nix/nix.conf (including nix.custom.conf). Keep nix-darwin away from it.
+  nix.enable = false;
+
+  # nix-installer hooks the Nix daemon into /etc/zshrc, /etc/zshenv and
+  # /etc/bashrc. Do not let nix-darwin replace these files.
+  programs.zsh.enable = false;
+  programs.bash.enable = false;
+
+  # Creating /etc/ssl/certs/ca-certificates.crt would change NIX_SSL_CERT_FILE
+  # selected by nix-daemon.sh. Keep the current certificate setup.
+  security.pki.installCACerts = false;
+
+  # Do not generate SSH host keys. macOS creates them when Remote Login is enabled.
+  services.openssh.hostKeys = [ ];
+
+  # This value determines the nix-darwin release that your configuration is
+  # compatible with. Do not change it without reading the changelog.
+  system.stateVersion = 7;
+}

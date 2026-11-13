@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Re-run only when the nix-darwin configuration changes, since activation needs sudo.
+# flake.nix: {{ include "dot_config/nix-darwin/flake.nix" | sha256sum }}
+# flake.lock: {{ include "dot_config/nix-darwin/flake.lock" | sha256sum }}
+# configuration.nix: {{ include "dot_config/nix-darwin/configuration.nix.tmpl" | sha256sum }}
+# homebrew.nix: {{ include "dot_config/nix-darwin/homebrew.nix.tmpl" | sha256sum }}
+# preferences.nix: {{ include "dot_config/nix-darwin/preferences.nix" | sha256sum }}
+# local.nix: {{ include "dot_config/nix-darwin/local.nix.tmpl" | sha256sum }}
+{{- $localNix := joinPath .chezmoi.homeDir ".config/nix-darwin/local.nix" }}
+{{- if stat $localNix }}
+# local.nix (on this machine): {{ include $localNix | sha256sum }}
+{{- end }}
+# data: headless={{ .headless }} private={{ .private }} github_actions={{ .github_actions }}
+
+flake_dir="${HOME}/.config/nix-darwin"
+
+if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+	# shellcheck disable=SC1091
+	. "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+fi
+
+system="$(nix eval --impure --raw --expr builtins.currentSystem)"
+
+if [ -x /run/current-system/sw/bin/darwin-rebuild ]; then
+	darwin_rebuild=(/run/current-system/sw/bin/darwin-rebuild)
+else
+	# First activation: run darwin-rebuild from the flake.
+	darwin_rebuild=("$(command -v nix)" run "${flake_dir}#darwin-rebuild" --)
+fi
+
+sudo -H "${darwin_rebuild[@]}" switch --flake "${flake_dir}#m1yam0t0-${system}"
