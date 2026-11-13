@@ -18,6 +18,8 @@ setopt extended_history
 setopt share_history
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
+# do not save commands starting with a space (also keeps zsh-bench input out of history)
+setopt hist_ignore_space
 
 #-----------------------------------------------------------
 # Keybind
