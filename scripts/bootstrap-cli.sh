@@ -137,7 +137,14 @@ main() (
 	wrapper_source="${bootstrap_script_dir}/bootstrap-op.sh"
 	install -m 755 "${wrapper_source}" "$(dirname "${cleanup_manifest}")/op"
 	export PATH="${HOME}/.nix-profile/bin:${bootstrap_bin}:${PATH}"
-	if [ "${CHEZMOI_COMMAND:-}" = init ] && [ "${DOTFILES_CHEZMOI_EXECUTABLE:-}" = "${bootstrap_bin}/chezmoi" ] && [ -f "${bootstrap_bin}/chezmoi" ]; then
+	# chezmoi 2.74.1+ runs the apply stage of `init --apply` as the `apply` command.
+	# The executable recorded in the config is stale after bootstrap, so only trust
+	# `apply` while Home Manager's chezmoi is not installed yet.
+	chezmoi_is_bootstrap=false
+	if [ "${CHEZMOI_COMMAND:-}" = init ] || { [ "${CHEZMOI_COMMAND:-}" = apply ] && [ ! -x "${HOME}/.nix-profile/bin/chezmoi" ]; }; then
+		chezmoi_is_bootstrap=true
+	fi
+	if [ "${chezmoi_is_bootstrap}" = true ] && [ "${DOTFILES_CHEZMOI_EXECUTABLE:-}" = "${bootstrap_bin}/chezmoi" ] && [ -f "${bootstrap_bin}/chezmoi" ]; then
 		record_bootstrap_binary chezmoi
 	fi
 	workdir="$(mktemp -d)"
