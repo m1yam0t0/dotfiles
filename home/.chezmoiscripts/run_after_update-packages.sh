@@ -15,15 +15,11 @@ export PATH="${HOME}/.nix-profile/bin:${PATH}"
 # shellcheck disable=SC1091
 source "${HOME}/.zshenv"
 
-# GitHub CLI
+# GitHub CLI extensions are managed by Home Manager (programs.gh.extensions).
 if ! gh auth status --hostname github.com --active >/dev/null 2>&1; then
 	echo 'GitHub authentication is required. Run chezmoi init --apply to configure it.' >&2
 	exit 1
 fi
-echo "Update gh extensions..."
-"${HOME}/.local/bin/gh-ext" install
-gh extension upgrade --all
-
 # kubectl plugins
 echo "Update kubectl plugins..."
 if command -v krew >/dev/null 2>&1; then

@@ -4,5 +4,21 @@
     "config:recommended",
     ":automergeAll",
     ":prHourlyLimitNone"
+  ],
+  "nix": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": false,
+    "schedule": ["before 9am on monday"]
+  },
+  "packageRules": [
+    {
+      "description": "flake.lock updates are not covered by CI (no Nix build), so review them manually and batch them weekly",
+      "matchManagers": ["nix"],
+      "automerge": false,
+      "schedule": ["before 9am on monday"]
+    }
   ]
 }
